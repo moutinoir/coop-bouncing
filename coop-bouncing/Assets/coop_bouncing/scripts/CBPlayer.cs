@@ -14,4 +14,11 @@ public class CBPlayer : MonoBehaviour
 	}
 	
 	Transform mTransform;
+
+	public EPlayerControl PlayerControl;
+	public enum EPlayerControl
+	{
+		Controller1,
+		Controller2,
+	}
 }

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\coop_bouncing\characters\snappingJaws.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBall.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBCatchBall.cs" />
@@ -87,6 +88,7 @@
      <Compile Include="Assets\packages\Curvy\Legacy\SplineWalker.cs" />
      <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerCon.cs" />
      <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerDistance.cs" />
+     <Compile Include="Assets\packages\Curvy\SplineCreationDestruction.cs" />
      <None Include="Assets\packages\Curvy\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
