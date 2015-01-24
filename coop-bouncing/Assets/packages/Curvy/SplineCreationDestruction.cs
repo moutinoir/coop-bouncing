@@ -34,19 +34,13 @@ public class SplineCreationDestruction : MonoBehaviour
 			Vector3 leftPrevPoint = curvyLeft.ControlPoints[numPointsLeft-1].Position;
 			Vector3 rightPrevPoint = curvyRight.ControlPoints[numPointsRight-1].Position;
 
-			/*float xOffset = -20.0f;
-			float yOffset = 20.0f;
-
-			while(xOffset - yOffset == 5.0f)
-			{
-
-			}*/
-
-
-			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, 4.0f)-2.0f, 
+			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, 2.0f)-1.0f, 
 			                          leftPrevPoint.y + 1, 
 			                          leftPrevPoint.z));
-			curvyRight.Add(new Vector3(rightPrevPoint.x+Random.Range(0, 4.0f)-2.0f, 
+
+
+
+			curvyRight.Add(new Vector3(leftPrevPoint.x+3.0f+Random.Range(0, 2.0f)-1.0f, 
 			                           rightPrevPoint.y + 1, 
 			                           rightPrevPoint.z));
 
