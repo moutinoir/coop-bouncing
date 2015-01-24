@@ -15,6 +15,16 @@ public class CBBouncingMotion : MonoBehaviour
 	}
 	Transform mTransform;
 
+	public void StopMotion ()
+	{
+		rigidbody.Sleep();
+	}
+
+	public void AddForce (Vector3 aForceDirection, float aForcePower)
+	{
+		rigidbody.AddForce(aForceDirection * aForcePower);
+	}
+
 	/*private Vector3 mCollisionDirection;
 
 	void OnTriggerEnter(Collider other) 
