@@ -46,24 +46,49 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\packages\SWS\Scripts\Manager\PathManager.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Manager\WaypointManager.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\MessageExample.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\RotationHelper.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\RuntimeExample.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\UserInput.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\hoMove.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\Movement\iMove.cs" />
-     <Compile Include="Assets\packages\SWS\Scripts\PixelPlacement\iTween.cs" />
-     <None Include="Assets\packages\SWS\Textures\car\Shaders\LightsEmmissive.shader" />
-     <None Include="Assets\packages\SWS\Scripts\Holoville\HOTween_License.txt" />
-     <None Include="Assets\packages\SWS\Textures\car\Shaders\GlassReflect.shader" />
-     <None Include="Assets\packages\SWS\Scripts\PlayMaker\SWS_PlayMaker_ReadMe.txt" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBFollowSpline.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyClasses.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyComponent.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyConnection.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyExtensions.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyPropertyAttributes.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyShaperDefinition.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvySpline.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvySplineBase.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvySplineGroup.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvySplineSegment.cs" />
+     <Compile Include="Assets\packages\Curvy\Base\CurvyUtility.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\AlignToSpline.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\FollowSpline.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\GLCurvyRenderer.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\SplinePathCloneBuilder.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\SplinePathMeshBuilder.cs" />
+     <Compile Include="Assets\packages\Curvy\Components\SplineShaper.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\CBExample.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\CameraControl.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\ClosestPoint.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\ConnectionWalkerControl.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\Distances.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\EndlessRunnerPlayer.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\FollowSplineAndLookAt.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\FollowSplineExampleController.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\MBDynamicScaleHandler.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\MouseAddControlPoint.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\Performance.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\PlayerController.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\RespawnController.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\SetLayers.cs" />
+     <Compile Include="Assets\packages\Curvy\Examples\ScriptsAndData\UserValues.cs" />
+     <Compile Include="Assets\packages\Curvy\Legacy\SplineAlign.cs" />
+     <Compile Include="Assets\packages\Curvy\Legacy\SplineWalker.cs" />
+     <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerCon.cs" />
+     <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerDistance.cs" />
+     <None Include="Assets\packages\Curvy\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="HOTween">
- <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/SWS/Scripts/Holoville/HOTween.dll</HintPath>
+ <Reference Include="poly2tri">
+ <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
