@@ -18,10 +18,7 @@ public class CBFollowSpline : MonoBehaviour
 	protected float mTranslation;
 	[SerializeField]
 	protected CurvyVector mCurrent;
-
-	/// <summary>
-	/// Gets the (cached) transform
-	/// </summary>
+	
 	public Transform Transform
 	{
 		get
