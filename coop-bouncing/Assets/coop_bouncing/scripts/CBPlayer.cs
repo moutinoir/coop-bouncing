@@ -12,12 +12,6 @@ public class CBPlayer : MonoBehaviour
 			return mTransform;
 		}
 	}
+	
 	Transform mTransform;
-
-	public enum EPlayerControl
-	{
-		Controller1,
-		Controller2,
-	}
-	public EPlayerControl PlayerControl;
 }
