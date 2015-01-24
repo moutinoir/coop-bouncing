@@ -6,8 +6,8 @@ public class CBFollowSpline : MonoBehaviour
 {
 	public enum EPlayerControl
 	{
-		Controller1,
-		Controller2,
+		YAxis,
+		FifthAxis,
 	}
 
 	public CurvySpline Spline;
@@ -33,6 +33,10 @@ public class CBFollowSpline : MonoBehaviour
 			mCurrentTF = value;
 		}
 	}
+
+	/// <summary>
+	/// Gets the (cached) transform
+	/// </summary>
 
 	public Transform Transform
 	{
@@ -109,7 +113,6 @@ public class CBFollowSpline : MonoBehaviour
 			{
 				mTranslation = Input.GetAxis("Vertical2");
 			}
-
 			break;
 		}
 
