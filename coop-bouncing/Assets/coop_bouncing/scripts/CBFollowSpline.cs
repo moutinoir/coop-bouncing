@@ -13,6 +13,18 @@ public class CBFollowSpline : MonoBehaviour
 	protected float mTranslation;
 	[SerializeField]
 	protected CurvyVector mCurrent;
+
+	public float CurrentTF
+	{
+		get
+		{
+			return mCurrentTF;
+		}
+		set
+		{
+			mCurrentTF = value;
+		}
+	}
 	
 	public Transform Transform
 	{
