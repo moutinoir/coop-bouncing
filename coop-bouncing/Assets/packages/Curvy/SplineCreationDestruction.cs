@@ -11,6 +11,10 @@ public class SplineCreationDestruction : MonoBehaviour
 	public CurvySpline curvyLeft;
 	public CurvySpline curvyRight;
 
+	public float caveWidthMin;
+	public float caveWidthVariation;
+	public float maxControlPoints;
+
 	void Start()
 	{
 		//curvyLeft = splineLeft.GetComponent<CurvySpline>();
@@ -34,21 +38,25 @@ public class SplineCreationDestruction : MonoBehaviour
 			Vector3 leftPrevPoint = curvyLeft.ControlPoints[numPointsLeft-1].Position;
 			Vector3 rightPrevPoint = curvyRight.ControlPoints[numPointsRight-1].Position;
 
-			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, 2.0f)-1.0f, 
-			                          leftPrevPoint.y + 1, 
+			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, caveWidthVariation)-caveWidthVariation/2, 
+			                          leftPrevPoint.y + 1.0f, 
 			                          leftPrevPoint.z));
 
 
 
-			curvyRight.Add(new Vector3(leftPrevPoint.x+3.0f+Random.Range(0, 2.0f)-1.0f, 
-			                           rightPrevPoint.y + 1, 
+			curvyRight.Add(new Vector3(leftPrevPoint.x+caveWidthMin+Random.Range(0, caveWidthVariation)-caveWidthVariation/2, 
+			                           rightPrevPoint.y + 1.0f, 
 			                           rightPrevPoint.z));
 
 			counter = 0;
 
 			//curvyLeft.ControlPoints
-			//curvyLeft.Delete(curvyLeft.ControlPoints[0]);
-			//curvyRight.Delete(curvyRight.ControlPoints[0]);
+			if(curvyLeft.ControlPointCount > maxControlPoints)
+			{
+				curvyLeft.Delete(curvyLeft.ControlPoints[0]);
+				curvyRight.Delete(curvyRight.ControlPoints[0]);
+			}
+
 		}
 	}
 }
