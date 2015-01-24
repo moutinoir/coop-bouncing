@@ -4,8 +4,15 @@ using FluffyUnderware.Curvy;
 
 public class CBFollowSpline : MonoBehaviour 
 {
+	public enum EPlayerControl
+	{
+		YAxis,
+		FifthAxis,
+	}
+
 	public CurvySpline Spline;
 	public float Speed = 1f;
+	public EPlayerControl PlayerControl;
 
 	protected float mCurrentTF;
 	protected float mTranslation;
@@ -35,7 +42,16 @@ public class CBFollowSpline : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		mTranslation = Input.GetAxis("Vertical");
+		switch(PlayerControl)
+		{
+		case EPlayerControl.YAxis:
+			mTranslation = Input.GetAxis("Vertical");
+			break;
+		case EPlayerControl.FifthAxis:
+			mTranslation = Input.GetAxis("Vertical2");
+			break;
+		}
+
 		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
 
 		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 

@@ -74,14 +74,14 @@
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
- </Reference>
  <Reference Include="CurvyResources">
  <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/Editor/Resources/CurvyResources.dll</HintPath>
  </Reference>
  <Reference Include="poly2tri">
  <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
