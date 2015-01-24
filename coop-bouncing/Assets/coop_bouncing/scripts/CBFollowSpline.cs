@@ -6,8 +6,8 @@ public class CBFollowSpline : MonoBehaviour
 {
 	public enum EPlayerControl
 	{
-		YAxis,
-		FifthAxis,
+		Controller1,
+		Controller2,
 	}
 
 	public CurvySpline Spline;
@@ -18,10 +18,7 @@ public class CBFollowSpline : MonoBehaviour
 	protected float mTranslation;
 	[SerializeField]
 	protected CurvyVector mCurrent;
-
-	/// <summary>
-	/// Gets the (cached) transform
-	/// </summary>
+	
 	public Transform Transform
 	{
 		get
@@ -44,11 +41,19 @@ public class CBFollowSpline : MonoBehaviour
 	{
 		switch(PlayerControl)
 		{
-		case EPlayerControl.YAxis:
+		case EPlayerControl.Controller1:
 			mTranslation = Input.GetAxis("L_YAxis_1");
+			if(mTranslation == 0)
+			{
+				mTranslation = Input.GetAxis("Vertical");
+			}
 			break;
-		case EPlayerControl.FifthAxis:
+		case EPlayerControl.Controller2:
 			mTranslation = Input.GetAxis("L_YAxis_2");
+			if(mTranslation == 0)
+			{
+				mTranslation = Input.GetAxis("Vertical2");
+			}
 			break;
 		}
 
