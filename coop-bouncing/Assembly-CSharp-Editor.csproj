@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -69,19 +69,19 @@
      <Compile Include="Assets\packages\Curvy\Editor\Toolbar\ToolbarItem.cs" />
      <None Include="Assets\packages\Curvy\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="CurvyResources">
- <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/Editor/Resources/CurvyResources.dll</HintPath>
+ <HintPath>D:/SnailSafe/coop-bouncing/coop-bouncing/Assets/packages/Curvy/Editor/Resources/CurvyResources.dll</HintPath>
  </Reference>
  <Reference Include="poly2tri">
- <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
+ <HintPath>D:/SnailSafe/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
