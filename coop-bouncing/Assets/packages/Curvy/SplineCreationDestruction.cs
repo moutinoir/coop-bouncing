@@ -16,6 +16,9 @@ public class SplineCreationDestruction : MonoBehaviour
 	public float caveWidthVariation;
 	public float maxControlPoints;
 
+	public CBFollowSpline splineLeft;
+	public CBFollowSpline splineRight;
+
 	void Start()
 	{
 		//curvyLeft = splineLeft.GetComponent<CurvySpline>();
@@ -30,20 +33,12 @@ public class SplineCreationDestruction : MonoBehaviour
 			int numPointsLeft = curvyLeft.ControlPointCount;
 			int numPointsRight = curvyRight.ControlPointCount;
 
-			Debug.Log ("Left" + numPointsLeft);
-			Debug.Log ("Right" + numPointsRight);
-
-			Debug.Log ("Add! " + numPointsLeft);
-			Debug.Log ("Add! " + numPointsRight);
-
 			Vector3 leftPrevPoint = curvyLeft.ControlPoints[numPointsLeft-1].Position;
 			Vector3 rightPrevPoint = curvyRight.ControlPoints[numPointsRight-1].Position;
 
 			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, caveWidthVariation)-caveWidthVariation/2, 
 			                          leftPrevPoint.y + 1.0f, 
 			                          leftPrevPoint.z));
-
-
 
 			curvyRight.Add(new Vector3(leftPrevPoint.x+caveWidthMin+Random.Range(0, caveWidthVariation)-caveWidthVariation/2, 
 			                           rightPrevPoint.y + 1.0f, 
@@ -54,6 +49,7 @@ public class SplineCreationDestruction : MonoBehaviour
 			//curvyLeft.ControlPoints
 			if(curvyLeft.ControlPointCount > maxControlPoints)
 			{
+
 				curvyLeft.Delete(curvyLeft.ControlPoints[0]);
 				curvyRight.Delete(curvyRight.ControlPoints[0]);
 			}

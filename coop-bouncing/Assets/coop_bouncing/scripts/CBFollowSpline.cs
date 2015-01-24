@@ -39,21 +39,31 @@ public class CBFollowSpline : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		int directionSwitch = 0;
+
 		switch(PlayerControl)
 		{
 		case EPlayerControl.Controller1:
+
 			mTranslation = Input.GetAxis("L_YAxis_1");
+			directionSwitch = 1;
+
 			if(mTranslation == 0)
 			{
 				mTranslation = Input.GetAxis("Vertical");
 			}
 			break;
+
 		case EPlayerControl.Controller2:
+
 			mTranslation = Input.GetAxis("L_YAxis_2");
+			directionSwitch = -1;
+
 			if(mTranslation == 0)
 			{
 				mTranslation = Input.GetAxis("Vertical2");
 			}
+
 			break;
 		}
 
@@ -61,5 +71,15 @@ public class CBFollowSpline : MonoBehaviour
 
 		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
 		                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
+
+		//if (mTranslation == 0) 
+		//{
+			transform.rotation = Spline.GetOrientationFast (mCurrentTF);
+			transform.rotation *= Quaternion.Euler(-90*directionSwitch, 90, 0);
+		//}
+
+
+		Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+		Debug.DrawRay(transform.position, forward, Color.green);
 	}
 }
