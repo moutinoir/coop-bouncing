@@ -45,10 +45,10 @@ public class CBFollowSpline : MonoBehaviour
 		switch(PlayerControl)
 		{
 		case EPlayerControl.YAxis:
-			mTranslation = Input.GetAxis("Vertical");
+			mTranslation = Input.GetAxis("L_YAxis_1");
 			break;
 		case EPlayerControl.FifthAxis:
-			mTranslation = Input.GetAxis("Vertical2");
+			mTranslation = Input.GetAxis("L_YAxis_2");
 			break;
 		}
 
