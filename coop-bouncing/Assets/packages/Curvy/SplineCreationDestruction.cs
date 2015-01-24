@@ -45,6 +45,10 @@ public class SplineCreationDestruction : MonoBehaviour
 			                           rightPrevPoint.z));
 
 			counter = 0;
+
+			//curvyLeft.ControlPoints
+			//curvyLeft.Delete(curvyLeft.ControlPoints[0]);
+			//curvyRight.Delete(curvyRight.ControlPoints[0]);
 		}
 	}
 }
