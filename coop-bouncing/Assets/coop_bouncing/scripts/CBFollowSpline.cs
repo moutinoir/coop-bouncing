@@ -14,11 +14,26 @@ public class CBFollowSpline : MonoBehaviour
 	public float Speed = 1f;
 	public EPlayerControl PlayerControl;
 
+	private int directionSwitch;
 	protected float mCurrentTF;
 	protected float mTranslation;
 	[SerializeField]
 	protected CurvyVector mCurrent;
-	
+
+	public Vector3 pLast;
+
+	public float CurrentTF
+	{
+		get
+		{
+			return mCurrentTF;
+		}
+		set
+		{
+			mCurrentTF = value;
+		}
+	}
+
 	public Transform Transform
 	{
 		get
@@ -29,17 +44,48 @@ public class CBFollowSpline : MonoBehaviour
 		}
 	}
 	Transform mTransform;
-
+	
 	// Use this for initialization
 	void Start () 
 	{
 		mCurrent = new CurvyVector(0, 1);
+
+		/*Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
+		                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
+*/
+		Transform.position = Spline.Move (ref mCurrentTF, ref mCurrent.m_Direction, 0.5f, CurvyClamping.Clamp);
 	}
-	
+
+	public void calculatePosition()
+	{
+		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
+		
+		if (pLast != Vector3.zero)
+		{
+			Debug.Log("And here I am restoring it: " + pLast);
+			Transform.position = pLast;
+			pLast = Vector3.zero;
+		}
+		else if (mTranslation != 0)
+		{
+			Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
+			                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
+			
+			Transform.rotation = Spline.GetOrientationFast (mCurrentTF);
+			//Transform.rotation *= Quaternion.Euler(-90*directionSwitch, 90, 0);
+		}
+	}
+
+	void drawDebugRay()
+	{
+		Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+		Debug.DrawRay(transform.position, forward, Color.green);
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
-		int directionSwitch = 0;
+		directionSwitch = 0;
 
 		switch(PlayerControl)
 		{
@@ -67,19 +113,7 @@ public class CBFollowSpline : MonoBehaviour
 			break;
 		}
 
-		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
-
-		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
-		                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
-
-		//if (mTranslation == 0) 
-		//{
-			transform.rotation = Spline.GetOrientationFast (mCurrentTF);
-			transform.rotation *= Quaternion.Euler(-90*directionSwitch, 90, 0);
-		//}
-
-
-		Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-		Debug.DrawRay(transform.position, forward, Color.green);
+		calculatePosition ();
+		drawDebugRay ();
 	}
 }

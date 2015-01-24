@@ -10,7 +10,10 @@ public class SplineCreationDestruction : MonoBehaviour
 	// Update is called once per frame
 	public CurvySpline curvyLeft;
 	public CurvySpline curvyRight;
+
 	public GameObject  ball;
+	public GameObject  playerLeft;
+	public GameObject  playerRight;
 
 	public float caveWidthMin;
 	public float caveWidthVariation;
@@ -28,6 +31,15 @@ public class SplineCreationDestruction : MonoBehaviour
 	{
 		counter++;
 
+		// game over test
+		if(ball.transform.position.y < curvyLeft.ControlPoints[0].Position.y ||
+		   playerLeft.transform.position.y < curvyLeft.ControlPoints[0].Position.y ||
+		   playerRight.transform.position.y < curvyLeft.ControlPoints[0].Position.y)
+		{
+			Debug.Log("Game Over!");
+			Application.LoadLevel(0);
+		}
+
 		if (counter > 60)
 		{
 			int numPointsLeft = curvyLeft.ControlPointCount;
@@ -35,6 +47,11 @@ public class SplineCreationDestruction : MonoBehaviour
 
 			Vector3 leftPrevPoint = curvyLeft.ControlPoints[numPointsLeft-1].Position;
 			Vector3 rightPrevPoint = curvyRight.ControlPoints[numPointsRight-1].Position;
+
+			Debug.Log("Here I am storing the last Position left: " + playerLeft.transform.position);
+			Debug.Log("Here I am storing the last Position right: " + playerRight.transform.position);
+			splineLeft.pLast  = playerLeft.transform.position;
+			splineRight.pLast = playerRight.transform.position;
 
 			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, caveWidthVariation)-caveWidthVariation/2, 
 			                          leftPrevPoint.y + 1.0f, 
@@ -49,18 +66,9 @@ public class SplineCreationDestruction : MonoBehaviour
 			//curvyLeft.ControlPoints
 			if(curvyLeft.ControlPointCount > maxControlPoints)
 			{
-
 				curvyLeft.Delete(curvyLeft.ControlPoints[0]);
 				curvyRight.Delete(curvyRight.ControlPoints[0]);
 			}
-
-			// game over check
-			if(ball.transform.position.y < curvyLeft.ControlPoints[0].Position.y)
-			{
-				Debug.Log("Game Over!");
-				Application.LoadLevel(0);
-			}
-
 		}
 	}
 }
