@@ -19,13 +19,9 @@ public class SplineCreationDestruction : MonoBehaviour
 	void Update () 
 	{
 		counter++;
-		//Debug.Log (curvyLeft);
-		//int numPoints = curvyLeft.ControlPoints.Capacity;
 
-
-		if (counter > 60) //&& curvyLeft != null && curvyRight != null) 
+		if (counter > 60)
 		{
-
 			int numPointsLeft = curvyLeft.ControlPointCount;
 			int numPointsRight = curvyRight.ControlPointCount;
 
@@ -35,12 +31,17 @@ public class SplineCreationDestruction : MonoBehaviour
 			Debug.Log ("Add! " + numPointsLeft);
 			Debug.Log ("Add! " + numPointsRight);
 
-			//GetComponent
-			//Debug.Log("Left"  + curvyLeft.ControlPoints[0].Position);
-			//Debug.Log("Right" + curvyRight.ControlPoints[1].Position);
-
 			Vector3 leftPrevPoint = curvyLeft.ControlPoints[numPointsLeft-1].Position;
 			Vector3 rightPrevPoint = curvyRight.ControlPoints[numPointsRight-1].Position;
+
+			/*float xOffset = -20.0f;
+			float yOffset = 20.0f;
+
+			while(xOffset - yOffset == 5.0f)
+			{
+
+			}*/
+
 
 			curvyLeft.Add(new Vector3(leftPrevPoint.x+Random.Range(0, 4.0f)-2.0f, 
 			                          leftPrevPoint.y + 1, 
@@ -49,14 +50,7 @@ public class SplineCreationDestruction : MonoBehaviour
 			                           rightPrevPoint.y + 1, 
 			                           rightPrevPoint.z));
 
-			//curvyRight.Add(new Vector3(100, 100, 100));
-			//curvyLeft.ControlPoints[numPoints+1].Position = curvyRight.ControlPoints[numPoints].Position;
-			//curvyLeft.ControlPoints[numPoints+1].Position.y += 10;
-
-			/*curvyRight.Add();
-			curvyRight.ControlPoints[numPoints+1].Position = curvyRight.ControlPoints[numPoints].Position;
-			curvyRight.ControlPoints[numPoints+1].Position.y += 10;
-			*/counter = 0;
+			counter = 0;
 		}
 	}
 }
