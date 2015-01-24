@@ -10,6 +10,7 @@ public class SplineCreationDestruction : MonoBehaviour
 	// Update is called once per frame
 	public CurvySpline curvyLeft;
 	public CurvySpline curvyRight;
+	public GameObject  ball;
 
 	public float caveWidthMin;
 	public float caveWidthVariation;
@@ -55,6 +56,13 @@ public class SplineCreationDestruction : MonoBehaviour
 			{
 				curvyLeft.Delete(curvyLeft.ControlPoints[0]);
 				curvyRight.Delete(curvyRight.ControlPoints[0]);
+			}
+
+			// game over check
+			if(ball.transform.position.y < curvyLeft.ControlPoints[0].Position.y)
+			{
+				Debug.Log("Game Over!");
+				Application.LoadLevel(0);
 			}
 
 		}
