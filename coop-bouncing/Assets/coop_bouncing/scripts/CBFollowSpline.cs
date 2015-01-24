@@ -6,8 +6,8 @@ public class CBFollowSpline : MonoBehaviour
 {
 	public enum EPlayerControl
 	{
-		YAxis,
-		FifthAxis,
+		Controller1,
+		Controller2,
 	}
 
 	public CurvySpline Spline;
@@ -41,11 +41,19 @@ public class CBFollowSpline : MonoBehaviour
 	{
 		switch(PlayerControl)
 		{
-		case EPlayerControl.YAxis:
-			mTranslation = Input.GetAxis("Vertical");
+		case EPlayerControl.Controller1:
+			mTranslation = Input.GetAxis("L_YAxis_1");
+			if(mTranslation == 0)
+			{
+				mTranslation = Input.GetAxis("Vertical");
+			}
 			break;
-		case EPlayerControl.FifthAxis:
-			mTranslation = Input.GetAxis("Vertical2");
+		case EPlayerControl.Controller2:
+			mTranslation = Input.GetAxis("L_YAxis_2");
+			if(mTranslation == 0)
+			{
+				mTranslation = Input.GetAxis("Vertical2");
+			}
 			break;
 		}
 
