@@ -29,7 +29,10 @@ public class CBCatchBall : MonoBehaviour
 			mCollisionDirection.Normalize();
 			
 			CBBall ball = collision.gameObject.GetComponent<CBBouncingMotion>().Ball;
-			CatchBall(ball);
+			if(ball.Free)
+			{
+				CatchBall(ball);
+			}
 			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
 			//          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
 		}		

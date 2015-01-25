@@ -46,7 +46,7 @@ public class CBFollowSpline : MonoBehaviour
 	void Start () 
 	{
 		mCurrent = new CurvyVector(0, 1);
-		mCurrentTF = 0f;
+		mCurrentTF = Spline.DistanceToTF(Spline.ControlPoints[1].Distance);
 	}
 	
 	// Update is called once per frame

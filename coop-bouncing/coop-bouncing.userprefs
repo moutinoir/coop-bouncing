@@ -1,19 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\CBCatchBall.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\CBFollowSpline.cs">
     <Files>
-      <File FileName="Assets\coop_bouncing\scripts\CBFollowSpline.cs" Line="62" Column="44" />
+      <File FileName="Assets\coop_bouncing\scripts\CBFollowSpline.cs" Line="49" Column="68" />
       <File FileName="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" Line="26" Column="3" />
       <File FileName="Assets\coop_bouncing\scripts\CBPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\SplineCreationDestruction.cs" Line="23" Column="14" />
-      <File FileName="Assets\packages\Curvy\Base\CurvySpline.cs" Line="1" Column="1" />
+      <File FileName="Assets\packages\Curvy\Base\CurvySpline.cs" Line="149" Column="30" />
       <File FileName="Assets\packages\Curvy\Components\SplinePathCloneBuilder.cs" Line="1" Column="1" />
       <File FileName="Assets\coop_bouncing\scripts\CBBall.cs" Line="1" Column="1" />
       <File FileName="Assets\coop_bouncing\scripts\CBCatchBall.cs" Line="41" Column="1" />
       <File FileName="Assets\coop_bouncing\scripts\CBPathRenderer.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\Components\SplinePathMeshBuilder.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\Base\CurvyUtility.cs" Line="1" Column="1" />
-      <File FileName="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" Line="3" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" Line="1" Column="1" />
+      <File FileName="Assets\packages\Curvy\Base\CurvySplineSegment.cs" Line="188" Column="26" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,11 +22,14 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="coop_bouncing" expanded="True">
               <Node name="scripts" expanded="True">
-                <Node name="CBCatchBall.cs" selected="True" />
+                <Node name="CBFollowSpline.cs" selected="True" />
               </Node>
             </Node>
             <Node name="packages" expanded="True">
-              <Node name="Curvy" expanded="True" />
+              <Node name="Curvy" expanded="True">
+                <Node name="Base" expanded="True" />
+                <Node name="Components" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

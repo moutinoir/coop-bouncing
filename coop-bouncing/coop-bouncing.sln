@@ -5,6 +5,8 @@ Project("{9A8F7235-4FB4-79B8-5E5C-21C5A34C6465}") = "coop-bouncing", "Assembly-C
 EndProject
 Project("{9A8F7235-4FB4-79B8-5E5C-21C5A34C6465}") = "coop-bouncing", "Assembly-CSharp-Editor.csproj", "{812562C5-115F-A253-CFF8-566AAED4F293}"
 EndProject
+Project("{9A8F7235-4FB4-79B8-5E5C-21C5A34C6465}") = "coop-bouncing", "Assembly-UnityScript.unityproj", "{8D00291D-D092-A486-BC22-FE5F7C2B39FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,15 @@ Global
 		{812562C5-115F-A253-CFF8-566AAED4F293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{812562C5-115F-A253-CFF8-566AAED4F293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{812562C5-115F-A253-CFF8-566AAED4F293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D00291D-D092-A486-BC22-FE5F7C2B39FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D00291D-D092-A486-BC22-FE5F7C2B39FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D00291D-D092-A486-BC22-FE5F7C2B39FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D00291D-D092-A486-BC22-FE5F7C2B39FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																														GlobalSection(MonoDevelopProperties) = preSolution
+																															GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

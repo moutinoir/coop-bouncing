@@ -5,6 +5,14 @@ public class CBBall : MonoBehaviour
 {
 	public CBBouncingMotion BouncingMotion;
 
+	public bool Free
+	{
+		get
+		{
+			return m_isFree;
+		}
+	}
+
 	public Transform Transform
 	{
 		get
