@@ -56,6 +56,7 @@
      <Compile Include="Assets\coop_bouncing\scripts\CBGameOver.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPathRenderer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPlayer.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBWin.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\JawsScript.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\loadLevel.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyClasses.cs" />
