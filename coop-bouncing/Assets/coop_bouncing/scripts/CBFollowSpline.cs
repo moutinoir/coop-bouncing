@@ -14,6 +14,11 @@ public class CBFollowSpline : MonoBehaviour
 	[SerializeField]
 	protected CurvyVector mCurrent;
 
+	public float InputStick1;
+	public float InputStick2;
+	public float InputVertical1;
+	public float InputVertical2;
+
 	public float CurrentTF
 	{
 		get
@@ -50,13 +55,16 @@ public class CBFollowSpline : MonoBehaviour
 		switch(Player.PlayerControl)
 		{
 		case CBPlayer.EPlayerControl.Controller1:
+		{
 			mTranslation = Input.GetAxis("L_YAxis_1");
 			if(mTranslation == 0)
 			{
-				mTranslation = Input.GetAxis("Vertical");
+				mTranslation = Input.GetAxis("Vertical1");
 			}
 			break;
+		}
 		case CBPlayer.EPlayerControl.Controller2:
+		{
 			mTranslation = Input.GetAxis("L_YAxis_2");
 			if(mTranslation == 0)
 			{
@@ -64,6 +72,12 @@ public class CBFollowSpline : MonoBehaviour
 			}
 			break;
 		}
+		}
+
+		InputStick1 = Input.GetAxis("L_YAxis_1");
+		InputStick2 = Input.GetAxis("L_YAxis_2");
+		InputVertical2 = Input.GetAxis("Vertical2");
+		InputVertical1 = Input.GetAxis("Vertical1");
 
 		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
 

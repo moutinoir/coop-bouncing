@@ -54,6 +54,7 @@
      <Compile Include="Assets\coop_bouncing\scripts\CBFollowSpline.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPathRenderer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPlayer.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\JawsScript.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyClasses.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyComponent.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyConnection.cs" />
