@@ -83,5 +83,6 @@ public class CBFollowSpline : MonoBehaviour
 
 		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
 		                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
+		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
 	}
 }
