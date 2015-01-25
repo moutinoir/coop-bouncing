@@ -65,7 +65,9 @@ public class CBCatchBall : MonoBehaviour
 	}
 
 	void ReleaseBall()
-	{
+	{ 
+		mCollisionDirection = mBall.Transform.position - Transform.position;
+		mCollisionDirection.Normalize();
 		mBall.RegainFreedom(mCollisionDirection, ForcePower);
 		mBall = null;
 	}
