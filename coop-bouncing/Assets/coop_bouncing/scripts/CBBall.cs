@@ -9,7 +9,7 @@ public class CBBall : MonoBehaviour
 	{
 		get
 		{
-			return m_isFree;
+			return mIsFree;
 		}
 	}
 
