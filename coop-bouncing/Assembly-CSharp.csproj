@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\coop_bouncing\characters\snappingJaws.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBAutoFollowSpline.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBall.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBCatchBall.cs" />
