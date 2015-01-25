@@ -10,11 +10,11 @@ public class CBGameOver : MonoBehaviour
 	
 	}
 
-	void OnCollisionEnter(Collision collision)
+	void OnTriggerEnter(Collider other)
 	{
-		if(collision.gameObject.name == "Player1" || collision.gameObject.name == "Player2" 
-		   || collision.gameObject.name == "Body" || collision.gameObject.name == "Ball"
-		   || collision.gameObject.name == "ball2D")
+		if(other.gameObject.name == "Player1" || other.gameObject.name == "Player2" 
+		   || other.gameObject.name == "Body" || other.gameObject.name == "Ball"
+		   || other.gameObject.name == "ball2D")
 		{
 			Debug.Log("Game Over!");
 			Application.LoadLevel(0);
