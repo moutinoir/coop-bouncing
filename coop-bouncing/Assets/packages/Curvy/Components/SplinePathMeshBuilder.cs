@@ -34,7 +34,11 @@ public class SplinePathMeshBuilder : MonoBehaviour
         /// Rectangle polygon
         /// </summary>
         Rectangle,
-        /// <summary>
+		/// <summary>
+		/// Point
+		/// </summary>
+		Point,
+		/// <summary>
         /// Use this to provide your own mesh(es)
         /// </summary>
         Custom
@@ -443,16 +447,19 @@ public class SplinePathMeshBuilder : MonoBehaviour
             case MeshCapShape.NGon:
                 StartMesh = MeshHelper.CreateNgonMesh(CapSegments, CapWidth,CapHollow);
                 break;
+			case MeshCapShape.Point:
+				StartMesh = MeshHelper.CreatePointMesh();
+				break;
         }
     }
-
-    void Prepare()
-    {
-#if UNITY_EDITOR
-        mPerfWatch.Reset();
-        mPerfWatch.Start();
-#endif
-        if (Spline && StartMesh && ExtrusionParameter > 0) {
+	
+	void Prepare()
+	{
+		#if UNITY_EDITOR
+		mPerfWatch.Reset();
+		mPerfWatch.Start();
+		#endif
+		if (Spline && StartMesh && ExtrusionParameter > 0) {
             StartMeshInfo = new MeshInfo(StartMesh, true, false);
             if (EndMesh)
                 EndMeshInfo = new MeshInfo(EndMesh, false, true);

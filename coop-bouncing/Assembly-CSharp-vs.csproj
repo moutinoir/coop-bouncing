@@ -50,7 +50,9 @@
      <Compile Include="Assets\coop_bouncing\scripts\CBBall.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBCatchBall.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBFollowSpline.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBPathRenderer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPlayer.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyClasses.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyComponent.cs" />
