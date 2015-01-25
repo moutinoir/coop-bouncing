@@ -46,7 +46,7 @@ public class CBFollowSpline : MonoBehaviour
 	void Start () 
 	{
 		mCurrent = new CurvyVector(0, 1);
-		mCurrentTF = 0.1f;
+		mCurrentTF = 0f;
 	}
 	
 	// Update is called once per frame
