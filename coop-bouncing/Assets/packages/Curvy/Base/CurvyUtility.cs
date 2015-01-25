@@ -400,6 +400,18 @@ namespace FluffyUnderware.Curvy.Utils
             return mesh;
         }
 
+		/// <summary>
+		/// Creates a line mesh
+		/// </summary>
+		public static Mesh CreatePointMesh()
+		{
+			Mesh mesh = new Mesh();
+			mesh.vertices = new Vector3[1] { new Vector3(0, 0, 0) };
+			mesh.uv = new Vector2[1] { new Vector2(0, 0)};
+			mesh.RecalculateBounds();
+			return mesh;
+		}
+
         /// <summary>
         /// Creates a N-gon mesh
         /// </summary>
