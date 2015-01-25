@@ -9,6 +9,14 @@ public class CBCatchBall : MonoBehaviour
 	private Vector3 mBallLocalPosition;
 	private Vector3 mCollisionDirection;
 
+	public CBBall Ball
+	{
+		get
+		{
+			return mBall;
+		}
+	}
+
 	public Transform Transform
 	{
 		get
@@ -27,12 +35,17 @@ public class CBCatchBall : MonoBehaviour
 			ContactPoint first_contact = collision.contacts[0];
 			mCollisionDirection = first_contact.point - Transform.position;
 			mCollisionDirection.Normalize();
-			
-			CBBall ball = collision.gameObject.GetComponent<CBBouncingMotion>().Ball;
-			if(ball.Free)
+
+			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
+			if(BouncingMotion != null)
 			{
-				CatchBall(ball);
+				CBBall ball = BouncingMotion.Ball;
+				if(ball.Free)
+				{
+					CatchBall(ball);
+				}
 			}
+
 			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
 			//          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
 		}		

@@ -1,33 +1,33 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\CBFollowSpline.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\packages\Curvy\SplineCreationDestruction.cs">
     <Files>
-      <File FileName="Assets\coop_bouncing\scripts\CBFollowSpline.cs" Line="86" Column="69" />
-      <File FileName="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" Line="26" Column="3" />
+      <File FileName="Assets\coop_bouncing\scripts\CBFollowSpline.cs" Line="3" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\CBBouncingMotion.cs" Line="1" Column="1" />
       <File FileName="Assets\coop_bouncing\scripts\CBPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\SplineCreationDestruction.cs" Line="23" Column="14" />
-      <File FileName="Assets\packages\Curvy\Base\CurvySpline.cs" Line="385" Column="74" />
+      <File FileName="Assets\packages\Curvy\Base\CurvySpline.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\Components\SplinePathCloneBuilder.cs" Line="1" Column="1" />
-      <File FileName="Assets\coop_bouncing\scripts\CBBall.cs" Line="17" Column="3" />
-      <File FileName="Assets\coop_bouncing\scripts\CBCatchBall.cs" Line="34" Column="5" />
+      <File FileName="Assets\coop_bouncing\scripts\CBBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\CBCatchBall.cs" Line="1" Column="1" />
       <File FileName="Assets\coop_bouncing\scripts\CBPathRenderer.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\Components\SplinePathMeshBuilder.cs" Line="1" Column="1" />
       <File FileName="Assets\packages\Curvy\Base\CurvyUtility.cs" Line="1" Column="1" />
-      <File FileName="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" Line="3" Column="1" />
-      <File FileName="Assets\packages\Curvy\Base\CurvySplineSegment.cs" Line="188" Column="26" />
+      <File FileName="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" Line="1" Column="1" />
+      <File FileName="Assets\packages\Curvy\Base\CurvySplineSegment.cs" Line="1" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\CBAutoFollowSpline.cs" Line="23" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="coop_bouncing" expanded="True">
-              <Node name="scripts" expanded="True">
-                <Node name="CBFollowSpline.cs" selected="True" />
-              </Node>
+              <Node name="scripts" expanded="True" />
             </Node>
             <Node name="packages" expanded="True">
               <Node name="Curvy" expanded="True">
-                <Node name="Base" expanded="True" />
+                <Node name="Components" expanded="True" />
+                <Node name="SplineCreationDestruction.cs" selected="True" />
               </Node>
             </Node>
           </Node>

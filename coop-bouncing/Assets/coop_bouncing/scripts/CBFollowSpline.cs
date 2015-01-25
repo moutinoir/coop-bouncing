@@ -8,6 +8,8 @@ public class CBFollowSpline : MonoBehaviour
 
 	public CurvySpline Spline;
 	public float Speed = 1f;
+	public float SlowSpeedFactor = 0.5f;
+	private float mSpeedFactor = 1f;
 
 	protected float mCurrentTF;
 	protected float mTranslation;
@@ -79,10 +81,19 @@ public class CBFollowSpline : MonoBehaviour
 		InputVertical2 = Input.GetAxis("Vertical2");
 		InputVertical1 = Input.GetAxis("Vertical1");
 
+		if(Player.CatchBall.Ball != null)
+		{
+			mSpeedFactor = SlowSpeedFactor;
+		}
+		else
+		{
+			mSpeedFactor = 1f;
+		}
+
 		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
 
 		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
-		                                   Speed * Mathf.Abs(mTranslation) * Time.deltaTime, CurvyClamping.Clamp);
+		                                   Speed * Mathf.Abs(mTranslation)* mSpeedFactor * Time.deltaTime, CurvyClamping.Clamp);
 		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
 	}
 }

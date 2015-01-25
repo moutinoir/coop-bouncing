@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CBPlayer : MonoBehaviour 
 {
+	public CBFollowSpline FollowSpline;
+	public CBCatchBall CatchBall;
+
 	public Transform Transform
 	{
 		get

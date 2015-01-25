@@ -53,6 +53,7 @@
      <Compile Include="Assets\coop_bouncing\scripts\CBCatchBall.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBExtrudeLineMesh.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBFollowSpline.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\CBGameOver.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPathRenderer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBPlayer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\JawsScript.cs" />
