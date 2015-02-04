@@ -5,9 +5,11 @@ public class CBCatchBall : MonoBehaviour
 {
 	public CBPlayer Player;
 	public float ForcePower;
+	public float IntervalBetweenCatches = 0.1f;
 	private CBBall mBall = null;
 	private Vector3 mBallLocalPosition;
 	private Vector3 mCollisionDirection;
+	private float mTimeSinceReleasedBall;
 
 	public CBBall Ball
 	{
@@ -28,9 +30,14 @@ public class CBCatchBall : MonoBehaviour
 	}
 	Transform mTransform;
 
+	void Start()
+	{
+		mTimeSinceReleasedBall = IntervalBetweenCatches;
+	}
+
 	void OnCollisionEnter(Collision collision)
 	{
-		if(mBall == null)
+		if(mBall == null && mTimeSinceReleasedBall > IntervalBetweenCatches)
 		{
 			ContactPoint first_contact = collision.contacts[0];
 			mCollisionDirection = first_contact.point - Transform.position;
@@ -70,10 +77,12 @@ public class CBCatchBall : MonoBehaviour
 		mCollisionDirection.Normalize();
 		mBall.RegainFreedom(mCollisionDirection, ForcePower);
 		mBall = null;
+		mTimeSinceReleasedBall = 0.0f;
 	}
 
 	void Update ()
 	{
+		mTimeSinceReleasedBall += Time.deltaTime;
 		if(mBall != null)
 		{
 			KeepBallClose();
