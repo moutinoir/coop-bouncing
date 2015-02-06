@@ -3,9 +3,17 @@ using System.Collections;
 
 public class CBBouncingMotion : MonoBehaviour 
 {
+	public enum EMotionType
+	{
+		UnityPhysics,
+		Manual
+	}
+
+	public EMotionType MotionType = EMotionType.UnityPhysics;
 	public CBBall Ball;
 	public float maxSpeed = 2f;
 	public float minSpeed = 0.5f;
+
 	private float mVelocityMagnitude = 0f;
 
 	public Rigidbody Rigidbody
@@ -32,43 +40,83 @@ public class CBBouncingMotion : MonoBehaviour
 
 	void Start()
 	{
-		Rigidbody.Sleep();
+		switch(MotionType)
+		{
+		case EMotionType.UnityPhysics:
+			Rigidbody.Sleep();
+			break;
+
+		case EMotionType.Manual:
+			break;
+		}
 	}
 
 	public void StopMotion ()
 	{
-		Rigidbody.Sleep();
-		Rigidbody.velocity = Vector3.zero;
+		switch(MotionType)
+		{
+		case EMotionType.UnityPhysics:
+			Rigidbody.Sleep();
+			Rigidbody.velocity = Vector3.zero;
+			break;
+			
+		case EMotionType.Manual:
+			break;
+		}
 	}
 
 	public void AddForce (Vector3 aForceDirection, float aForcePower)
 	{
-		Rigidbody.velocity = Vector3.zero;
-		Rigidbody.AddForce(aForceDirection * aForcePower);
+		switch(MotionType)
+		{
+		case EMotionType.UnityPhysics:
+			Rigidbody.velocity = Vector3.zero;
+			Rigidbody.AddForce(aForceDirection * aForcePower);
+			break;
+			
+		case EMotionType.Manual:
+			break;
+		}
 	}
 
 	public void Push (Vector2 aDirection)
 	{
-		mVelocityMagnitude = Rigidbody.velocity.magnitude;
-		Rigidbody.velocity = aDirection * mVelocityMagnitude;
-
-		if(mVelocityMagnitude < minSpeed)
+		switch(MotionType)
 		{
-			Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
+		case EMotionType.UnityPhysics:
+			mVelocityMagnitude = Rigidbody.velocity.magnitude;
+			Rigidbody.velocity = aDirection * mVelocityMagnitude;
+
+			if(mVelocityMagnitude < minSpeed)
+			{
+				Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
+			}
+			break;
+			
+		case EMotionType.Manual:
+			break;
 		}
 	}
 
 	void FixedUpdate()
 	{
-		mVelocityMagnitude = Rigidbody.velocity.magnitude;
-		if(Rigidbody.velocity.magnitude > maxSpeed)
+		switch(MotionType)
 		{
-			Rigidbody.velocity = Rigidbody.velocity.normalized * maxSpeed;
+		case EMotionType.UnityPhysics:
+			mVelocityMagnitude = Rigidbody.velocity.magnitude;
+			if(Rigidbody.velocity.magnitude > maxSpeed)
+			{
+				Rigidbody.velocity = Rigidbody.velocity.normalized * maxSpeed;
+			}
+			/*else if(Rigidbody.velocity.magnitude < minSpeed && !Rigidbody.IsSleeping())
+			{
+				Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
+			}*/
+			break;
+			
+		case EMotionType.Manual:
+			break;
 		}
-		/*else if(Rigidbody.velocity.magnitude < minSpeed && !Rigidbody.IsSleeping())
-		{
-			Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
-		}*/
 	}
 
 	/*private Vector3 mCollisionDirection;
