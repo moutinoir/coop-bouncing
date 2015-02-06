@@ -44,4 +44,12 @@ public class CBBall : MonoBehaviour
 		BouncingMotion.AddForce (aForceDirection, aForcePower);
 		mIsFree = true;
 	}
+
+	public void Push (Vector3 aDirection)
+	{
+		if(Free)
+		{
+			BouncingMotion.Push(aDirection);
+		}
+	}
 }

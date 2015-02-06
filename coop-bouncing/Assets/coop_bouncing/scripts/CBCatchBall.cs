@@ -35,8 +35,9 @@ public class CBCatchBall : MonoBehaviour
 		mTimeSinceReleasedBall = IntervalBetweenCatches;
 	}
 
-	void OnCollisionEnter(Collision collision)
+	void OnCollisionStay(Collision collision)
 	{
+		//Debug.Log ("collision enter");
 		if(mBall == null && mTimeSinceReleasedBall > IntervalBetweenCatches)
 		{
 			ContactPoint first_contact = collision.contacts[0];
@@ -55,7 +56,51 @@ public class CBCatchBall : MonoBehaviour
 
 			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
 			//          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
+		}	
+		else if(mBall == null)
+		{
+			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
+			if(BouncingMotion != null)
+			{
+				CBBall ball = BouncingMotion.Ball;
+				if(ball != null)
+				{
+					PushBall(ball);
+				}
+			}
+		}
+	}
+
+	/*void OnTriggerEnter(Collider other)
+	{ 
+		//Debug.Log ("trigger enter");
+		if(mBall == null && mTimeSinceReleasedBall > IntervalBetweenCatches)
+		{
+			Transform other_transform = other.transform;
+			Vector3 other_position = other_transform.position;
+			mCollisionDirection = other_position - Transform.position;
+			mCollisionDirection.Normalize();
+			
+			CBBouncingMotion BouncingMotion = other.gameObject.GetComponent<CBBouncingMotion>();
+			if(BouncingMotion != null)
+			{
+				CBBall ball = BouncingMotion.Ball;
+				if(ball.Free)
+				{
+					CatchBall(ball);
+				}
+			}
+			
+			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " triggered with " 
+			//          + other_transform.parent.name + ":" +  other_transform.name + " at direction " + mCollisionDirection);
 		}		
+	}*/
+
+	void PushBall(CBBall aBall)
+	{
+		mCollisionDirection = aBall.Transform.position - Transform.position;
+		mCollisionDirection.Normalize();
+		aBall.Push (mCollisionDirection);
 	}
 
 	void CatchBall(CBBall aBall)

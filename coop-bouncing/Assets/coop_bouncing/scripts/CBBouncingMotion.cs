@@ -4,6 +4,21 @@ using System.Collections;
 public class CBBouncingMotion : MonoBehaviour 
 {
 	public CBBall Ball;
+	public float maxSpeed = 2f;
+	public float minSpeed = 0.5f;
+	private float mVelocityMagnitude = 0f;
+
+	public Rigidbody Rigidbody
+	{
+		get
+		{
+			if (!mRigidbody)
+				mRigidbody = rigidbody;
+			return mRigidbody;
+		}
+	}
+	Rigidbody mRigidbody;
+
 	public Transform Transform
 	{
 		get
@@ -15,14 +30,45 @@ public class CBBouncingMotion : MonoBehaviour
 	}
 	Transform mTransform;
 
+	void Start()
+	{
+		Rigidbody.Sleep();
+	}
+
 	public void StopMotion ()
 	{
-		rigidbody.Sleep();
+		Rigidbody.Sleep();
+		Rigidbody.velocity = Vector3.zero;
 	}
 
 	public void AddForce (Vector3 aForceDirection, float aForcePower)
 	{
-		rigidbody.AddForce(aForceDirection * aForcePower);
+		Rigidbody.velocity = Vector3.zero;
+		Rigidbody.AddForce(aForceDirection * aForcePower);
+	}
+
+	public void Push (Vector2 aDirection)
+	{
+		mVelocityMagnitude = Rigidbody.velocity.magnitude;
+		Rigidbody.velocity = aDirection * mVelocityMagnitude;
+
+		if(mVelocityMagnitude < minSpeed)
+		{
+			Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
+		}
+	}
+
+	void FixedUpdate()
+	{
+		mVelocityMagnitude = Rigidbody.velocity.magnitude;
+		if(Rigidbody.velocity.magnitude > maxSpeed)
+		{
+			Rigidbody.velocity = Rigidbody.velocity.normalized * maxSpeed;
+		}
+		/*else if(Rigidbody.velocity.magnitude < minSpeed && !Rigidbody.IsSleeping())
+		{
+			Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
+		}*/
 	}
 
 	/*private Vector3 mCollisionDirection;

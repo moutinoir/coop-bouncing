@@ -20,6 +20,8 @@ public class CBFollowSpline : MonoBehaviour
 	public float InputStick2;
 	public float InputVertical1;
 	public float InputVertical2;
+	public float InputHorizontal1;
+	public float InputHorizontal2;
 
 	public float CurrentTF
 	{
@@ -58,28 +60,30 @@ public class CBFollowSpline : MonoBehaviour
 		{
 		case CBPlayer.EPlayerControl.Controller1:
 		{
-			mTranslation = Input.GetAxis("L_YAxis_1");
+			mTranslation = Input.GetAxis("L_XAxis_1");
 			if(mTranslation == 0)
 			{
-				mTranslation = Input.GetAxis("Vertical1");
+				mTranslation = Input.GetAxis("Horizontal1");
 			}
 			break;
 		}
 		case CBPlayer.EPlayerControl.Controller2:
 		{
-			mTranslation = Input.GetAxis("L_YAxis_2");
+			mTranslation = Input.GetAxis("L_XAxis_2");
 			if(mTranslation == 0)
 			{
-				mTranslation = Input.GetAxis("Vertical2");
+				mTranslation = Input.GetAxis("Horizontal2");
 			}
 			break;
 		}
 		}
 
-		InputStick1 = Input.GetAxis("L_YAxis_1");
-		InputStick2 = Input.GetAxis("L_YAxis_2");
+		InputStick1 = Input.GetAxis("L_XAxis_1");
+		InputStick2 = Input.GetAxis("L_XAxis_2");
 		InputVertical2 = Input.GetAxis("Vertical2");
 		InputVertical1 = Input.GetAxis("Vertical1");
+		InputHorizontal2 = Input.GetAxis("Horizontal2");
+		InputHorizontal1 = Input.GetAxis("Horizontal1");
 
 		if(Player.CatchBall.Ball != null)
 		{
