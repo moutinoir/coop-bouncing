@@ -47,6 +47,7 @@ public class CBBouncingMotion : MonoBehaviour
 			break;
 
 		case EMotionType.Manual:
+			Rigidbody.isKinematic = true;
 			break;
 		}
 	}
