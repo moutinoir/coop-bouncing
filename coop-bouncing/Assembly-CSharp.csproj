@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_1;UNITY_4_6;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -39,13 +39,20 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CaveMeshGenerator.cs" />
+     <Compile Include="Assets\New Folder\Scripts\GUIShake.cs" />
+     <Compile Include="Assets\New Folder\Scripts\GuiMotion.cs" />
+     <Compile Include="Assets\New Folder\Scripts\MoneyShower2.cs" />
+     <Compile Include="Assets\Scripts\MoneyShower.cs" />
+     <Compile Include="Assets\bgMeshCreator.cs" />
+     <Compile Include="Assets\camera\CamMotion.cs" />
      <Compile Include="Assets\coop_bouncing\characters\snappingJaws.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBAutoFollowSpline.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\CBBall.cs" />
@@ -60,6 +67,9 @@
      <Compile Include="Assets\coop_bouncing\scripts\CBWin.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\JawsScript.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\loadLevel.cs" />
+     <Compile Include="Assets\explosprite\MbUtil.cs" />
+     <Compile Include="Assets\explosprite\SplitMeshMaker.cs" />
+     <Compile Include="Assets\explosprite\SplodeBob.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyClasses.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyComponent.cs" />
      <Compile Include="Assets\packages\Curvy\Base\CurvyConnection.cs" />
@@ -97,10 +107,20 @@
      <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerCon.cs" />
      <Compile Include="Assets\packages\Curvy\Legacy\SplineWalkerDistance.cs" />
      <Compile Include="Assets\packages\Curvy\SplineCreationDestruction.cs" />
+     <Compile Include="Assets\pops\PopController.cs" />
+     <Compile Include="Assets\strude\scripts\CamFollow.cs" />
+     <Compile Include="Assets\strude\scripts\DrawStuff.cs" />
+     <Compile Include="Assets\strude\scripts\LittleGUI.cs" />
+     <Compile Include="Assets\strude\scripts\LittleGUI2.cs" />
+     <Compile Include="Assets\strude\scripts\QuadsMeshMaker.cs" />
+     <Compile Include="Assets\strude\scripts\StrudeController.cs" />
+     <Compile Include="Assets\strude\scripts\StrudeMeshCreate.cs" />
+     <Compile Include="Assets\strude\scripts\TreeStrudeGen.cs" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
+     <None Include="Assets\explosprite\strudeShade.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
@@ -108,10 +128,10 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
      <None Include="Assets\packages\Curvy\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity-4.6.1/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="poly2tri">
- <HintPath>C:/Users/Pauline/Mes_dossiers/Work/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
+ <HintPath>/Users/liam/Development/Unity/coop-bouncing/coop-bouncing/Assets/packages/Curvy/ThirdParty/poly2tri/poly2tri.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
