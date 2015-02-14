@@ -50,7 +50,11 @@
      <Compile Include="Assets\New Folder\Scripts\GUIShake.cs" />
      <Compile Include="Assets\New Folder\Scripts\GuiMotion.cs" />
      <Compile Include="Assets\New Folder\Scripts\MoneyShower2.cs" />
+     <Compile Include="Assets\PolyDrawer.cs" />
+     <Compile Include="Assets\RandomPlantTypeOne.cs" />
+     <Compile Include="Assets\RandomPlantTypeTwo.cs" />
      <Compile Include="Assets\Scripts\MoneyShower.cs" />
+     <Compile Include="Assets\SimpleTriangle.cs" />
      <Compile Include="Assets\bgMeshCreator.cs" />
      <Compile Include="Assets\camera\CamMotion.cs" />
      <Compile Include="Assets\coop_bouncing\characters\snappingJaws.cs" />
