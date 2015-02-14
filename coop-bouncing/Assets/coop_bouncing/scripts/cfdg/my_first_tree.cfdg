@@ -1,0 +1,30 @@
+startshape SEED1
+
+shape SEED1
+
+mFlip = 90
+mVerticalMotion = 1.2
+mHorizontalMotion = 1.2
+mSizeIncrease0 = 0.99
+mSizeIncrease1 = 0.7
+mSizeIncrease2 = 0.44
+mChildRotation = 60
+mParentRotation = 1.5
+
+rule 
+{
+ SQUARE[]
+ SEED1 [y mVerticalMotion size mSizeIncrease0  rotate mParentRotation]
+}
+
+rule 0.05 
+{SEED1 [flip mFlip ]}
+
+rule 0.05
+{
+ SQUARE[]
+ SEED1 [y mVerticalMotion s mSizeIncrease0 r mParentRotation flip mFlip ]
+ SEED1 [y mVerticalMotion x mHorizontalMotion s mSizeIncrease1  r -mChildRotation ]
+ SEED1 [y mVerticalMotion x -mHorizontalMotion s mSizeIncrease2  r mChildRotation flip mFlip ]
+}
+
