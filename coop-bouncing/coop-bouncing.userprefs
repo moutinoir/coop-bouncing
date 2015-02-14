@@ -1,18 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/bgMeshCreator.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\tree_generation\CBMeshSquareDrawer.cs">
     <Files>
-      <File FileName="../../../../Downloads/GOG80/Assets/strude/scripts/StrudeMeshCreate.cs" Line="185" Column="2" />
-      <File FileName="../../../../Downloads/GOG80/Assets/strude/scripts/StrudeController.cs" Line="1" Column="1" />
-      <File FileName="../../../../Downloads/GOG80/Assets/explosprite/strudeShade.shader" Line="1" Column="1" />
-      <File FileName="Assets/strude/scripts/StrudeMeshCreate.cs" Line="39" Column="8" />
-      <File FileName="Assets/packages/Curvy/Editor/CurvySplineInspector.cs" Line="1" Column="1" />
-      <File FileName="Assets/coop_bouncing/scripts/CBControllers.cs" Line="1" Column="1" />
-      <File FileName="Assets/packages/Curvy/Base/CurvySpline.cs" Line="1" Column="1" />
-      <File FileName="Assets/strude/scripts/TreeStrudeGen.cs" Line="1" Column="1" />
-      <File FileName="Assets/bgMeshCreator.cs" Line="45" Column="1" />
-      <File FileName="Assets/coop_bouncing/scripts/CBPathRenderer.cs" Line="1" Column="1" />
-      <File FileName="Assets/coop_bouncing/scripts/CBExtrudeLineMesh.cs" Line="48" Column="50" />
+      <File FileName="Assets\packages\LTreeZachernuk\ZKLTreeController.cs" Line="17" Column="25" />
+      <File FileName="Assets\packages\LTreeZachernuk\ZKLTree.cs" Line="1" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBMeshSquareDrawer.cs" Line="14" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs" Line="1" Column="1" />
+      <File FileName="Assets\bgMeshCreator.cs" Line="29" Column="66" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

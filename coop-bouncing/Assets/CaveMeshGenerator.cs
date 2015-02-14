@@ -22,9 +22,11 @@ public class CaveMeshGenerator : MonoBehaviour {
 		for (int i = 0; i < numControlPoints; i++) 
 		{
 			if(isUpper)
+			{
 				outerPoints[i] = new Vector3(wallSpline.ControlPoints[i].Position.x,
 				                             wallSpline.ControlPoints[i].Position.y+100,
 				                             wallSpline.ControlPoints[i].Position.z);
+			}
 			else
 			{
 				//Debug.Log ("hit right place");
