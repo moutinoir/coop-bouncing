@@ -25,13 +25,14 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		}
 
 		// create the child
-		Rect childrenCoordinates = new Rect(0f, 1f, 1f, 1f);
+		Rect childrenCoordinates = new Rect(-0.5f, -0.5f, 0.5f, 0.5f);
 		if(parent != null)
 		{
-			childrenCoordinates = new Rect(parent.Coordinates);
+			Vector2 center = parent.Coordinates.center 
+				+ new Vector2(aHorizontalOffset*parent.Coordinates.size.x, aVerticalOffset*parent.Coordinates.size.y) * aSizeRatio;
+			Vector2 size = new Vector2(parent.Coordinates.size.x, parent.Coordinates.size.y) * aSizeRatio;
+			childrenCoordinates = new Rect(center.x - size.x/2f, center.y - size.y/2f, size.x, size.y);
 		}
-		childrenCoordinates.center += new Vector2(aHorizontalOffset, aVerticalOffset);
-		childrenCoordinates.size *= aSizeRatio;
 		CBSquare child = new CBSquare(childrenCoordinates);
 
 		// add the vertices
@@ -94,7 +95,7 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		AddSquare(0f, 0f, 1f, 0f, false);
 		for(int i = 0; i < 10; ++i)
 		{
-			AddSquare(0f, 1f, 0.95f, 0f, false);
+			AddSquare(0f, 1.2f, 0.95f, 0f, false);
 		}
 		UpdateMesh ();
 	}
