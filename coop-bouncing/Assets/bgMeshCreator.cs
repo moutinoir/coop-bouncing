@@ -44,14 +44,14 @@ public class bgMeshCreator : MonoBehaviour {
 			tri[arrayWalk++] = i+2;
 		}
 
-		// Normals
+		// Normals (1 normal per vertex)
 		Vector3[] normals = new Vector3[numControlPoints * 2];
 		for (int i = 0; i < numControlPoints * 2; i++) 
 		{
 			normals[i] = -Vector3.forward;
 		}
 
-		// UVs
+		// UVs (1 uv per vertex)
 		Vector2[] uvs = new Vector2[numControlPoints * 2];
 		arrayWalk = 0;
 		for (int i = 0; i < numControlPoints/2; i++) 
