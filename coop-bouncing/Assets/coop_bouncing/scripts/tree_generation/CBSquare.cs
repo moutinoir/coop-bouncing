@@ -31,10 +31,11 @@ public class CBSquare
 	{
 		get
 		{
-			return new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
+			return Rotate(-mSize.x/2f, -mSize.y/2f/*, mCenter*/);
+				/*new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
 				- (-mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
 			                   mCenter.y + (-mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));
+			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
 		}
 	}
 
@@ -42,10 +43,11 @@ public class CBSquare
 	{
 		get
 		{
-			return new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
+			return Rotate(mSize.x/2f, -mSize.y/2f/*, mCenter*/);
+				/*new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
 			                   - (-mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
 			                   mCenter.y + (mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));
+			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
 		}
 	}
 
@@ -53,10 +55,11 @@ public class CBSquare
 	{
 		get
 		{
-			return new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
+			return Rotate(mSize.x/2f, mSize.y/2f/*, mCenter*/);
+			/*new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
 				- (mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
 			                   mCenter.y + (mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));
+			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
 		}
 	}
 
@@ -64,11 +67,20 @@ public class CBSquare
 	{
 		get
 		{
-			return new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
+			return Rotate(-mSize.x/2f, mSize.y/2f/*, mCenter*/);
+				/*new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
 			                   - (mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
 			                   mCenter.y + (-mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));
+			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
 		}
+	}
+
+	public Vector2 Rotate(float aX, float aY/*, Vector2 aPivot*/)
+	{
+		return new Vector2(mCenter.x + aX * Mathf.Cos(mOrientation.eulerAngles.z) 
+		                   - aY * Mathf.Sin(mOrientation.eulerAngles.z),
+		                   mCenter.y + aX * Mathf.Sin(mOrientation.eulerAngles.z) 
+		                   + aY * Mathf.Cos(mOrientation.eulerAngles.z));
 	}
 
 	/*public Rect Coordinates

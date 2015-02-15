@@ -31,8 +31,10 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		Quaternion orientation = Quaternion.identity;
 		if(parent != null)
 		{
-			center = parent.Center 
-				+ new Vector2(aHorizontalOffset*parent.Size.x, aVerticalOffset*parent.Size.y) * aSizeRatio;
+			center = parent.Rotate(aHorizontalOffset*parent.Size.x*aSizeRatio
+			                       , aVerticalOffset*parent.Size.y*aSizeRatio);
+				/*parent.Center 
+				+ new Vector2(aHorizontalOffset*parent.Size.x, aVerticalOffset*parent.Size.y) * aSizeRatio;*/
 			size = new Vector2(parent.Size.x, parent.Size.y) * aSizeRatio;
 			orientation = parent.Orientation;
 			orientation.eulerAngles += new Vector3(0f, 0f, aRotation);
