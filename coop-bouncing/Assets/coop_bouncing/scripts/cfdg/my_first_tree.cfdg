@@ -6,8 +6,8 @@ mFlip = 90
 mVerticalMotion = 1.2
 mHorizontalMotion = 1.2
 mSizeIncrease0 = 0.99
-mSizeIncrease1 = 0.7
-mSizeIncrease2 = 0.44
+mSizeIncrease1 = 0.&
+mSizeIncrease2 = 0.1
 mChildRotation = 60
 mParentRotation = 1.5
 
