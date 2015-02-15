@@ -111,9 +111,6 @@ public class RandomPlantTypeOne : MonoBehaviour {
 		float minBranchLength = 5.0f;
 		float maxBranchLength = 10.0f;
 
-
-
-
 		Vector2 initVec = Vector2.zero;
 		Vector2 endVec  = RandomOnUnitCircle2(branchLength);
 	}
