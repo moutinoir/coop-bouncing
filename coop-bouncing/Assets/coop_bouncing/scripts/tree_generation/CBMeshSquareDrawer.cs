@@ -25,22 +25,30 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		}
 
 		// create the child
-		Rect childrenCoordinates = new Rect(-0.5f, -0.5f, 0.5f, 0.5f);
+		//Rect childrenCoordinates = new Rect(-0.5f, -0.5f, 0.5f, 0.5f);
+		Vector2 center = Vector2.zero;
+		Vector2 size = Vector2.one;
+		Quaternion orientation = Quaternion.identity;
 		if(parent != null)
 		{
-			Vector2 center = parent.Coordinates.center 
-				+ new Vector2(aHorizontalOffset*parent.Coordinates.size.x, aVerticalOffset*parent.Coordinates.size.y) * aSizeRatio;
-			Vector2 size = new Vector2(parent.Coordinates.size.x, parent.Coordinates.size.y) * aSizeRatio;
-			childrenCoordinates = new Rect(center.x - size.x/2f, center.y - size.y/2f, size.x, size.y);
+			center = parent.Rotate(aHorizontalOffset*parent.Size.x*aSizeRatio
+			                       , aVerticalOffset*parent.Size.y*aSizeRatio);
+				/*parent.Center 
+				+ new Vector2(aHorizontalOffset*parent.Size.x, aVerticalOffset*parent.Size.y) * aSizeRatio;*/
+			size = new Vector2(parent.Size.x, parent.Size.y) * aSizeRatio;
+			orientation = parent.Orientation;
+			orientation.eulerAngles += new Vector3(0f, 0f, aRotation);
+			//childrenCoordinates = new Rect(center.x - size.x/2f, center.y - size.y/2f, size.x, size.y);
 		}
-		CBSquare child = new CBSquare(childrenCoordinates);
+		//CBSquare child = new CBSquare(childrenCoordinates);
+		CBSquare child = new CBSquare(center, size, orientation);
 
 		// add the vertices
 		int vertexIndex = mVertices.Count;
-		mVertices.Add(new Vector3(childrenCoordinates.xMin, childrenCoordinates.yMin, 0f));
-		mVertices.Add(new Vector3(childrenCoordinates.xMax, childrenCoordinates.yMin, 0f));
-		mVertices.Add(new Vector3(childrenCoordinates.xMin, childrenCoordinates.yMax, 0f));
-		mVertices.Add(new Vector3(childrenCoordinates.xMax, childrenCoordinates.yMax, 0f));
+		mVertices.Add(new Vector3(child.BottomLeft.x, child.BottomLeft.y, 0f));
+		mVertices.Add(new Vector3(child.BottomRight.x, child.BottomRight.y, 0f));
+		mVertices.Add(new Vector3(child.TopLeft.x, child.TopLeft.y, 0f));
+		mVertices.Add(new Vector3(child.TopRight.x, child.TopRight.y, 0f));
 
 		// add the triangles
 		mTriangles.Add(vertexIndex);
@@ -95,7 +103,7 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		AddSquare(0f, 0f, 1f, 0f, false);
 		for(int i = 0; i < 10; ++i)
 		{
-			AddSquare(0f, 1.2f, 0.95f, 0f, false);
+			AddSquare(0f, 1.2f, 0.95f, Mathf.PI/24, false);
 		}
 		UpdateMesh ();
 	}
