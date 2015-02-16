@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class CBMeshSquareDrawer : MonoBehaviour 
 {
+	public float FirstSquareSize = 0.5f;
 	private MeshFilter mMeshFilter;
 
 	private List<Vector3> mVertices;
@@ -14,21 +15,38 @@ public class CBMeshSquareDrawer : MonoBehaviour
 	private List<CBSquare> mSquares;
 
 	// y mVerticalMotion x -mHorizontalMotion s mSizeIncrease2  r mChildRotation flip mFlip
-	public void AddSquare(float aHorizontalOffset, float aVerticalOffset, float aSizeRatio,
-	                      float aRotation, bool aIsFlipped)
+	public CBSquare AddSquare(float aHorizontalOffset, float aVerticalOffset, float aSizeRatio,
+	                      float aRotation, bool aIsFlipped, CBSquare aParent)
 	{
 		// get the parent
-		CBSquare parent = null;
+		/*CBSquare parent = null;
 		if(mSquares.Count > 0)
 		{
 			parent = mSquares[mSquares.Count - 1];
+		}*/
+		CBSquare parent = aParent;
+
+		// flip
+		bool flip = false;
+		if(parent != null)
+		{
+			flip = parent.Flip;
+			/*if(aIsFlipped)
+			{
+				flip = !flip;
+			}*/
+		}
+		float flipFactor = 1f;
+		if(flip)
+		{
+			flipFactor = -1f;
 		}
 
 		// create the child
-		//Rect childrenCoordinates = new Rect(-0.5f, -0.5f, 0.5f, 0.5f);
+		//Rect childrenCoordinates = new Rect(-0.5f, -0.5f, 0.5f, 0.5f
 		Vector2 center = Vector2.zero;
-		Vector2 size = Vector2.one;
-		Quaternion orientation = Quaternion.identity;
+		Vector2 size = Vector2.one*FirstSquareSize;
+		Vector3 orientation = Vector3.zero;
 		if(parent != null)
 		{
 			center = parent.Rotate(aHorizontalOffset*parent.Size.x*aSizeRatio
@@ -36,12 +54,28 @@ public class CBMeshSquareDrawer : MonoBehaviour
 				/*parent.Center 
 				+ new Vector2(aHorizontalOffset*parent.Size.x, aVerticalOffset*parent.Size.y) * aSizeRatio;*/
 			size = new Vector2(parent.Size.x, parent.Size.y) * aSizeRatio;
+			// orientation
 			orientation = parent.Orientation;
-			orientation.eulerAngles += new Vector3(0f, 0f, aRotation);
+			orientation += new Vector3(0f, 0f, aRotation)*flipFactor;
+			if(orientation.z > Mathf.PI)
+			{
+				orientation.z -= 2f*Mathf.PI;
+			}
+			else if(orientation.z < -Mathf.PI)
+			{
+				orientation.z += 2f*Mathf.PI;
+			}
+
 			//childrenCoordinates = new Rect(center.x - size.x/2f, center.y - size.y/2f, size.x, size.y);
 		}
 		//CBSquare child = new CBSquare(childrenCoordinates);
-		CBSquare child = new CBSquare(center, size, orientation);
+		// update the flip
+		if(aIsFlipped)
+		{
+			flip = !flip;
+		}
+
+		CBSquare child = new CBSquare(center, size, orientation, flip);
 
 		// add the vertices
 		int vertexIndex = mVertices.Count;
@@ -73,6 +107,7 @@ public class CBMeshSquareDrawer : MonoBehaviour
 
 		// push the child
 		mSquares.Add(child);
+		return child;
 	}
 
 	public void UpdateMesh ()
@@ -100,12 +135,12 @@ public class CBMeshSquareDrawer : MonoBehaviour
 
 	private void Start ()
 	{
-		AddSquare(0f, 0f, 1f, 0f, false);
+		/*AddSquare(0f, 0f, 1f, 0f, false);
 		for(int i = 0; i < 10; ++i)
 		{
 			AddSquare(0f, 1.2f, 0.95f, Mathf.PI/24, false);
 		}
-		UpdateMesh ();
+		UpdateMesh ();*/
 	}
 
 }

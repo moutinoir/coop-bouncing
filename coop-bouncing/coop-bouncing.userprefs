@@ -1,21 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/liam_to_be_sorted/Scripts/VegetationGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs">
     <Files>
-      <File FileName="Assets/GrassTest.cs" Line="16" Column="29" />
-      <File FileName="Assets/packages/LTreeZachernuk/ZKLTreeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/packages/LTreeZachernuk/ZKLTree.cs" Line="1" Column="1" />
-      <File FileName="Assets/liam_to_be_sorted/RandomPlantTypeOne.cs" Line="39" Column="19" />
-      <File FileName="Assets/coop_bouncing/scripts/background_generation/bgMeshCreator.cs" Line="1" Column="1" />
-      <File FileName="Assets/liam_to_be_sorted/Scripts/VegetationGenerator.cs" Line="9" Column="1" />
-      <File FileName="Assets/liam_to_be_sorted/RandomPlantTypeTwo.cs" Line="48" Column="4" />
-      <File FileName="Assets/packages/Curvy/Base/CurvySpline.cs" Line="321" Column="1" />
+      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBMeshSquareDrawer.cs" Line="26" Column="29" />
+      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBSquare.cs" Line="34" Column="55" />
+      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs" Line="44" Column="82" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/liam/Development/Unity/coop-bouncing/coop-bouncing/Assets/RandomPlantTypeOne.cs" line="184" />
-      <Breakpoint file="/Users/liam/Development/Unity/coop-bouncing/coop-bouncing/Assets/RandomPlantTypeOne.cs" line="176" />
+      <Breakpoint file="/Users/liam/Development/Unity/coop-bouncing/coop-bouncing/Assets/bgMeshCreator.cs" line="45" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
