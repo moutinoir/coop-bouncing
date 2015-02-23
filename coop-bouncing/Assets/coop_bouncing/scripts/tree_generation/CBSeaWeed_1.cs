@@ -74,6 +74,7 @@ public class CBSeaWeed_1 : MonoBehaviour
 	private float GetMotionParameter (float aMoveFactor)
 	{
 		float t = Random.Range(0f, 2*Mathf.PI) + mTimedAngle;
+
 		float s1 = Mathf.Sin(t);
 		float s2 = Mathf.Sin(t * SubSinFrequence) * SubSinWeight;
 
