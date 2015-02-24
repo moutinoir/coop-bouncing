@@ -2,9 +2,14 @@
 using System.Collections;
 using FluffyUnderware.Curvy;
 
+// fix inversion in direction
+// fix incorrect axis
+
+
 public class CBFollowSpline : MonoBehaviour 
 {
-	public CBPlayer Player;
+	public CBPlayer player;
+	public bool isFirstPlayer; 
 
 	public CurvySpline Spline;
 	public float Speed = 1f;
@@ -15,13 +20,8 @@ public class CBFollowSpline : MonoBehaviour
 	protected float mTranslation;
 	[SerializeField]
 	protected CurvyVector mCurrent;
-
-	public float InputStick1;
-	public float InputStick2;
-	public float InputVertical1;
-	public float InputVertical2;
-	public float InputHorizontal1;
-	public float InputHorizontal2;
+	
+	private Vector3 throwAngle;
 
 	public float CurrentTF
 	{
@@ -56,38 +56,41 @@ public class CBFollowSpline : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		switch(Player.PlayerControl)
+		switch(player.PlayerControl)
 		{
-		case CBPlayer.EPlayerControl.Controller1:
-		{
-			mTranslation = Input.GetAxis("L_XAxis_1");
-			if(mTranslation == 0)
+			case CBPlayer.EPlayerControl.Controller1:
 			{
-				mTranslation = Input.GetAxis("Horizontal1");
+				mTranslation = Input.GetAxis("p1_L_XAxis");
+				
+				if(mTranslation == 0)
+				{
+					mTranslation = Input.GetAxis("Horizontal1");
+				}
+
+				throwAngle = new Vector3(Input.GetAxis("p1_R_XAxis"), Input.GetAxis("p1_R_YAxis"), 0.0f);
+				Debug.DrawRay( player.transform.position, throwAngle, Color.red);
+	
+				break;
 			}
-			break;
-		}
-		case CBPlayer.EPlayerControl.Controller2:
-		{
-			mTranslation = Input.GetAxis("L_XAxis_2");
-			if(mTranslation == 0)
+			case CBPlayer.EPlayerControl.Controller2:
 			{
-				mTranslation = Input.GetAxis("Horizontal2");
+				mTranslation = Input.GetAxis("p2_L_XAxis");
+				
+				if(mTranslation == 0) 
+				{
+					mTranslation = Input.GetAxis("Horizontal2");
+				}
+
+				throwAngle = new Vector3(Input.GetAxis("p2_R_XAxis"), Input.GetAxis("p2_R_YAxis"), 0.0f);
+				Debug.DrawRay( player.transform.position, throwAngle, Color.green);
+				break;
 			}
-			break;
-		}
 		}
 
-		InputStick1 = Input.GetAxis("L_XAxis_1");
-		InputStick2 = Input.GetAxis("L_XAxis_2");
-		InputVertical2 = Input.GetAxis("Vertical2");
-		InputVertical1 = Input.GetAxis("Vertical1");
-		InputHorizontal2 = Input.GetAxis("Horizontal2");
-		InputHorizontal1 = Input.GetAxis("Horizontal1");
-
-		if(Player.CatchBall.Ball != null)
+		if(player.CatchBall.Ball != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;
+			player.CatchBall.mCollisionDirection = throwAngle;
 		}
 		else
 		{

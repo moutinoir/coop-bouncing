@@ -8,7 +8,7 @@ public class CBCatchBall : MonoBehaviour
 	public float IntervalBetweenCatches = 0.1f;
 	private CBBall mBall = null;
 	private Vector3 mBallLocalPosition;
-	private Vector3 mCollisionDirection;
+	public Vector3 mCollisionDirection = new Vector3(0.0f, 2.0f, 0.0f);
 	private float mTimeSinceReleasedBall;
 
 	public CBBall Ball
@@ -41,8 +41,8 @@ public class CBCatchBall : MonoBehaviour
 		if(mBall == null && mTimeSinceReleasedBall > IntervalBetweenCatches)
 		{
 			ContactPoint first_contact = collision.contacts[0];
-			mCollisionDirection = first_contact.point - Transform.position;
-			mCollisionDirection.Normalize();
+			//mCollisionDirection = first_contact.point - Transform.position;
+			//mCollisionDirection.Normalize();
 
 			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
 			if(BouncingMotion != null)
@@ -98,8 +98,8 @@ public class CBCatchBall : MonoBehaviour
 
 	void PushBall(CBBall aBall)
 	{
-		mCollisionDirection = aBall.Transform.position - Transform.position;
-		mCollisionDirection.Normalize();
+		//mCollisionDirection = aBall.Transform.position - Transform.position;
+		//mCollisionDirection.Normalize();
 		aBall.Push (mCollisionDirection);
 	}
 
@@ -118,8 +118,8 @@ public class CBCatchBall : MonoBehaviour
 
 	void ReleaseBall()
 	{ 
-		mCollisionDirection = mBall.Transform.position - Transform.position;
-		mCollisionDirection.Normalize();
+		//mCollisionDirection = mBall.Transform.position - Transform.position;
+		//mCollisionDirection.Normalize();
 		mBall.RegainFreedom(mCollisionDirection, ForcePower);
 		mBall = null;
 		mTimeSinceReleasedBall = 0.0f;
