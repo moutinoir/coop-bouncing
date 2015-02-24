@@ -8,8 +8,15 @@ public class CBCatchBall : MonoBehaviour
 	public float IntervalBetweenCatches = 0.1f;
 	private CBBall mBall = null;
 	private Vector3 mBallLocalPosition;
-	public Vector3 mCollisionDirection = new Vector3(0.0f, 2.0f, 0.0f);
+	
+	public Vector3 mCollisionDirection;
+	
 	private float mTimeSinceReleasedBall;
+
+	public CBCatchBall()
+	{
+		mCollisionDirection = new Vector3(0.0f, 2.0f, 0.0f);
+	}
 
 	public CBBall Ball
 	{
@@ -135,12 +142,12 @@ public class CBCatchBall : MonoBehaviour
 			float release_ball = 0f;
 			switch(Player.PlayerControl)
 			{
-			case CBPlayer.EPlayerControl.Controller1:
-				release_ball = Input.GetAxis("L_Fire_1");
-				break;
-			case CBPlayer.EPlayerControl.Controller2:
-				release_ball = Input.GetAxis("L_Fire_2");
-				break;
+				case CBPlayer.EPlayerControl.Controller1:
+					release_ball = Input.GetAxis("L_Fire_1");
+					break;
+				case CBPlayer.EPlayerControl.Controller2:
+					release_ball = Input.GetAxis("L_Fire_2");
+					break;
 			}
 
 			if(release_ball > 0.5f)

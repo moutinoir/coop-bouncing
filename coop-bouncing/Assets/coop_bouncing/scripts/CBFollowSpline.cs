@@ -2,8 +2,10 @@
 using System.Collections;
 using FluffyUnderware.Curvy;
 
-// fix inversion in direction
-// fix incorrect axis
+// make shell stick properly to sides, currently sliding about on collision
+// make shell follow angle and stick out from player
+// calculate bad throwing angle and paint shell red and block player from throwing
+// calculate parabola for throw. Create parabola line
 
 
 public class CBFollowSpline : MonoBehaviour 
@@ -52,7 +54,14 @@ public class CBFollowSpline : MonoBehaviour
 		mCurrent = new CurvyVector(0, 1);
 		mCurrentTF = Spline.DistanceToTF(Spline.ControlPoints[1].Distance);
 	}
-	
+
+	float calculateAngleBetweenTwoVectors(Vector3 source, Vector3 target)
+	{
+		float angle = Mathf.DeltaAngle(Mathf.Atan2(source.y, source.x) * Mathf.Rad2Deg,
+		                               Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg);
+		Debug.Log("angle difference: " + angle);
+		return angle;
+	}
 	// Update is called once per frame
 	void Update () 
 	{
@@ -87,20 +96,30 @@ public class CBFollowSpline : MonoBehaviour
 			}
 		}
 
+		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
+		
+		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
+		                                   Speed * Mathf.Abs(mTranslation)* mSpeedFactor * Time.deltaTime, CurvyClamping.Clamp);
+		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
+
 		if(player.CatchBall.Ball != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;
 			player.CatchBall.mCollisionDirection = throwAngle;
+			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
+			float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
+			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
+			Debug.Log(angleDif);
+			if(angleDif > 20.0f && angleDif < 160.0f)
+			{
+				player.CatchBall.Ball.mIsAtBadAngle = false;
+			}
+			else
+				player.CatchBall.Ball.mIsAtBadAngle = true;
 		}
 		else
 		{
 			mSpeedFactor = 1f;
 		}
-
-		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
-
-		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
-		                                   Speed * Mathf.Abs(mTranslation)* mSpeedFactor * Time.deltaTime, CurvyClamping.Clamp);
-		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
 	}
 }

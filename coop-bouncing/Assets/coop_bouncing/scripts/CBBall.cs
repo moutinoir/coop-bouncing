@@ -5,6 +5,11 @@ public class CBBall : MonoBehaviour
 {
 	public CBBouncingMotion BouncingMotion;
 
+	public CBBall()
+	{
+		mIsAtBadAngle = false;
+	}
+
 	public bool Free
 	{
 		get
@@ -25,10 +30,13 @@ public class CBBall : MonoBehaviour
 	Transform mTransform;
 	private Transform mInitialParent;
 	private bool mIsFree;
+	
+	public bool mIsAtBadAngle;
 
 	void Awake ()
 	{
 		mIsFree = true;
+		mIsAtBadAngle = false;
 		mInitialParent = Transform.parent;
 	}
 
@@ -51,5 +59,13 @@ public class CBBall : MonoBehaviour
 		{
 			BouncingMotion.Push(aDirection);
 		}
+	}
+
+	void Update ()
+	{
+		if(mIsAtBadAngle)
+			GetComponentInChildren<SpriteRenderer>().color = Color.red;
+		else
+			GetComponentInChildren<SpriteRenderer>().color = Color.green;
 	}
 }

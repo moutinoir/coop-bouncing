@@ -18,6 +18,8 @@ public class CBPlayer : MonoBehaviour
 	
 	Transform mTransform;
 
+	public bool isAtBadAngle;
+
 	public EPlayerControl PlayerControl;
 	public enum EPlayerControl
 	{
