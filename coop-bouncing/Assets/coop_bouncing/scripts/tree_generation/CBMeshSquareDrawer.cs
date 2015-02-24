@@ -113,6 +113,7 @@ public class CBMeshSquareDrawer : MonoBehaviour
 	public void UpdateMesh ()
 	{
 		Mesh mesh = mMeshFilter.mesh;
+		mesh.Clear ();
 		
 		mesh.vertices = mVertices.ToArray();
 		mesh.triangles = mTriangles.ToArray();
@@ -131,6 +132,16 @@ public class CBMeshSquareDrawer : MonoBehaviour
 		mNormals = new List<Vector3>();
 		mUVs = new List<Vector2>();
 		mSquares = new List<CBSquare>();
+	}
+
+	public void Reset ()
+	{
+
+		mVertices.Clear ();
+		mTriangles.Clear ();
+		mNormals.Clear();
+		mUVs.Clear ();
+		mSquares.Clear ();
 	}
 
 	private void Start ()
