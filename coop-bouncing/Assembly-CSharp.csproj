@@ -63,8 +63,10 @@
      <Compile Include="Assets\coop_bouncing\scripts\background_generation\CaveMeshGenerator.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\background_generation\bgMeshCreator.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\loadLevel.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\tree_generation\CBContextModifier.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\tree_generation\CBMeshSquareDrawer.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs" />
+     <Compile Include="Assets\coop_bouncing\scripts\tree_generation\CBSpike_1.cs" />
      <Compile Include="Assets\coop_bouncing\scripts\tree_generation\CBSquare.cs" />
      <Compile Include="Assets\liam_to_be_sorted\New Folder\Scripts\GUIShake.cs" />
      <Compile Include="Assets\liam_to_be_sorted\New Folder\Scripts\GuiMotion.cs" />

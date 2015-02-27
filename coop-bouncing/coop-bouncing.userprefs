@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/coop_bouncing/scripts/tree_generation/CBSquare.cs">
     <Files>
-      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBMeshSquareDrawer.cs" Line="26" Column="29" />
-      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBSquare.cs" Line="34" Column="55" />
-      <File FileName="Assets\coop_bouncing\scripts\tree_generation\CBSeaWeed_1.cs" Line="44" Column="82" />
+      <File FileName="Assets/coop_bouncing/scripts/tree_generation/CBSeaWeed_1.cs" Line="90" Column="1" />
+      <File FileName="Assets/coop_bouncing/scripts/tree_generation/CBMeshSquareDrawer.cs" Line="141" Column="19" />
+      <File FileName="Assets/coop_bouncing/scripts/tree_generation/CBSquare.cs" Line="85" Column="4" />
+      <File FileName="Assets/coop_bouncing/scripts/tree_generation/CBSpike_1.cs" Line="96" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

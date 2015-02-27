@@ -43,11 +43,7 @@ public class CBSquare
 	{
 		get
 		{
-			return Rotate(-mSize.x/2f, -mSize.y/2f/*, mCenter*/);
-				/*new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
-				- (-mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
-			                   mCenter.y + (-mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
+			return Rotate(-mSize.x/2f, -mSize.y/2f);
 		}
 	}
 
@@ -55,11 +51,7 @@ public class CBSquare
 	{
 		get
 		{
-			return Rotate(mSize.x/2f, -mSize.y/2f/*, mCenter*/);
-				/*new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
-			                   - (-mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
-			                   mCenter.y + (mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (-mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
+			return Rotate(mSize.x/2f, -mSize.y/2f);
 		}
 	}
 
@@ -67,11 +59,7 @@ public class CBSquare
 	{
 		get
 		{
-			return Rotate(mSize.x/2f, mSize.y/2f/*, mCenter*/);
-			/*new Vector2(mCenter.x + (mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
-				- (mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
-			                   mCenter.y + (mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
+			return Rotate(mSize.x/2f, mSize.y/2f);
 		}
 	}
 
@@ -79,15 +67,11 @@ public class CBSquare
 	{
 		get
 		{
-			return Rotate(-mSize.x/2f, mSize.y/2f/*, mCenter*/);
-				/*new Vector2(mCenter.x + (-mSize.x/2f) * Mathf.Cos(mOrientation.eulerAngles.z) 
-			                   - (mSize.y/2f) * Mathf.Sin(mOrientation.eulerAngles.z),
-			                   mCenter.y + (-mSize.x/2f) * Mathf.Sin(mOrientation.eulerAngles.z) 
-			                   + (mSize.y/2f) * Mathf.Cos(mOrientation.eulerAngles.z));*/
+			return Rotate(-mSize.x/2f, mSize.y/2f);
 		}
 	}
 
-	public Vector2 Rotate(float aX, float aY/*, Vector2 aPivot*/)
+	public Vector2 Rotate(float aX, float aY)
 	{
 		return new Vector2(mCenter.x + aX * Mathf.Cos(ZOrientation) 
 		                   - aY * Mathf.Sin(ZOrientation),
@@ -99,55 +83,9 @@ public class CBSquare
 	{
 		get
 		{
-			// flip the orientation
-			/*float flipFactor = 1f;
-			if(mFlip)
-			{
-				flipFactor = -1f;
-			}*/
-
-		return /*flipFactor**/mOrientation.z;
+			return mOrientation.z;
 		}
 	}
-
-	/*public Rect Coordinates
-	{
-		get 
-		{
-			return mCoordinates;
-		}
-	}
-
-	public Quaternion Orientation
-	{
-		get
-		{
-			return mOrientation;
-		}
-	}
-
-	public Transform Transform
-	{
-		get
-		{
-			return mTransform;
-		}
-	}
-	
-	public CBSquare (Rect aCoordinates)//, Quaternion aOrientation)
-	{
-		mCoordinates = aCoordinates;
-		//mOrientation = aOrientation;
-	}
-
-	public CBSquare (Transform aTransform)
-	{
-		mTransform = aTransform;
-	}
-
-	private Rect mCoordinates;
-	private Quaternion mOrientation;
-	private Transform mTransform;*/
 
 	public CBSquare (Vector2 aCenter, Vector2 aSize, Vector3 aOrientation, bool aFlip)
 	{
