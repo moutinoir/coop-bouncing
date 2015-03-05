@@ -10,11 +10,14 @@ public class CBBouncingMotion : MonoBehaviour
 	}
 
 	public EMotionType MotionType = EMotionType.UnityPhysics;
-	public CBBall Ball;
+	public CBBall mBall;
 	public float maxSpeed = 2f;
 	public float minSpeed = 0.5f;
 
 	private float mVelocityMagnitude = 0f;
+
+	// this is horrible... Lets find a better way to do it
+	private string toSpline = "Player1Path";
 
 	public Rigidbody Rigidbody
 	{
@@ -120,22 +123,44 @@ public class CBBouncingMotion : MonoBehaviour
 		}
 	}
 
-	/*private Vector3 mCollisionDirection;
+	private Vector3 mCollisionDirection;
 
 	void OnTriggerEnter(Collider other) 
 	{
-		Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " triggered contact with " 
-		          + other.transform.parent.name + ":" +  other.name);
+		//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " triggered contact with " 
+		//          + other.transform.parent.name + ":" +  other.name);
+
 	}
 
 	void OnCollisionEnter(Collision collision)
 	{
-		ContactPoint first_contact = collision.contacts[0];
+		ContactPoint first_contact = collision.contacts [0];
 		mCollisionDirection = first_contact.point - Transform.position;
-		mCollisionDirection.Normalize();
+		mCollisionDirection.Normalize ();
 
-		Debug.Log("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
-		          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
+		//Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
+		//		+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
 
-	}*/
+		if (collision != null) 
+		{
+			if(collision.transform.parent != null)
+			{
+				if (collision.transform.parent.name == toSpline) 
+				{
+					// add some logic for going between splines (save last touched path)
+					//Debug.Log ("Spline Crash!");
+					if(toSpline == "Player1Path")
+					{
+						toSpline = "Player2Path";
+					}
+					else
+					{
+						toSpline = "Player1Path";
+					}
+
+					mBall.RemoveFreedom ();
+				}
+			}
+		}
+	}
 }

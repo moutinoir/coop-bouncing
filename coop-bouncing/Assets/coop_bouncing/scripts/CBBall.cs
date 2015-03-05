@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CBBall : MonoBehaviour 
 {
-	public CBBouncingMotion BouncingMotion;
+	public CBBouncingMotion mBouncingMotion;
 
 	public CBBall()
 	{
@@ -43,13 +43,13 @@ public class CBBall : MonoBehaviour
 	public void RemoveFreedom ()
 	{
 		mIsFree = false;
-		BouncingMotion.StopMotion();
+		mBouncingMotion.StopMotion();
 	}
 
 	public void RegainFreedom (Vector3 aForceDirection, float aForcePower)
 	{
 		Transform.parent = mInitialParent;
-		BouncingMotion.AddForce (aForceDirection, aForcePower);
+		mBouncingMotion.AddForce (aForceDirection, aForcePower);
 		mIsFree = true;
 	}
 
@@ -57,7 +57,7 @@ public class CBBall : MonoBehaviour
 	{
 		if(Free)
 		{
-			BouncingMotion.Push(aDirection);
+			mBouncingMotion.Push(aDirection);
 		}
 	}
 

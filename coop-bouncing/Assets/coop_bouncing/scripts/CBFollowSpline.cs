@@ -62,6 +62,21 @@ public class CBFollowSpline : MonoBehaviour
 		Debug.Log("angle difference: " + angle);
 		return angle;
 	}
+
+	float AngleSigned(Vector3 v1, Vector3 v2)
+	{
+		Vector2 fromVector2 = v1;
+		Vector2 toVector2 = v2;
+		
+		float ang = Vector2.Angle(fromVector2, toVector2);
+		Vector3 cross = Vector3.Cross(fromVector2, toVector2);
+		
+		if (cross.z < 0)
+			ang = 360 - ang;
+
+		return ang;
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -107,9 +122,11 @@ public class CBFollowSpline : MonoBehaviour
 			mSpeedFactor = SlowSpeedFactor;
 			player.CatchBall.mCollisionDirection = throwAngle;
 			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
-			float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
+			//float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
+			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), throwAngle);
+
 			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
-			Debug.Log(angleDif);
+			//Debug.Log(angleDif);
 			if(angleDif > 20.0f && angleDif < 160.0f)
 			{
 				player.CatchBall.Ball.mIsAtBadAngle = false;

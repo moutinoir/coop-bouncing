@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CBCatchBall : MonoBehaviour 
@@ -51,14 +51,14 @@ public class CBCatchBall : MonoBehaviour
 			//mCollisionDirection = first_contact.point - Transform.position;
 			//mCollisionDirection.Normalize();
 
-			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
-			if(BouncingMotion != null)
+			CBBouncingMotion bouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
+
+			if(bouncingMotion != null)
 			{
-				CBBall ball = BouncingMotion.Ball;
+				CBBall ball = bouncingMotion.mBall;
+
 				if(ball.Free)
-				{
 					CatchBall(ball);
-				}
 			}
 
 			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
@@ -69,7 +69,7 @@ public class CBCatchBall : MonoBehaviour
 			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
 			if(BouncingMotion != null)
 			{
-				CBBall ball = BouncingMotion.Ball;
+				CBBall ball = BouncingMotion.mBall;
 				if(ball != null)
 				{
 					PushBall(ball);
@@ -140,13 +140,16 @@ public class CBCatchBall : MonoBehaviour
 			KeepBallClose();
 
 			float release_ball = 0f;
+
 			switch(Player.PlayerControl)
 			{
 				case CBPlayer.EPlayerControl.Controller1:
-					release_ball = Input.GetAxis("L_Fire_1");
+					if(!mBall.mIsAtBadAngle)
+						release_ball = Input.GetAxis("L_Fire_1");
 					break;
 				case CBPlayer.EPlayerControl.Controller2:
-					release_ball = Input.GetAxis("L_Fire_2");
+					if(!mBall.mIsAtBadAngle)
+						release_ball = Input.GetAxis("L_Fire_2");
 					break;
 			}
 

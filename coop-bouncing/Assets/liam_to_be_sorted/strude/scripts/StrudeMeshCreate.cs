@@ -71,7 +71,7 @@ public class StrudeMeshCreate : MonoBehaviour
 
 		for (int i = 0; i < spline.ControlPoints.Count; i++) 
 		{
-			Debug.Log (spline.ControlPoints[i]);
+			//Debug.Log (spline.ControlPoints[i]);
 			conPoints[i] = spline.ControlPoints[i].Position;
 		}
 	}
