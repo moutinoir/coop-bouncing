@@ -3,7 +3,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/coop_bouncing/scripts/CBFollowSpline.cs">
     <Files>
       <File FileName="Assets/coop_bouncing/scripts/CBBall.cs" Line="17" Column="3" />
-      <File FileName="Assets/coop_bouncing/scripts/CBFollowSpline.cs" Line="111" Column="49" />
+      <File FileName="Assets/coop_bouncing/scripts/CBFollowSpline.cs" Line="110" Column="78" />
       <File FileName="Assets/packages/Curvy/Editor/Components/AlignToSplineInspector.cs" Line="7" Column="32" />
       <File FileName="Assets/coop_bouncing/scripts/CBCatchBall.cs" Line="1" Column="1" />
       <File FileName="Assets/coop_bouncing/scripts/CBPlayer.cs" Line="1" Column="1" />
