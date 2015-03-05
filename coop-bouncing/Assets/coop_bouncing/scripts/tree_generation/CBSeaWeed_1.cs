@@ -20,7 +20,7 @@ public class CBSeaWeed_1 : MonoBehaviour
 
 		MeshSquareDrawer.Reset();
 		Random.seed = mSeed;
-		CBSquare initialSquare = MeshSquareDrawer.AddSquare(0f, 0f, 1f, 0f, false, null);
+		CBSquare initialSquare = MeshSquareDrawer.AddSquare(0f, 0f, 1f, 0f, false, null, null);
 		Grow(initialSquare);
 		MeshSquareDrawer.UpdateMesh();
 	}
@@ -57,15 +57,15 @@ public class CBSeaWeed_1 : MonoBehaviour
 	private void GetLonger (CBSquare aParent)
 	{
 		float moveFactor = (MeshSquareDrawer.FirstSquareSize - aParent.Size.x) / (MeshSquareDrawer.FirstSquareSize - StopGrowthSize);
-		CBSquare childSquare = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.97f, Mathf.PI/96 * GetMotionParameter(moveFactor), false, aParent);
+		CBSquare childSquare = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.97f, Mathf.PI/96 * GetMotionParameter(moveFactor), false, aParent, null);
 		Grow(childSquare);
 	}
 
 	private void Branch (CBSquare aParent)
 	{
-		CBSquare childSquare1 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.97f, Mathf.PI/96 /** GetMotionParameter()*/, true, aParent);
-		CBSquare childSquare2 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.6f, -Mathf.PI/3 /** GetMotionParameter()*/, true, aParent);
-		CBSquare childSquare3 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.4f, Mathf.PI/3 /** GetMotionParameter()*/, false, aParent);
+		CBSquare childSquare1 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.97f, Mathf.PI/96 /** GetMotionParameter()*/, true, aParent, null);
+		CBSquare childSquare2 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.6f, -Mathf.PI/3 /** GetMotionParameter()*/, true, aParent, null);
+		CBSquare childSquare3 = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.4f, Mathf.PI/3 /** GetMotionParameter()*/, false, aParent, null);
 		Grow(childSquare1);
 		Grow(childSquare2);
 		Grow(childSquare3);
