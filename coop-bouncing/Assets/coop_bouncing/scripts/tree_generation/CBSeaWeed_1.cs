@@ -27,6 +27,11 @@ public class CBSeaWeed_1 : MonoBehaviour
 
 	private void Start ()
 	{
+		// hack: flipping horizontally in code for now 
+		Vector3 newScale = transform.localScale;
+		newScale.x *= -1;
+		transform.localScale = newScale;
+
 		mSeed = Random.Range(0, 2000);
 		/*Random.seed = mSeed;
 		CBSquare initialSquare = MeshSquareDrawer.AddSquare(0f, 0f, 1f, 0f, false, null);
