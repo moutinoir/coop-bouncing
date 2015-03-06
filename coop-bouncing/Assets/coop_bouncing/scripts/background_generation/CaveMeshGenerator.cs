@@ -78,7 +78,7 @@ public class CaveMeshGenerator : MonoBehaviour {
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index+2;
 
-				tri[arrayWalk++] = index+2;
+				tri[arrayWalk++] = index+2; 
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index+3;
 			}else{
