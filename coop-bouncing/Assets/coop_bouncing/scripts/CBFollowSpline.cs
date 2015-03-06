@@ -117,6 +117,9 @@ public class CBFollowSpline : MonoBehaviour
 		                                   Speed * Mathf.Abs(mTranslation)* mSpeedFactor * Time.deltaTime, CurvyClamping.Clamp);
 		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
 
+		// give a little z offset to position on extrude properly
+		Transform.position = new Vector3 (Transform.position.x, Transform.position.y, Transform.position.z-0.2f);
+
 		if(player.CatchBall.Ball != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;

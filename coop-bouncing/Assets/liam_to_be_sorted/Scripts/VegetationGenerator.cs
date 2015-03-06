@@ -67,7 +67,7 @@ public class VegetationGenerator : MonoBehaviour
 		Debug.Log ("xMin" + xMin);
 		Debug.Log ("xMax" + xMax);
 
-		for (int i = (int)xMin; i < (int)xMax; i+=4) 
+		for (int i = (int)xMin; i < (int)xMax; i+=6) 
 		{
 			Debug.Log ("TREE!");
 			Vector3 pos = new Vector3(i, -3.0f, 0.5f);
