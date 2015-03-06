@@ -141,28 +141,34 @@ public class CBBouncingMotion : MonoBehaviour
 		//Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
 		//		+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
 
+		// tidy this up it's a mess
 		if (collision != null) 
 		{
 			if(collision.transform.parent != null)
 			{
-				if (collision.transform.parent.name == toSpline) 
+				if(collision.transform.parent.name == "Player1Path" ||
+				   collision.transform.parent.name == "Player2Path")
 				{
+					mBall.RemoveFreedom ();
+				}
+					//if (collision.transform.parent.name == toSpline) 
+					//{
 					// add some logic for going between splines (save last touched path)
 					//Debug.Log ("1: ****************" + toSpline + "**************");
-
-					if(toSpline == "Player1Path")
+					
+					/*	if(toSpline == "Player1Path")
 					{
 						toSpline = "Player2Path";
 					}
 					else
 					{
 						toSpline = "Player1Path";
-					}
-
+					}*/
+					
 					//Debug.Log ("2: ****************" + toSpline + "************");
-
-					mBall.RemoveFreedom ();
-				}
+					
+					
+					//}
 			}
 		}
 	}
