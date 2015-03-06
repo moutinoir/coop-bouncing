@@ -57,8 +57,11 @@ public class CBCatchBall : MonoBehaviour
 			{
 				CBBall ball = bouncingMotion.mBall;
 
-				if(ball.Free)
+				//if(ball.Free)
+				//{
+				//	Debug.Log("INNER"  + ball.Free);
 					CatchBall(ball);
+				//}
 			}
 
 			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 

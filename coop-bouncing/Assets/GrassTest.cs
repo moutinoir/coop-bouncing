@@ -74,8 +74,8 @@ public class GrassTest : MonoBehaviour
 			Vector2 grassPoint = getPointOnCircle(lastPoint,desiredAngle,grassPartLength);
 			lastPoint = grassPoint;
 
-			Debug.Log ("nod *** " + nodules[i] + " ***");
-			Debug.Log ("width *** " + calculateWidthAtNodule(nodules[i]) + " ***");
+			//Debug.Log ("nod *** " + nodules[i] + " ***");
+			//Debug.Log ("width *** " + calculateWidthAtNodule(nodules[i]) + " ***");
 			Vector2 grassPointLeft  = new Vector2(grassPoint.x-calculateWidthAtNodule(nodules[i]), grassPoint.y);
 			Vector2 grassPointRight = new Vector2(grassPoint.x+calculateWidthAtNodule(nodules[i]), grassPoint.y);
 
@@ -96,6 +96,14 @@ public class GrassTest : MonoBehaviour
 		}
 	}
 
+	/*
+
+Mesh.uv is out of bounds. The supplied array needs to be the same size as the Mesh.vertices array.
+UnityEngine.Mesh:set_uv(Vector2[]) 
+GrassTest:generateMesh() (at Assets/GrassTest.cs:152)
+GrassTest:Start() (at Assets/GrassTest.cs:160)
+
+*/
 	void generateMesh()
 	{
 		MeshFilter mf = GetComponent<MeshFilter> ();
@@ -134,7 +142,9 @@ public class GrassTest : MonoBehaviour
 		}
 		
 		// UVs (1 uv per vertex)
-		Vector2[] uvs = new Vector2[(numNodules+1)*2];
+		//Vector2[] uvs = new Vector2[(numNodules+1)*2];
+		// horrible. Fix
+		Vector2[] uvs = new Vector2[vectorPoints.Count];
 		arrayWalk = 0;
 
 		for (int i = 0; i < uvs.Length/4; i++)
@@ -149,7 +159,7 @@ public class GrassTest : MonoBehaviour
 		mesh.vertices = vertices;
 		mesh.triangles = tri;
 		mesh.normals = normals;
-		mesh.uv = uvs;
+ 		mesh.uv = uvs;
 	}
 
 	// Use this for initialization

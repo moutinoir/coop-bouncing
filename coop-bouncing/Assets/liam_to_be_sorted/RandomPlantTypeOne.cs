@@ -36,9 +36,7 @@ public class RandomPlantTypeOne : MonoBehaviour {
 
 		while (randomPointOnCircle.y < 0) 
 		{
-			Debug.Log ("WHILE!!!");
 			randomPointOnCircle = Random.insideUnitCircle;
-			Debug.Log (randomPointOnCircle);
 		}
 
 		randomPointOnCircle.Normalize();

@@ -148,7 +148,8 @@ public class CBBouncingMotion : MonoBehaviour
 				if (collision.transform.parent.name == toSpline) 
 				{
 					// add some logic for going between splines (save last touched path)
-					//Debug.Log ("Spline Crash!");
+					//Debug.Log ("1: ****************" + toSpline + "**************");
+
 					if(toSpline == "Player1Path")
 					{
 						toSpline = "Player2Path";
@@ -157,6 +158,8 @@ public class CBBouncingMotion : MonoBehaviour
 					{
 						toSpline = "Player1Path";
 					}
+
+					//Debug.Log ("2: ****************" + toSpline + "************");
 
 					mBall.RemoveFreedom ();
 				}
