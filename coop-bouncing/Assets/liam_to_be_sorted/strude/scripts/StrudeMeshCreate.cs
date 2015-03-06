@@ -187,6 +187,7 @@ public class StrudeMeshCreate : MonoBehaviour
 		//this function generates the geometry
 		
 		int numConPoints = conPoints.Length;
+
 		if(numConPoints>=4)
 		{
 			initedMidPoint = false;
@@ -206,6 +207,7 @@ public class StrudeMeshCreate : MonoBehaviour
 				float textureT = (float)i/ (float)(res);
 				
 				//calculate the data at this t.
+				Debug.Log ("t:" + t);
 				calculateData(t,tStep);
 				
 				//calculate vertices

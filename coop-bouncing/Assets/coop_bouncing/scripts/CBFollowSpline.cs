@@ -126,13 +126,27 @@ public class CBFollowSpline : MonoBehaviour
 			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), throwAngle);
 
 			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
-			//Debug.Log(angleDif);
-			if(angleDif > 20.0f && angleDif < 160.0f)
+			Debug.Log(angleDif);
+
+			if(!isFirstPlayer)
 			{
-				player.CatchBall.Ball.mIsAtBadAngle = false;
+				if(angleDif > 20.0f && angleDif < 160.0f)
+				{
+					player.CatchBall.Ball.mIsAtBadAngle = false;
+				}
+				else
+					player.CatchBall.Ball.mIsAtBadAngle = true;
 			}
 			else
-				player.CatchBall.Ball.mIsAtBadAngle = true;
+			{
+				if(angleDif < 340.0f && angleDif > 200.0f)
+				{
+					player.CatchBall.Ball.mIsAtBadAngle = false;
+				}
+				else
+					player.CatchBall.Ball.mIsAtBadAngle = true;
+			}
+
 		}
 		else
 		{
