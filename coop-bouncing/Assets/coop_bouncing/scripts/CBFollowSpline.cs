@@ -127,9 +127,7 @@ public class CBFollowSpline : MonoBehaviour
 			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
 			//float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
 			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), throwAngle);
-
 			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
-			Debug.Log(angleDif);
 
 			if(!isFirstPlayer)
 			{

@@ -35,17 +35,12 @@ public class StrudeController :  MonoBehaviour
 	bool inAStrude = false;
 	
 	StrudeController[] strudeChilds;
-
-
-	
-
-
-void Awake()
-{
-	strudeMesh = GetComponent<StrudeMeshCreate>();
-	camMotion = Camera.main.GetComponent<CamFollow>();
-	
-}
+		
+	void Awake()
+	{
+		strudeMesh = GetComponent<StrudeMeshCreate>();
+		camMotion = Camera.main.GetComponent<CamFollow>();
+	}
 
 	// Use this for initialization
 	void Start () 
