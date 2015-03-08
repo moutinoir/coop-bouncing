@@ -3,9 +3,10 @@ using System.Collections;
 
 public class CBCatchBall : MonoBehaviour 
 {
-	public CBPlayer Player;
-	public float ForcePower;
-	public float IntervalBetweenCatches = 0.1f;
+	public CBPlayer player;
+	public CBPlayer otherPlayer;
+	public float forcePower;
+	public float intervalBetweenCatches = 0.1f;
 	private CBBall mBall = null;
 	private Vector3 mBallLocalPosition;
 	
@@ -15,7 +16,7 @@ public class CBCatchBall : MonoBehaviour
 
 	public CBCatchBall()
 	{
-		mCollisionDirection = new Vector3(0.0f, 2.0f, 0.0f);
+		mCollisionDirection = new Vector3(0.0f, 1.0f, 0.0f);
 	}
 
 	public CBBall Ball
@@ -39,13 +40,13 @@ public class CBCatchBall : MonoBehaviour
 
 	void Start()
 	{
-		mTimeSinceReleasedBall = IntervalBetweenCatches;
+		mTimeSinceReleasedBall = intervalBetweenCatches;
 	}
 
 	void OnCollisionStay(Collision collision)
 	{
 		//Debug.Log ("collision enter");
-		if(mBall == null && mTimeSinceReleasedBall > IntervalBetweenCatches)
+		if(mBall == null && mTimeSinceReleasedBall > intervalBetweenCatches)
 		{
 			ContactPoint first_contact = collision.contacts[0];
 			//mCollisionDirection = first_contact.point - Transform.position;
@@ -64,8 +65,8 @@ public class CBCatchBall : MonoBehaviour
 				//}
 			}
 
-			//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
-			//          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
+			Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
+			          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
 		}	
 		else if(mBall == null)
 		{
@@ -117,7 +118,7 @@ public class CBCatchBall : MonoBehaviour
 	{
 		mBall = aBall;
 		mBall.RemoveFreedom();
-		mBall.Transform.parent = Player.Transform;
+		mBall.Transform.parent = player.Transform;
 		mBallLocalPosition = mBall.Transform.localPosition;
 	}
 
@@ -130,7 +131,7 @@ public class CBCatchBall : MonoBehaviour
 	{ 
 		//mCollisionDirection = mBall.Transform.position - Transform.position;
 		//mCollisionDirection.Normalize();
-		mBall.RegainFreedom(mCollisionDirection, ForcePower);
+		mBall.RegainFreedom(mCollisionDirection, forcePower);
 		mBall = null;
 		mTimeSinceReleasedBall = 0.0f;
 	}
@@ -144,15 +145,29 @@ public class CBCatchBall : MonoBehaviour
 
 			float release_ball = 0f;
 
-			switch(Player.PlayerControl)
+			switch(player.PlayerControl)
 			{
 				case CBPlayer.EPlayerControl.Controller1:
+					
 					if(!mBall.mIsAtBadAngle)
+					{
 						release_ball = Input.GetAxis("L_Fire_1");
+						mBall.lastHeldBy = player.name;
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+					}
+
 					break;
+
 				case CBPlayer.EPlayerControl.Controller2:
+					
 					if(!mBall.mIsAtBadAngle)
+					{
 						release_ball = Input.GetAxis("L_Fire_2");
+						mBall.lastHeldBy = player.name;
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+					}
 					break;
 			}
 

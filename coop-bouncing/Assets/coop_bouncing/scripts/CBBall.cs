@@ -4,6 +4,7 @@ using System.Collections;
 public class CBBall : MonoBehaviour 
 {
 	public CBBouncingMotion mBouncingMotion;
+	public string lastHeldBy;
 
 	public CBBall()
 	{

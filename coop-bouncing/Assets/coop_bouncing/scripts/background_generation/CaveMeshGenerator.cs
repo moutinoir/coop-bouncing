@@ -15,33 +15,9 @@ public class CaveMeshGenerator : MonoBehaviour {
 		Mesh mesh = new Mesh ();
 		mf.mesh = mesh;
 
-
 		int numControlPoints = wallSpline.ControlPointCount;
 		Debug.Log ("numControlPoints: " + numControlPoints);
-		//Debug.Log ("the control points: " + wallSpline.ControlPoints[wallSpline.ControlPointCount-1].Position);
 		outerPoints = new Vector3[numControlPoints];
-
-		/*
-		// Generate out an invisible spline either above or below
-		for (int i = 0; i < numControlPoints; i++) 
-		{
-			if(isUpper)
-			{
-				outerPoints[i] = new Vector3(wallSpline.ControlPoints[i].Position.x,
-				                             wallSpline.ControlPoints[i].Position.y+5,
-				                             wallSpline.ControlPoints[i].Position.z);
-			}
-			else
-			{
-				//Debug.Log ("hit right place");
-				//Debug.Log ("numControlPoints");
-				outerPoints[i] = new Vector3(wallSpline.ControlPoints[i].Position.x,
-				                             wallSpline.ControlPoints[i].Position.y-5,
-				                             wallSpline.ControlPoints[i].Position.z);
-			}
-		}
-		*/
-
 
 		// Vertices
 		Vector3[] vertices = new Vector3[numControlPoints * 4];
@@ -115,7 +91,7 @@ public class CaveMeshGenerator : MonoBehaviour {
 		// Assign
 		mesh.vertices = vertices;
 		mesh.triangles = tri;
-		//mesh.normals = normals;
-		//mesh.uv = uvs;
+		mesh.normals = normals;
+		mesh.uv = uvs;
 	}
 }

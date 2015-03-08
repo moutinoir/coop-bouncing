@@ -127,8 +127,8 @@ public class CBBouncingMotion : MonoBehaviour
 
 	void OnTriggerEnter(Collider other) 
 	{
-		//Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " triggered contact with " 
-		//          + other.transform.parent.name + ":" +  other.name);
+		Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " triggered contact with " 
+		          + other.transform.parent.name + ":" +  other.name);
 
 	}
 
@@ -138,8 +138,11 @@ public class CBBouncingMotion : MonoBehaviour
 		mCollisionDirection = first_contact.point - Transform.position;
 		mCollisionDirection.Normalize ();
 
-		//Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
-		//		+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
+		Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
+				+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
+
+		if (mBall.lastHeldBy == collision.transform.parent.name)
+			Debug.Log ("We want to ignore this");
 
 		// tidy this up it's a mess
 		if (collision != null) 
