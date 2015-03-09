@@ -9,12 +9,30 @@ public class CBContextModifier
 		{
 			return mRotation; 
 		}
+		set
+		{
+			mRotation = value; 
+		}
 	}
 
-	public CBContextModifier(float aRotation)
+	public bool Flip
+	{
+		get
+		{
+			return mFlip; 
+		}
+		set
+		{
+			mFlip = value; 
+		}
+	}
+
+	public CBContextModifier(float aRotation = 0f, bool aFlip = false)
 	{
 		mRotation = aRotation;
+		mFlip = aFlip;
 	}
 
 	private float mRotation;
+	private bool mFlip;
 }

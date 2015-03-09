@@ -54,7 +54,12 @@ public class CBSpike_1 : MonoBehaviour
 			}
 			else
 			{
-				aParent.Flip = !aParent.Flip;
+				//aParent.Flip = !aParent.Flip;
+				if(aContextModifier != null)
+				{
+					aContextModifier.Flip = true;
+				}
+
 				LSpike (aParent, aContextModifier);
 			}
 		}
@@ -79,8 +84,12 @@ public class CBSpike_1 : MonoBehaviour
 	private void LSpikeGetLonger (CBSquare aParent, CBContextModifier aContextModifier)
 	{
 		//float moveFactor = (MeshSquareDrawer.FirstSquareSize - aParent.Size.x) / (MeshSquareDrawer.FirstSquareSize - StopGrowthSize);
-
-		CBSquare childSquare = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.99f, Mathf.PI/180f, false, aParent, aContextModifier);
+		bool isFlipped = false;
+		if(aContextModifier != null)
+		{
+			isFlipped = aContextModifier.Flip;
+		}
+		CBSquare childSquare = MeshSquareDrawer.AddSquare(0f, VerticalOffset, 0.99f, Mathf.PI/180f, isFlipped, aParent, aContextModifier);
 		LSpike(childSquare, null);
 	}
 	
