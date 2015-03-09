@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using FluffyUnderware.Curvy;
+using InControl;
 
 // make shell stick properly to sides, currently sliding about on collision
 // make shell follow angle and stick out from player
@@ -18,12 +20,12 @@ public class CBFollowSpline : MonoBehaviour
 	public float SlowSpeedFactor = 0.5f;
 	private float mSpeedFactor = 1f;
 
-	protected float mCurrentTF;
-	protected float mTranslation;
+	private float mCurrentTF;
+	private float mTranslation;
 	[SerializeField]
-	protected CurvyVector mCurrent;
+	private CurvyVector mCurrent;
 	
-	private Vector3 throwAngle;
+	private Vector3 mThrowAngle;
 
 	public float CurrentTF
 	{
@@ -80,35 +82,49 @@ public class CBFollowSpline : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if(InputManager.Devices.Count < 2)
+		{
+			return;
+		}
+
+		InputDevice inputDevicePlayer1 = InputManager.Devices[0];
+		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
+
 		switch(player.PlayerControl)
 		{
-			case CBPlayer.EPlayerControl.Controller1:
-			{
-				mTranslation = Input.GetAxis("p1_L_XAxis");
+		case CBPlayer.EPlayerControl.Controller1:
+		{
+//			mTranslation = Input.GetAxis("p1_L_XAxis");
+			mTranslation = inputDevicePlayer1.LeftStickX.Value;
 				
-				if(mTranslation == 0)
-				{
-					mTranslation = Input.GetAxis("Horizontal1");
-				}
+//			if(mTranslation == 0)
+//			{
+//				mTranslation = Input.GetAxis("Horizontal1");
+//			}
 
-				throwAngle = new Vector3(Input.GetAxis("p1_R_XAxis"), Input.GetAxis("p1_R_YAxis"), 0.0f);
-				Debug.DrawRay( player.transform.position, throwAngle, Color.red);
-	
-				break;
-			}
-			case CBPlayer.EPlayerControl.Controller2:
-			{
-				mTranslation = Input.GetAxis("p2_L_XAxis");
-				
-				if(mTranslation == 0) 
-				{
-					mTranslation = Input.GetAxis("Horizontal2");
-				}
+//			mThrowAngle = new Vector3(Input.GetAxis("p1_R_XAxis"), Input.GetAxis("p1_R_YAxis"), 0.0f);
+			mThrowAngle = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
 
-				throwAngle = new Vector3(Input.GetAxis("p2_R_XAxis"), Input.GetAxis("p2_R_YAxis"), 0.0f);
-				Debug.DrawRay( player.transform.position, throwAngle, Color.green);
-				break;
-			}
+			Debug.DrawRay(player.transform.position, mThrowAngle, Color.red);
+
+			break;
+		}
+		case CBPlayer.EPlayerControl.Controller2:
+		{
+//			mTranslation = Input.GetAxis("p2_L_XAxis");
+			mTranslation = inputDevicePlayer2.LeftStickX.Value;
+			
+//			if(mTranslation == 0) 
+//			{
+//				mTranslation = Input.GetAxis("Horizontal2");
+//			}
+
+//			mThrowAngle = new Vector3(Input.GetAxis("p2_R_XAxis"), Input.GetAxis("p2_R_YAxis"), 0.0f);
+			mThrowAngle = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
+
+			Debug.DrawRay(player.transform.position, mThrowAngle, Color.green);
+			break;
+		}
 		}
 
 		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
@@ -123,10 +139,10 @@ public class CBFollowSpline : MonoBehaviour
 		if(player.CatchBall.Ball != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;
-			player.CatchBall.mCollisionDirection = throwAngle;
+			player.CatchBall.mCollisionDirection = mThrowAngle;
 			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
 			//float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
-			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), throwAngle);
+			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), mThrowAngle);
 			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
 
 			if(!isFirstPlayer)

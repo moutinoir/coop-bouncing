@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class CBCatchBall : MonoBehaviour 
 {
@@ -138,40 +139,52 @@ public class CBCatchBall : MonoBehaviour
 
 	void Update ()
 	{
+		if(InputManager.Devices.Count < 2)
+		{
+			return;
+		}
+		
+		InputDevice inputDevicePlayer1 = InputManager.Devices[0];
+		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
+
 		mTimeSinceReleasedBall += Time.deltaTime;
 		if(mBall != null)
 		{
 			KeepBallClose();
 
-			float release_ball = 0f;
+//			float release_ball = 0f;
+			bool release_ball = false;	
 
 			switch(player.PlayerControl)
 			{
-				case CBPlayer.EPlayerControl.Controller1:
-					
-					if(!mBall.mIsAtBadAngle)
-					{
-						release_ball = Input.GetAxis("L_Fire_1");
-						mBall.lastHeldBy = player.name;
-						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
-						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
-					}
+			case CBPlayer.EPlayerControl.Controller1:
+				
+				if(!mBall.mIsAtBadAngle)
+				{
+//					release_ball = Input.GetAxis("L_Fire_1");
+					release_ball = inputDevicePlayer1.RightBumper.IsPressed;
+					mBall.lastHeldBy = player.name;
+					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+				}
 
-					break;
+				break;
 
-				case CBPlayer.EPlayerControl.Controller2:
-					
-					if(!mBall.mIsAtBadAngle)
-					{
-						release_ball = Input.GetAxis("L_Fire_2");
-						mBall.lastHeldBy = player.name;
-						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
-						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
-					}
-					break;
+			case CBPlayer.EPlayerControl.Controller2:
+				
+				if(!mBall.mIsAtBadAngle)
+				{
+//					release_ball = Input.GetAxis("L_Fire_2");
+					release_ball = inputDevicePlayer2.RightBumper.IsPressed;
+					mBall.lastHeldBy = player.name;
+					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+				}
+				break;
 			}
 
-			if(release_ball > 0.5f)
+//			if(release_ball > 0.5f)
+			if(release_ball)
 			{
 				ReleaseBall();
 			}

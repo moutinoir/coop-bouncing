@@ -51,6 +51,7 @@ public class CBBall : MonoBehaviour
 	{
 		Transform.parent = mInitialParent;
 		mBouncingMotion.AddForce (aForceDirection, aForcePower);
+		Debug.Log ("force direction = " + aForceDirection + " , force power = " + aForcePower );
 		mIsFree = true;
 	}
 
