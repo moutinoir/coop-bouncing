@@ -233,7 +233,7 @@ public class PolyDrawer : MonoBehaviour
 		
 		m_MeshFilter = (MeshFilter)GetComponent(typeof(MeshFilter));
 		m_MeshRenderer = (MeshRenderer)GetComponent(typeof(MeshRenderer));
-		m_MeshRenderer.renderer.material = Mat;
+		m_MeshRenderer.GetComponent<Renderer>().material = Mat;
 		m_Mesh = m_MeshFilter.mesh;
 		
 		int vertex_count = RawPoints.Count;

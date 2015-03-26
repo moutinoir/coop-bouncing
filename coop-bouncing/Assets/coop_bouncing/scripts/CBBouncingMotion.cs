@@ -24,7 +24,7 @@ public class CBBouncingMotion : MonoBehaviour
 		get
 		{
 			if (!mRigidbody)
-				mRigidbody = rigidbody;
+				mRigidbody = GetComponent<Rigidbody>();
 			return mRigidbody;
 		}
 	}

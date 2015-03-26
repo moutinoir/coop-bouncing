@@ -92,7 +92,7 @@ public class LittleGUI2 : MonoBehaviour
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (collider.Raycast (ray, out hit, 2000.0f)) 
+			if (GetComponent<Collider>().Raycast (ray, out hit, 2000.0f)) 
 			{
 				Time.timeScale = 7.0f;
 				camMotion.posToSpeed = 0.09f;

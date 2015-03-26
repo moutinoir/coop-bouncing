@@ -142,7 +142,7 @@ public class DrawStuff : QuadsMeshMaker
 		
 		if(Input.GetKeyDown(KeyCode.A))
 		{
-			renderer.enabled = !renderer.enabled;
+			GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
 		}
 		
 	

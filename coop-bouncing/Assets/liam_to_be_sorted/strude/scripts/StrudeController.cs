@@ -117,8 +117,8 @@ public class StrudeController :  MonoBehaviour
 				currSpeed = minSpeed;
 		
 			currT +=Time.deltaTime * currSpeed;
-			renderer.material.SetFloat("_Seed",Mathf.Lerp(from,to,currT));
-			renderer.material.SetFloat("_FlowLength",flowLength);
+			GetComponent<Renderer>().material.SetFloat("_Seed",Mathf.Lerp(from,to,currT));
+			GetComponent<Renderer>().material.SetFloat("_FlowLength",flowLength);
 		
 			if(camMotion.strudeCon==this)
 			{
@@ -162,7 +162,7 @@ public class StrudeController :  MonoBehaviour
 		}
 		else
 		{
-			renderer.material.SetFloat("_Seed",from);
+			GetComponent<Renderer>().material.SetFloat("_Seed",from);
 		}
 	}
 }

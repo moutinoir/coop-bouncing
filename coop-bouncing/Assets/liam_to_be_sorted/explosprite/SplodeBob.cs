@@ -50,7 +50,7 @@ public class SplodeBob : MonoBehaviour
 			t = -0.0f;
 			tSpeed = 0.0f;
 		}
-		renderer.material.SetFloat("_Power",val);
+		GetComponent<Renderer>().material.SetFloat("_Power",val);
 		
 	}
 }
