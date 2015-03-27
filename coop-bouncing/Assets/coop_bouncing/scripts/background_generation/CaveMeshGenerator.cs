@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CaveMeshGenerator : MonoBehaviour {
-
+	
 	public CurvySpline wallSpline;
 	private Vector3[] outerPoints;
 	
@@ -17,29 +17,30 @@ public class CaveMeshGenerator : MonoBehaviour {
 
 		int numControlPoints = wallSpline.ControlPointCount;
 		Debug.Log ("numControlPoints: " + numControlPoints);
+		//Debug.Log ("the control points: " + wallSpline.ControlPoints[wallSpline.ControlPointCount-1].Position);
 		outerPoints = new Vector3[numControlPoints];
 
 		// Vertices
 		Vector3[] vertices = new Vector3[numControlPoints * 4];
-
+		
 		int arrayWalk = 0;
-
+		
 		for (int i = 0; i < numControlPoints-1; i++) 
 		{
 			Vector3 off = new Vector3(0.0f,isUpper ? 5.0f : -5.0f,0.0f);
-
+			
 			Vector3 p0 = wallSpline.ControlPoints[i].Position;
 			Vector3 p1 = wallSpline.ControlPoints[i].Position+off;
 			Vector3 p2 = wallSpline.ControlPoints[i+1].Position;
 			Vector3 p3 = wallSpline.ControlPoints[i+1].Position+off;
-
-
+			
+			
 			vertices[arrayWalk++] = p0;
 			vertices[arrayWalk++] = p1;
 			vertices[arrayWalk++] = p2;
 			vertices[arrayWalk++] = p3;
-
-
+			
+			
 		}
 		
 		// Tris
@@ -53,12 +54,12 @@ public class CaveMeshGenerator : MonoBehaviour {
 				tri[arrayWalk++] = index;
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index+2;
-
-				tri[arrayWalk++] = index+2; 
+				
+				tri[arrayWalk++] = index+2;
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index+3;
 			}else{
-
+				
 				tri[arrayWalk++] = index+2;
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index;
@@ -66,10 +67,10 @@ public class CaveMeshGenerator : MonoBehaviour {
 				tri[arrayWalk++] = index+3;
 				tri[arrayWalk++] = index+1;
 				tri[arrayWalk++] = index+2;
-
+				
 			}
 		}
-
+		
 		// Normals
 		Vector3[] normals = new Vector3[numControlPoints * 2];
 		for (int i = 0; i < numControlPoints * 2; i++) 
@@ -91,7 +92,5 @@ public class CaveMeshGenerator : MonoBehaviour {
 		// Assign
 		mesh.vertices = vertices;
 		mesh.triangles = tri;
-		mesh.normals = normals;
-		mesh.uv = uvs;
 	}
 }

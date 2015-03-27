@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TreeStrudeGen : MonoBehaviour 
 {
@@ -40,21 +41,23 @@ public class TreeStrudeGen : MonoBehaviour
 	
 	void generateControllerData(ref StrudeMeshCreate strudeMesh)
 	{
-		strudeMesh.conPoints = new Vector3[joints];
+		strudeMesh.conPoints = new List<Vector3>(joints);
 		startVector = Quaternion.AngleAxis(Random.Range(minAngleMod,minAngleMod),Vector3.forward) * startVector;
 		startVector.Normalize();
 		
-		strudeMesh.conPoints[0] = currPos;
-		for(int i=1; i < strudeMesh.conPoints.Length; i++)
+		strudeMesh.conPoints.Add(currPos);
+
+		for(int i=1; i < /*strudeMesh.conPoints.Count*/joints; i++)
 		{
 			float distance = Random.Range(minDistJoint,maxDistJoint);
-			strudeMesh.conPoints[i] = currPos + startVector*distance;
-			strudeMesh.conPoints[i].x+=Random.Range(jointNoiseMinX,jointNoiseMaxX);
-			strudeMesh.conPoints[i].y+=Random.Range(jointNoiseMinY,jointNoiseMaxY);
-			strudeMesh.conPoints[i].z = currDepth*2.1f;
-			strudeMesh.conPoints[i].x += 0.5f;
-			
-			currPos = strudeMesh.conPoints[i];
+			Vector3 newPoint = new Vector3();
+			newPoint = currPos + startVector*distance;
+			newPoint.x += Random.Range(jointNoiseMinX,jointNoiseMaxX);
+			newPoint.y += Random.Range(jointNoiseMinY,jointNoiseMaxY);
+			newPoint.z = currDepth*2.1f;
+			newPoint.x += 0.5f;
+			strudeMesh.conPoints.Add(newPoint);
+			currPos = newPoint;
 		}
 		strudeMesh.makeMeshFromSpline();
 	}

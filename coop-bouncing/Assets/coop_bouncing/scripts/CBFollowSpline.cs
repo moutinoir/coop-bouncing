@@ -25,7 +25,7 @@ public class CBFollowSpline : MonoBehaviour
 	[SerializeField]
 	private CurvyVector mCurrent;
 	
-	private Vector3 mThrowAngle;
+	public Vector3 mThrowAngle;
 
 	public float CurrentTF
 	{

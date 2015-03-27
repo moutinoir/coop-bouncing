@@ -30,8 +30,9 @@ public class SplineCreationDestruction : MonoBehaviour
 	{
 		counter++;
 
-		if (counter > 60)
+		if (counter > 20)
 		{
+			Debug.Log("POP");
 			int numPointsLeft = FollowSplineLeft.Spline.ControlPointCount;
 			int numPointsRight = FollowSplineRight.Spline.ControlPointCount;
 

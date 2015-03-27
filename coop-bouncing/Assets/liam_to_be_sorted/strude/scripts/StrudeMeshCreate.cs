@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 //to support editing spline and seeing generated geomtry update in realtime..
 //we make script execute in edit mode.
@@ -32,11 +33,11 @@ public class StrudeMeshCreate : MonoBehaviour
 	//nice little function to help us get out data from the catmul-rom evaluation
 	public void pathData(out Vector3 v,float t)
 	{
-		v = catEval(ref conPoints,conPoints.Length,t);
+		v = catEval(conPoints,conPoints.Count,t);
 	}	
 	
 	//our controller points for the catmull-rom spline.
-	public Vector3[] conPoints;
+	public List<Vector3> conPoints;
 	
 	//here is the catmull-rom evalution.
 	float catEval(float p0,float p1,
@@ -61,20 +62,7 @@ public class StrudeMeshCreate : MonoBehaviour
 				      ( 2.0f*p0 - 5.0f*p1 + 4.0f*p2 - p3)*t2 
 				      +(-p0 + 3.0f*p1 - 3.0f*p2 + p3)*t2*t);
 	}
-
-	private void printCurvySpline()
-	{
-		Debug.Log("printing");
-		Debug.Log (spline.ControlPoints.Count);
-
-		conPoints = new Vector3 [spline.ControlPoints.Count];
-
-		for (int i = 0; i < spline.ControlPoints.Count; i++) 
-		{
-			//Debug.Log (spline.ControlPoints[i]);
-			conPoints[i] = spline.ControlPoints[i].Position;
-		}
-	}
+	
 	//takes in an array of points and the length of that array and also a t (to be to 0 to 1)
 	Vector3 catEval(ref Vector3[] points,int length,float t)
 	{
@@ -119,7 +107,46 @@ public class StrudeMeshCreate : MonoBehaviour
 		//Debug.Log("" + index + " " + index2 + " " + index3 + " " + index4 + " t is " + t );
 		return ans;
 	}
-	
+	Vector3 catEval(List<Vector3> points,int length,float t)
+	{
+		int	ender =length;
+		Vector3 ans = Vector3.zero;
+		
+		if(ender==1)
+			return points[0];
+		
+		float eachPart = 1.0f/(float)ender;
+		float tempRes = t*(float)ender;
+		int index = (int)tempRes;
+		
+		if(index==ender)
+			return points[ender-1];
+		
+		index--;
+		int index2 = index+1;
+		int index3 = index+2;
+		if(index3>=ender)
+			index3-=1;
+		int index4 = index3+1;
+		
+		//make adjustments to indices.
+		index = Mathf.Clamp(index,0,ender-1);
+		index2 = Mathf.Clamp(index2,0,ender-1);
+		index3 = Mathf.Clamp(index3,0,ender-1);
+		index4 = Mathf.Clamp(index4,0,ender-1);
+		
+		float t1 = eachPart*(float)index2;
+		float t2 = t1+eachPart;
+		float localT = (t-t1)/(t2-t1);
+		
+		ans = catEval (points[index],
+		               points[index2],
+		               points[index3],
+		               points[index4],localT);
+		
+		//Debug.Log("" + index + " " + index2 + " " + index3 + " " + index4 + " t is " + t );
+		return ans;
+	}
 
 	// Awake
 	// Start
@@ -133,7 +160,6 @@ public class StrudeMeshCreate : MonoBehaviour
 
 	void Start()
 	{
-		printCurvySpline ();
 	}
 	//some variables to use for the spline extrude
 	Vector3 theForward = Vector3.zero;
@@ -153,7 +179,7 @@ public class StrudeMeshCreate : MonoBehaviour
 		Vector3 lastMid = midPoint1;
 		
 		//generate new midPoint
-		midPoint1 = catEval(ref conPoints,conPoints.Length,currT )*scaleThing;
+		midPoint1 = catEval(conPoints, conPoints.Count,currT )*scaleThing;
 		
 		if(initedMidPoint)
 		{//if we have an inited midPoint , use lastMid to generate forward vector 
@@ -163,7 +189,7 @@ public class StrudeMeshCreate : MonoBehaviour
 		{
 			//our midPoint is not inited yet, let's calculate forward vector by calculating
 			//the next midPoint
-			midPoint2 = catEval(ref conPoints,conPoints.Length,currT + tStep)*scaleThing;
+			midPoint2 = catEval(conPoints,conPoints.Count,currT + tStep)*scaleThing;
 			theForward = midPoint1  - midPoint2;
 		}
 		//we don't want to support z extruding at this time.
@@ -181,12 +207,22 @@ public class StrudeMeshCreate : MonoBehaviour
 		theSide.Normalize();		
 		initedMidPoint = true;
 	}
-	
+
+	private void updateConPoints()
+	{
+		conPoints.Clear();
+
+		for(int i = 0; i < spline.ControlPointCount; i++)
+		{
+			conPoints.Add(spline.ControlPoints[i].Position);
+		}
+	}
 	public void makeMeshFromSpline()
 	{
+		updateConPoints();
+		Debug.Log("MakeMesh num con points:" + conPoints.Count);
 		//this function generates the geometry
-		
-		int numConPoints = conPoints.Length;
+		int numConPoints = conPoints.Count;
 
 		if(numConPoints>=4)
 		{
@@ -207,7 +243,6 @@ public class StrudeMeshCreate : MonoBehaviour
 				float textureT = (float)i/ (float)(res);
 				
 				//calculate the data at this t.
-				Debug.Log ("t:" + t);
 				calculateData(t,tStep);
 				
 				//calculate vertices
@@ -256,7 +291,6 @@ public class StrudeMeshCreate : MonoBehaviour
 		//just some stuff to decide if we want to recalc things.
 		if(needToRecalc==true || autoRecalc==true)
 		{
-			
 			makeMeshFromSpline();
 			needToRecalc = false;
 		}
