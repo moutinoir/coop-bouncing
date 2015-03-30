@@ -15,13 +15,13 @@ public class CaveMeshGenerator : MonoBehaviour {
 	public void RecalculateMeshes()
 	{
 		// TODO: Implement this
-		Debug.Log ("Recalculating wall meshes");
+		//Debug.Log ("Recalculating wall meshes");
 		MeshFilter mf = GetComponent<MeshFilter> ();
 		Mesh mesh = new Mesh ();
 		mf.mesh = mesh;
 		
 		int numControlPoints = wallSpline.ControlPointCount;
-		Debug.Log ("numControlPoints: " + numControlPoints);
+		//Debug.Log ("numControlPoints: " + numControlPoints);
 		//Debug.Log ("the control points: " + wallSpline.ControlPoints[wallSpline.ControlPointCount-1].Position);
 		outerPoints = new Vector3[numControlPoints];
 		
