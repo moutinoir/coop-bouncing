@@ -230,7 +230,7 @@ public class StrudeMeshCreate : MonoBehaviour
 	public void makeMeshFromSpline()
 	{
 		updateConPoints();
-		Debug.Log("MakeMesh num con points:" + conPoints.Count);
+		//Debug.Log("MakeMesh num con points:" + conPoints.Count);
 		//this function generates the geometry
 		int numConPoints = conPoints.Count;
 

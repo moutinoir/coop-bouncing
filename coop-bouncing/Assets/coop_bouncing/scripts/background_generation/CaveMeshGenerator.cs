@@ -1,25 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO: Work out flickering of top cave
+// TODO: Rejig calculating behaviour to be more straight/never go back on itself/never deviate too far from itself
+//
+
 public class CaveMeshGenerator : MonoBehaviour {
 	
 	public CurvySpline wallSpline;
 	private Vector3[] outerPoints;
 	
 	public bool isUpper;   // else down
-	
-	// Use this for initialization
-	void Start () 
+
+	public void RecalculateMeshes()
 	{
+		// TODO: Implement this
+		Debug.Log ("Recalculating wall meshes");
 		MeshFilter mf = GetComponent<MeshFilter> ();
 		Mesh mesh = new Mesh ();
 		mf.mesh = mesh;
-
+		
 		int numControlPoints = wallSpline.ControlPointCount;
 		Debug.Log ("numControlPoints: " + numControlPoints);
 		//Debug.Log ("the control points: " + wallSpline.ControlPoints[wallSpline.ControlPointCount-1].Position);
 		outerPoints = new Vector3[numControlPoints];
-
+		
 		// Vertices
 		Vector3[] vertices = new Vector3[numControlPoints * 4];
 		
@@ -92,5 +97,10 @@ public class CaveMeshGenerator : MonoBehaviour {
 		// Assign
 		mesh.vertices = vertices;
 		mesh.triangles = tri;
+	}
+	// Use this for initialization
+	void Start () 
+	{
+		RecalculateMeshes ();
 	}
 }

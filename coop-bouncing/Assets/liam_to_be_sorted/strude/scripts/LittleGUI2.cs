@@ -20,9 +20,6 @@ public class LittleGUI2 : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		
-		
-		
 		  Time.timeScale = 0.02f;
 			camMotion = Camera.main.GetComponent<CamFollow>();
 		camMotion.posToSpeed = 0.02f;
