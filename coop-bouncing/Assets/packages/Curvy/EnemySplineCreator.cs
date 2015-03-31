@@ -18,7 +18,6 @@ public class EnemySplineCreator : MonoBehaviour
 	{
 		// Randomly select an angle between 45 and 135 degrees (but in radians)
 		float angleRandVar = Random.Range (-angleMaxVar, angleMaxVar);
-		Debug.Log (angleRandVar);
 		lastAngle += angleRandVar;
 		lastAngle = Mathf.Clamp (lastAngle, (Mathf.PI/2)*3.5f, (Mathf.PI/2)*4.5f);
 

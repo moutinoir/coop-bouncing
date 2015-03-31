@@ -186,11 +186,17 @@ public class SplineCreationDestruction : MonoBehaviour
 			*/
 
 			Random.seed = (int)Time.timeSinceLevelLoad;
+
 			enemySplineCreator.GenerateNewPoint();
 			leftNewPoint  = enemySplineCreator.tangentBottom;
 			rightNewPoint = enemySplineCreator.tangentTop;
 
+			AddPointsAndRecalculateTFs();
 
+			enemySplineCreator.GenerateNewPoint();
+			leftNewPoint  = enemySplineCreator.tangentBottom;
+			rightNewPoint = enemySplineCreator.tangentTop;
+			
 			AddPointsAndRecalculateTFs();
 
 			caveMeshUpper.RecalculateMeshes();
