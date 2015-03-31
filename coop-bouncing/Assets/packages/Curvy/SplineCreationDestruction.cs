@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO: Regenerate out collision gemoetry
+
 public class SplineCreationDestruction : MonoBehaviour 
 {	
 	public int counter = 0;

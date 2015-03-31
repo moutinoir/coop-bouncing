@@ -29,9 +29,9 @@ public class EnemySplineCreator : MonoBehaviour
 		Vector3 newTestPoint = FollowSplineEnemy.Spline.Interpolate(1.0f);
 
 		tangentTop    = Quaternion.Euler(0,0,90)*(-FollowSplineEnemy.Spline.GetTangent (1.0f));
-		tangentTop = newTestPoint + (tangentTop*1.5f);
+		tangentTop = newTestPoint + (tangentTop*Random.Range(1.0f,2.0f));
 		tangentBottom = Quaternion.Euler(0,0,90)*(FollowSplineEnemy.Spline.GetTangent (1.0f));
-		tangentBottom = newTestPoint + (tangentBottom*1.5f);
+		tangentBottom = newTestPoint + (tangentBottom*Random.Range(1.0f,2.0f));
 	}
 	public void GenerateNewPoint()
 	{
