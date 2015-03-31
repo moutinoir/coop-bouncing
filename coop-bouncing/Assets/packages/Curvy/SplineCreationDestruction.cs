@@ -23,6 +23,8 @@ public class SplineCreationDestruction : MonoBehaviour
 	public CaveMeshGenerator caveMeshUpper;
 	public CaveMeshGenerator caveMeshLower;
 
+	public EnemySplineCreator enemySplineCreator;
+
 	private float lastAngleTop = Mathf.PI*2;
 	private float lastAngleBottom = Mathf.PI*2;
 	private float angleMaxVar = Mathf.PI/8;
@@ -241,12 +243,22 @@ public class SplineCreationDestruction : MonoBehaviour
 		{
 			//Debug.Log("POP");
 			// Generate the points out 2 at a time so UV's e.t.c. don't go screwey
+			/*GenerateNewPoint();
 			GenerateNewPoint();
-			GenerateNewPoint();
+
+			*/
+
+			Random.seed = (int)Time.timeSinceLevelLoad;
+			enemySplineCreator.GenerateNewPoint();
+			leftNewPoint  = enemySplineCreator.tangentBottom;
+			FollowSplineLeft.Spline.Add(leftNewPoint);
+			rightNewPoint = enemySplineCreator.tangentTop;
+			FollowSplineRight.Spline.Add (rightNewPoint);
 
 			caveMeshUpper.RecalculateMeshes();
 			caveMeshLower.RecalculateMeshes();
 
+			counter = 0;
 		}
 	}
 }
