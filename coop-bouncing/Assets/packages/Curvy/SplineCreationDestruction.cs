@@ -171,33 +171,25 @@ public class SplineCreationDestruction : MonoBehaviour
 			          + " newTF = " + newTFAfterAddingPoint);*/
 		FollowSplineRight.CurrentTF = newTFAfterAddingPoint;
 	}
+	private void GenerateNewPoints()
+	{
+		enemySplineCreator.GenerateNewPoint();
+		leftNewPoint  = enemySplineCreator.tangentBottom;
+		rightNewPoint = enemySplineCreator.tangentTop;
+		
+		AddPointsAndRecalculateTFs();
+	}
 	void Update () 
 	{
 		counter++;
 
 		// TODO: Don't implement this on a set timer, implement this based on camera/world position (generate as player moves)
-		if (counter > 20)
+		if (counter > 40)
 		{
-			//Debug.Log("POP");
-			// Generate the points out 2 at a time so UV's e.t.c. don't go screwey
-			/*GenerateNewPoint();
-			GenerateNewPoint();
-
-			*/
-
 			Random.seed = (int)Time.timeSinceLevelLoad;
 
-			enemySplineCreator.GenerateNewPoint();
-			leftNewPoint  = enemySplineCreator.tangentBottom;
-			rightNewPoint = enemySplineCreator.tangentTop;
-
-			AddPointsAndRecalculateTFs();
-
-			enemySplineCreator.GenerateNewPoint();
-			leftNewPoint  = enemySplineCreator.tangentBottom;
-			rightNewPoint = enemySplineCreator.tangentTop;
-			
-			AddPointsAndRecalculateTFs();
+			GenerateNewPoints();
+			GenerateNewPoints();
 
 			caveMeshUpper.RecalculateMeshes();
 			caveMeshLower.RecalculateMeshes();

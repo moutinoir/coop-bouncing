@@ -141,6 +141,9 @@ public class CBBouncingMotion : MonoBehaviour
 		Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
 				+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
 
+		Debug.Log ("lastHeldBy: " + mBall.lastHeldBy);
+	
+
 		if (mBall.lastHeldBy == collision.transform.parent.name)
 			Debug.Log ("We want to ignore this");
 
