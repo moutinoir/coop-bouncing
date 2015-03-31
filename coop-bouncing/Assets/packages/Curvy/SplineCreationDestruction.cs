@@ -113,12 +113,6 @@ public class SplineCreationDestruction : MonoBehaviour
 		int numPointsLeft = FollowSplineLeft.Spline.ControlPointCount;
 		int numPointsRight = FollowSplineRight.Spline.ControlPointCount;
 		
-		/*Debug.Log ("Left" + numPointsLeft);
-			Debug.Log ("Right" + numPointsRight);
-
-			Debug.Log ("Add! " + numPointsLeft);
-			Debug.Log ("Add! " + numPointsRight);*/
-		
 		leftPrevPoint = FollowSplineLeft.Spline.ControlPoints[numPointsLeft-1].Position;
 		rightPrevPoint = FollowSplineRight.Spline.ControlPoints[numPointsRight-1].Position;
 		
@@ -149,48 +143,14 @@ public class SplineCreationDestruction : MonoBehaviour
 				newPointsInvalid = true;
 			}
 		}
+	}
 
-		//{
-
-			/*Vector3 leftNewPoint = new Vector3(leftPrevPoint.x+caveWidthMin+Random.Range(0.0f, caveWidthVariation)-caveWidthVariation/2.0f, 
-				                                   leftPrevPoint.y + 1.0f, 
-				                                   leftPrevPoint.z);
-				
-				
-				Vector3 rightNewPoint = new Vector3(rightPrevPoint.x+caveWidthMin+Random.Range(0.0f, caveWidthVariation)-caveWidthVariation/2.0f,
-				                                    rightPrevPoint.y + 1.0f, 
-				                                    rightPrevPoint.z);*/
-			
-
-		//}
-		
-		/*float randDeltaLeftX = Random.Range(-caveWidthVariation, caveWidthVariation);
-			float randDeltaLeftY = Random.Range(-caveWidthVariation, caveWidthVariation);
-
-			float randDeltaRightX = Random.Range(-caveWidthVariation, caveWidthVariation);
-			float randDeltaRightY = Random.Range(-caveWidthVariation, caveWidthVariation);
-
-			Debug.Log ("LrandX: " + randDeltaLeftX);
-			Debug.Log ("LrandY: " + randDeltaLeftY);
-
-			Debug.Log ("RrandX: " + randDeltaRightX);
-			Debug.Log ("RrandY: " + randDeltaRightY);
-
-			Vector3 leftNewPoint = new Vector3(leftPrevPoint.x+randDeltaLeftX, 
-			                                   leftPrevPoint.y+randDeltaLeftY, 
-			                                   leftPrevPoint.z);
-			
-			
-			Vector3 rightNewPoint = new Vector3(rightPrevPoint.x+randDeltaRightX,
-			                                    rightPrevPoint.y+randDeltaRightY, 
-			                                    rightPrevPoint.z);*/
-		
-		
-		
+	private void AddPointsAndRecalculateTFs()
+	{
 		// left spline
 		float distanceBeforeAddingPoint = FollowSplineLeft.Spline.TFToDistance(FollowSplineLeft.CurrentTF);
 		FollowSplineLeft.Spline.Add(leftNewPoint);
-		
+
 		float distanceAfterAddingPoint = FollowSplineLeft.Spline.TFToDistance(FollowSplineLeft.CurrentTF);
 		float newTFAfterAddingPoint = FollowSplineLeft.Spline.DistanceToTF(distanceBeforeAddingPoint);
 		/*Debug.Log("[GAMEPLAY] Left curve : TFToDistance = " + distanceBeforeAddingPoint 
@@ -210,22 +170,6 @@ public class SplineCreationDestruction : MonoBehaviour
 			          + " after adding point TFToDistance = " + distanceAfterAddingPoint
 			          + " newTF = " + newTFAfterAddingPoint);*/
 		FollowSplineRight.CurrentTF = newTFAfterAddingPoint;
-		
-		counter = 0;
-		
-		//curvyLeft.ControlPoints
-		/*if(FollowSplineLeft.Spline.ControlPointCount > maxControlPoints)
-			{
-				FollowSplineLeft.Spline.Delete(FollowSplineLeft.Spline.ControlPoints[0]);
-				FollowSplineRight.Spline.Delete(FollowSplineRight.Spline.ControlPoints[0]);
-			}*/
-		
-		// game over check
-		/*if(ball.transform.position.y < FollowSplineLeft.Spline.ControlPoints[0].Position.y)
-			{
-				Debug.Log("Game Over!");
-				Application.LoadLevel(0);
-			}*/
 	}
 	void Update () 
 	{
@@ -244,9 +188,10 @@ public class SplineCreationDestruction : MonoBehaviour
 			Random.seed = (int)Time.timeSinceLevelLoad;
 			enemySplineCreator.GenerateNewPoint();
 			leftNewPoint  = enemySplineCreator.tangentBottom;
-			FollowSplineLeft.Spline.Add(leftNewPoint);
 			rightNewPoint = enemySplineCreator.tangentTop;
-			FollowSplineRight.Spline.Add (rightNewPoint);
+
+
+			AddPointsAndRecalculateTFs();
 
 			caveMeshUpper.RecalculateMeshes();
 			caveMeshLower.RecalculateMeshes();
