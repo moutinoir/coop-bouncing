@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 // TODO: Implement balls on path instead of lines
-// TODO: Implement animaton on balls
+// TODO: Implement animation on balls
 // TODO: Implement collisions with other surface
 // TODO: Make line dissapear on bad angle
 // TODO: Calculate not just with angle but also with sensitivity

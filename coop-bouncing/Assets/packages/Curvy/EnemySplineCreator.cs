@@ -6,8 +6,7 @@ public class EnemySplineCreator : MonoBehaviour
 	public CBAutoFollowSpline FollowSplineEnemy;
 	private Vector3 prevPoint;
 	private Vector3 newPoint;
-
-
+	
 	private float lastAngle = Mathf.PI*2;
 	private float angleMaxVar = Mathf.PI/8;
 

@@ -2,10 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-// TODO: Fix maths so it generates out in the right direction properly
 // TODO: Add simple rules to make a sane cave
-// TODO: Regenerate out the wall meshes too
-// TODO: Fix end condition (don't end for the moment)
 // TODO: Simple scene management:
 // // Delete points as you go along
 // // Delete out vegetation and trees as you go along

@@ -2,8 +2,6 @@
 using System.Collections;
 
 // TODO: Work out flickering of top cave
-// TODO: Rejig calculating behaviour to be more straight/never go back on itself/never deviate too far from itself
-//
 
 public class CaveMeshGenerator : MonoBehaviour {
 	
@@ -14,7 +12,6 @@ public class CaveMeshGenerator : MonoBehaviour {
 
 	public void RecalculateMeshes()
 	{
-		// TODO: Implement this
 		//Debug.Log ("Recalculating wall meshes");
 		MeshFilter mf = GetComponent<MeshFilter> ();
 		Mesh mesh = new Mesh ();

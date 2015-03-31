@@ -34,14 +34,7 @@ public class SplineCreationDestruction : MonoBehaviour
 
 	private Vector3 leftNewPoint;
 	private Vector3 rightNewPoint;
-
-	// TODO: Fix wrap around/clamping/silly angles bug
-	// TODO: Do extra check that splines aren't crossing
-	// TODO: Line/line intersection on new points
-	// TODO: Work out why points are getting gradually closer together
-	// TODO: Generate out central spline for fish-monster
-
-
+	
 	void Start()
 	{
 		//curvyLeft = splineLeft.GetComponent<CurvySpline>();
