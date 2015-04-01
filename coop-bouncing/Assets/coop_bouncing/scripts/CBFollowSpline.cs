@@ -90,7 +90,7 @@ public class CBFollowSpline : MonoBehaviour
 		InputDevice inputDevicePlayer1 = InputManager.Devices[0];
 		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
 
-		switch(player.PlayerControl)
+		switch(player.playerControl)
 		{
 		case CBPlayer.EPlayerControl.Controller1:
 		{
@@ -136,10 +136,10 @@ public class CBFollowSpline : MonoBehaviour
 		// give a little z offset to position on extrude properly
 		Transform.position = new Vector3 (Transform.position.x, Transform.position.y, Transform.position.z-0.2f);
 
-		if(player.CatchBall.Ball != null)
+		if(player.theBall != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;
-			player.CatchBall.mCollisionDirection = mThrowAngle;
+			//player.theBall.mCollisionDirection = mThrowAngle;
 			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
 			//float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
 			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), mThrowAngle);
@@ -149,19 +149,23 @@ public class CBFollowSpline : MonoBehaviour
 			{
 				if(angleDif > 20.0f && angleDif < 160.0f)
 				{
-					player.CatchBall.Ball.mIsAtBadAngle = false;
+					//player.CatchBall.Ball.mIsAtBadAngle = false;
 				}
 				else
-					player.CatchBall.Ball.mIsAtBadAngle = true;
+				{
+					//player.CatchBall.Ball.mIsAtBadAngle = true;
+				}
 			}
 			else
 			{
 				if(angleDif < 340.0f && angleDif > 200.0f)
 				{
-					player.CatchBall.Ball.mIsAtBadAngle = false;
+					//player.CatchBall.Ball.mIsAtBadAngle = false;
 				}
 				else
-					player.CatchBall.Ball.mIsAtBadAngle = true;
+				{
+					//player.CatchBall.Ball.mIsAtBadAngle = true;
+				}
 			}
 
 		}

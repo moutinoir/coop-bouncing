@@ -17,7 +17,7 @@ public class CBBouncingMotion : MonoBehaviour
 	private float mVelocityMagnitude = 0f;
 
 	// this is horrible... Lets find a better way to do it
-	private string toSpline = "Player1Path";
+	//private string toSpline = "Player1Path";
 
 	public Rigidbody Rigidbody
 	{
@@ -143,20 +143,38 @@ public class CBBouncingMotion : MonoBehaviour
 
 		Debug.Log ("lastHeldBy: " + mBall.lastHeldBy);
 	
+	/*
+	 * 
+	 * [GAMEPLAY] Core:Ball collided with Player2:Body at point (-4.1, 0.4, 0.0)
+	 */
 
-		if (mBall.lastHeldBy == collision.transform.parent.name)
-			Debug.Log ("We want to ignore this");
+		if(name == "Ball" && collision.transform.name == "Body")
+		{
+			mBall.GrabBall(collision.gameObject);
+		}
+
+		//[GAMEPLAY] Core:Ball collided with Player1Path:Collider at point (-3.6, 2.8, -0.2)
+		if (name == "Ball" && collision.transform.name == "Collider") 
+		{
+			//mBall.RegainFreedom();
+		}
+
+		// TODO: Fix path collision
+
+		//if (mBall.lastHeldBy == collision.transform.parent.name)
+		//	Debug.Log ("We want to ignore this");
+
 
 		// tidy this up it's a mess
-		if (collision != null) 
-		{
-			if(collision.transform.parent != null)
-			{
-				if(collision.transform.parent.name == "Player1Path" ||
-				   collision.transform.parent.name == "Player2Path")
-				{
-					mBall.RemoveFreedom ();
-				}
+		//if (collision != null) 
+		//{
+		//	if(collision.transform.parent != null)
+		//	{
+		//		if(collision.transform.parent.name == "Player1Path" ||
+		//		   collision.transform.parent.name == "Player2Path")
+		//		{
+		//			mBall.RemoveFreedom ();
+		//		}
 					//if (collision.transform.parent.name == toSpline) 
 					//{
 					// add some logic for going between splines (save last touched path)
@@ -175,7 +193,7 @@ public class CBBouncingMotion : MonoBehaviour
 					
 					
 					//}
-			}
-		}
+		//	}
+		//}
 	}
 }

@@ -5,10 +5,9 @@ using InControl;
 public class CBCatchBall : MonoBehaviour 
 {
 	public CBPlayer player;
-	public CBPlayer otherPlayer;
 	public float forcePower;
 	public float intervalBetweenCatches = 0.1f;
-	private CBBall mBall = null;
+	public CBBall mBall;
 	private Vector3 mBallLocalPosition;
 	
 	public Vector3 mCollisionDirection;
@@ -47,7 +46,7 @@ public class CBCatchBall : MonoBehaviour
 	void OnCollisionStay(Collision collision)
 	{
 		//Debug.Log ("collision enter");
-		if(mBall == null && mTimeSinceReleasedBall > intervalBetweenCatches)
+		if(mBall.Free == true && mTimeSinceReleasedBall > intervalBetweenCatches)
 		{
 			ContactPoint first_contact = collision.contacts[0];
 			//mCollisionDirection = first_contact.point - Transform.position;
@@ -62,23 +61,23 @@ public class CBCatchBall : MonoBehaviour
 				//if(ball.Free)
 				//{
 				//	Debug.Log("INNER"  + ball.Free);
-					CatchBall(ball);
+					//CatchBall(ball);
 				//}
 			}
 
 			Debug.Log("[GAMEPLAY] " + Transform.parent.name + ":" + name + " collided with " 
 			          + collision.transform.parent.name + ":" +  collision.transform.name + " at point " + first_contact.point);
 		}	
-		else if(mBall == null)
+		else if(mBall.Free == true)
 		{
 			CBBouncingMotion BouncingMotion = collision.gameObject.GetComponent<CBBouncingMotion>();
 			if(BouncingMotion != null)
 			{
 				CBBall ball = BouncingMotion.mBall;
-				if(ball != null)
-				{
-					PushBall(ball);
-				}
+				//if(ball != null)
+				//{
+					//PushBall(ball);
+				//}
 			}
 		}
 	}
@@ -125,7 +124,8 @@ public class CBCatchBall : MonoBehaviour
 
 	void KeepBallClose()
 	{
-		mBall.Transform.localPosition = mBallLocalPosition;
+		//mBall.Transform.localPosition = mBallLocalPosition;
+		mBall.Transform.position = player.Transform.position;
 	}
 
 	void ReleaseBall()
@@ -133,7 +133,6 @@ public class CBCatchBall : MonoBehaviour
 		//mCollisionDirection = mBall.Transform.position - Transform.position;
 		//mCollisionDirection.Normalize();
 		mBall.RegainFreedom(mCollisionDirection, forcePower);
-		mBall = null;
 		mTimeSinceReleasedBall = 0.0f;
 	}
 
@@ -148,46 +147,121 @@ public class CBCatchBall : MonoBehaviour
 		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
 
 		mTimeSinceReleasedBall += Time.deltaTime;
-		if(mBall != null)
+
+		switch(player.playerControl)
+		{
+			case CBPlayer.EPlayerControl.Controller1:
+			{
+				if(inputDevicePlayer1.RightTrigger.WasPressed)
+				{
+					Debug.Log ("Splat1");
+					
+					if(Vector3.Distance(player.Transform.position, mBall.Transform.position) < 5.0f)
+					{
+						CatchBall(mBall);
+					}
+				}
+				if(!mBall.mIsAtBadAngle)
+				{
+					if(inputDevicePlayer1.RightBumper.WasPressed)
+					{
+						Debug.Log ("Splosh1");
+						mBall.LobBall(mCollisionDirection, forcePower);
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					}
+				}
+				break;
+			}
+				
+			case CBPlayer.EPlayerControl.Controller2:
+			{
+				if(inputDevicePlayer2.RightTrigger.WasPressed)
+				{
+					Debug.Log("Splat2");
+					
+					//if(Vector3.Distance(otherPlayer.Transform.position, mBall.Transform.position) < 5.0f)
+					//{
+					//	CatchBall(mBall);
+					//}
+				}
+				if(!mBall.mIsAtBadAngle)
+				{
+					if(inputDevicePlayer2.RightBumper.WasPressed)
+					{
+						Debug.Log ("Splosh2");
+						mBall.LobBall(mCollisionDirection, forcePower);
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					}
+				}
+				break;
+			}
+		}
+
+
+		if(mBall.Free != true)
 		{
 			KeepBallClose();
 
 //			float release_ball = 0f;
 			bool release_ball = false;	
 
-			switch(player.PlayerControl)
+			switch(player.playerControl)
 			{
 			case CBPlayer.EPlayerControl.Controller1:
 				
+				//if(!mBall.mIsAtBadAngle)
+				//{
+//					release_ball = Input.GetAxis("L_Fire_1");
+				//	release_ball = inputDevicePlayer1.RightBumper.IsPressed;
+				//	mBall.lastHeldBy = player.name;
+				//	Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					//Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+				//}
+
 				if(!mBall.mIsAtBadAngle)
 				{
-//					release_ball = Input.GetAxis("L_Fire_1");
-					release_ball = inputDevicePlayer1.RightBumper.IsPressed;
-					mBall.lastHeldBy = player.name;
-					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
-					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+					if(inputDevicePlayer1.RightBumper.WasPressed)
+					{
+						mBall.LobBall(mCollisionDirection, forcePower);
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					}
 				}
 
 				break;
 
 			case CBPlayer.EPlayerControl.Controller2:
-				
+
+				// only allow this to happen if the player is pointing the throw away from the wall
 				if(!mBall.mIsAtBadAngle)
 				{
-//					release_ball = Input.GetAxis("L_Fire_2");
-					release_ball = inputDevicePlayer2.RightBumper.IsPressed;
-					mBall.lastHeldBy = player.name;
-					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
-					Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+					if(inputDevicePlayer2.RightBumper.WasPressed)
+					{
+						mBall.LobBall(mCollisionDirection, forcePower);
+						Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					}
 				}
+
 				break;
-			}
+				
+				//if(!mBall.mIsAtBadAngle)
+				//{
+//					release_ball = Input.GetAxis("L_Fire_2");
+				//	release_ball = inputDevicePlayer2.RightBumper.IsPressed;
+				//	mBall.lastHeldBy = player.name;
+				//	Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
+					//Physics.IgnoreCollision(mBall.GetComponent<Collider>(), otherPlayer.GetComponentInChildren<Collider>(), false);
+				//}
+				//break;
+			//}
 
 //			if(release_ball > 0.5f)
-			if(release_ball)
-			{
-				ReleaseBall();
-			}
+			//if(release_ball)
+			//{
+
+			//}
 		}
+
+		
 	}
+}
 }
