@@ -30,6 +30,9 @@ public class CBBall : MonoBehaviour
 	public void LobBall(Vector3 force, float power)
 	{
 		state = BallState.InAir;
+		//forceThrown = force;
+		Rigidbody rb = GetComponent<Rigidbody>();
+		rb.AddForce(force*200);
 		//mBouncingMotion.AddForce (force, power);
 		//mIsFree = true;
 	}
@@ -105,7 +108,7 @@ public void RegainFreedom (Vector3 aForceDirection, float aForcePower)
 
 		if (state == BallState.InAir) 
 		{
-
+			//transform.position += forceThrown*0.1f;
 		}
 
 		if(mIsAtBadAngle)

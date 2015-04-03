@@ -63,6 +63,29 @@ public class CBPlayer : MonoBehaviour
 		mCurrentTF = Spline.DistanceToTF(Spline.ControlPoints[1].Distance);
 	}
 
+	float AngleSigned(Vector3 v1, Vector3 v2)
+	{
+		Vector2 fromVector2 = v1;
+		Vector2 toVector2 = v2;
+		
+		float ang = Vector2.Angle(fromVector2, toVector2);
+		Vector3 cross = Vector3.Cross(fromVector2, toVector2);
+		
+		if (cross.z < 0)
+			ang = 360 - ang;
+		
+		return ang;
+	}
+
+	void calculateIfAngleIsBad(float min, float max)
+	{
+		float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), mThrowVector);
+
+		if(angleDif > min && angleDif < max)
+			theBall.mIsAtBadAngle = false;
+		else
+			theBall.mIsAtBadAngle = true;
+	}
 	void UpdatePlayerControls()
 	{
 		if(InputManager.Devices.Count < 2)
@@ -72,7 +95,7 @@ public class CBPlayer : MonoBehaviour
 		
 		InputDevice inputDevicePlayer1 = InputManager.Devices[0];
 		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
-		
+
 		switch (playerControl) 
 		{
 			case CBPlayer.EPlayerControl.Controller1:
@@ -91,9 +114,16 @@ public class CBPlayer : MonoBehaviour
 					}
 				}
 				
+				//
+
+				calculateIfAngleIsBad(200.0f,340.0f);
 				mTranslation = inputDevicePlayer1.LeftStickX.Value;
 				mThrowVector = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
-				Debug.DrawRay(transform.position, mThrowVector, Color.red);
+
+				if(theBall.mIsAtBadAngle)
+					Debug.DrawRay(transform.position, mThrowVector, Color.red);
+				else
+					Debug.DrawRay(transform.position, mThrowVector, Color.green);
 				break;
 			}
 				
@@ -117,9 +147,14 @@ public class CBPlayer : MonoBehaviour
 					}
 				}
 				
+				calculateIfAngleIsBad(20.0f,160.0f);
 				mTranslation = inputDevicePlayer2.LeftStickX.Value;
 				mThrowVector = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
-				Debug.DrawRay(transform.position, mThrowVector, Color.green);
+				
+				if(theBall.mIsAtBadAngle)
+					Debug.DrawRay(transform.position, mThrowVector, Color.red);
+				else
+					Debug.DrawRay(transform.position, mThrowVector, Color.green);
 				
 				break;
 			}

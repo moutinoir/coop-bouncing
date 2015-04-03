@@ -29,7 +29,7 @@ public class CaveMeshGenerator : MonoBehaviour {
 		
 		for (int i = 0; i < numControlPoints-1; i++) 
 		{
-			Vector3 off = new Vector3(0.0f,isUpper ? 5.0f : -5.0f,0.0f);
+			Vector3 off = new Vector3(0.0f,isUpper ? 10.0f : -10.0f,0.0f);
 			
 			Vector3 p0 = wallSpline.ControlPoints[i].Position;
 			Vector3 p1 = wallSpline.ControlPoints[i].Position+off;
