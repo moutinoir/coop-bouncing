@@ -12,7 +12,7 @@ using System.Collections.Generic;
 public class PredicitonPath : MonoBehaviour 
 {
 	LineRenderer lineRenderer;
-	public CBFollowSpline player;  // TODO: Refactor. This shouldn't live in here
+	public CBPlayer player;  // TODO: Refactor. This shouldn't live in here
 
 	void UpdateTrajectory(Vector3 startPos, Vector3 direction, float speed, float timePerSegmentInSeconds, float maxTravelDistance)
 	{

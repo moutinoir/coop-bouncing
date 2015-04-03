@@ -13,8 +13,8 @@ public class SplineCreationDestruction : MonoBehaviour
 	//public CurvySpline curvyLeft;
 	//public CurvySpline curvyRight;
 
-	public CBFollowSpline FollowSplineLeft;
-	public CBFollowSpline FollowSplineRight;
+	public CBPlayer playerOne;
+	public CBPlayer playerTwo;
 
 	public GameObject  ball;
 
@@ -112,11 +112,11 @@ public class SplineCreationDestruction : MonoBehaviour
 
 	void GenerateNewPoint()
 	{
-		int numPointsLeft = FollowSplineLeft.Spline.ControlPointCount;
-		int numPointsRight = FollowSplineRight.Spline.ControlPointCount;
+		int numPointsLeft = playerOne.Spline.ControlPointCount;
+		int numPointsRight = playerTwo.Spline.ControlPointCount;
 		
-		leftPrevPoint = FollowSplineLeft.Spline.ControlPoints[numPointsLeft-1].Position;
-		rightPrevPoint = FollowSplineRight.Spline.ControlPoints[numPointsRight-1].Position;
+		leftPrevPoint = playerOne.Spline.ControlPoints[numPointsLeft-1].Position;
+		rightPrevPoint = playerTwo.Spline.ControlPoints[numPointsRight-1].Position;
 		
 		Random.seed = (int)Time.timeSinceLevelLoad;
 
@@ -150,28 +150,24 @@ public class SplineCreationDestruction : MonoBehaviour
 	private void AddPointsAndRecalculateTFs()
 	{
 		// left spline
-		float distanceBeforeAddingPoint = FollowSplineLeft.Spline.TFToDistance(FollowSplineLeft.CurrentTF);
-		FollowSplineLeft.Spline.Add(leftNewPoint);
-
-		float distanceAfterAddingPoint = FollowSplineLeft.Spline.TFToDistance(FollowSplineLeft.CurrentTF);
-		float newTFAfterAddingPoint = FollowSplineLeft.Spline.DistanceToTF(distanceBeforeAddingPoint);
+		float distanceBeforeAddingPoint = playerOne.Spline.TFToDistance(playerOne.CurrentTF);
+		playerOne.Spline.Add(leftNewPoint);
+		float newTFAfterAddingPoint = playerOne.Spline.DistanceToTF(distanceBeforeAddingPoint);
 		/*Debug.Log("[GAMEPLAY] Left curve : TFToDistance = " + distanceBeforeAddingPoint 
-			          + " oldTF = " + FollowSplineLeft.CurrentTF
+			          + " oldTF = " + playerOne.CurrentTF
 			          + " after adding point TFToDistance = " + distanceAfterAddingPoint
 			          + " newTF = " + newTFAfterAddingPoint);*/
-		FollowSplineLeft.CurrentTF = newTFAfterAddingPoint;
+		playerOne.CurrentTF = newTFAfterAddingPoint;
 		
 		// right spline
-		distanceBeforeAddingPoint = FollowSplineRight.Spline.TFToDistance(FollowSplineRight.CurrentTF);
-		FollowSplineRight.Spline.Add(rightNewPoint);
-		
-		distanceAfterAddingPoint = FollowSplineRight.Spline.TFToDistance(FollowSplineRight.CurrentTF);
-		newTFAfterAddingPoint = FollowSplineRight.Spline.DistanceToTF(distanceBeforeAddingPoint);
+		distanceBeforeAddingPoint = playerTwo.Spline.TFToDistance(playerTwo.CurrentTF);
+		playerTwo.Spline.Add(rightNewPoint);
+		newTFAfterAddingPoint = playerTwo.Spline.DistanceToTF(distanceBeforeAddingPoint);
 		/*Debug.Log("[GAMEPLAY] Right curve : TFToDistance = " + distanceBeforeAddingPoint 
 			          + " oldTF = " + FollowSplineRight.CurrentTF
 			          + " after adding point TFToDistance = " + distanceAfterAddingPoint
 			          + " newTF = " + newTFAfterAddingPoint);*/
-		FollowSplineRight.CurrentTF = newTFAfterAddingPoint;
+		playerTwo.CurrentTF = newTFAfterAddingPoint;
 	}
 	private void GenerateNewPoints()
 	{

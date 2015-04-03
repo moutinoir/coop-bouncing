@@ -14,18 +14,13 @@ public class CBFollowSpline : MonoBehaviour
 {
 	public CBPlayer player;
 	public bool isFirstPlayer; 
-
-	public CurvySpline Spline;
-	public float Speed = 1f;
-	public float SlowSpeedFactor = 0.5f;
-	private float mSpeedFactor = 1f;
-
+	
 	private float mCurrentTF;
-	private float mTranslation;
+
 	[SerializeField]
 	private CurvyVector mCurrent;
-	
-	public Vector3 mThrowAngle;
+
+
 
 	public float CurrentTF
 	{
@@ -50,12 +45,7 @@ public class CBFollowSpline : MonoBehaviour
 	}
 	Transform mTransform;
 
-	// Use this for initialization
-	void Start () 
-	{
-		mCurrent = new CurvyVector(0, 1);
-		mCurrentTF = Spline.DistanceToTF(Spline.ControlPoints[1].Distance);
-	}
+
 
 	float calculateAngleBetweenTwoVectors(Vector3 source, Vector3 target)
 	{
@@ -82,66 +72,9 @@ public class CBFollowSpline : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(InputManager.Devices.Count < 2)
-		{
-			return;
-		}
-
-		InputDevice inputDevicePlayer1 = InputManager.Devices[0];
-		InputDevice inputDevicePlayer2 = InputManager.Devices[1];
-
-		switch(player.playerControl)
-		{
-		case CBPlayer.EPlayerControl.Controller1:
-		{
-//			mTranslation = Input.GetAxis("p1_L_XAxis");
-			mTranslation = inputDevicePlayer1.LeftStickX.Value;
-				
-//			if(mTranslation == 0)
-//			{
-//				mTranslation = Input.GetAxis("Horizontal1");
-//			}
-
-//			mThrowAngle = new Vector3(Input.GetAxis("p1_R_XAxis"), Input.GetAxis("p1_R_YAxis"), 0.0f);
-			mThrowAngle = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
-
-			Debug.DrawRay(player.transform.position, mThrowAngle, Color.red);
-
-			break;
-		}
-		case CBPlayer.EPlayerControl.Controller2:
-		{
-//			mTranslation = Input.GetAxis("p2_L_XAxis");
-			mTranslation = inputDevicePlayer2.LeftStickX.Value;
-			
-//			if(mTranslation == 0) 
-//			{
-//				mTranslation = Input.GetAxis("Horizontal2");
-//			}
-
-//			mThrowAngle = new Vector3(Input.GetAxis("p2_R_XAxis"), Input.GetAxis("p2_R_YAxis"), 0.0f);
-			mThrowAngle = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
-
-			Debug.DrawRay(player.transform.position, mThrowAngle, Color.green);
-			break;
-		}
-		}
-
-		mCurrent.Direction = (int) Mathf.Sign(mTranslation);
-		
-		Transform.position = Spline.MoveBy(ref mCurrentTF, ref mCurrent.m_Direction, 
-		                                   Speed * Mathf.Abs(mTranslation)* mSpeedFactor * Time.deltaTime, CurvyClamping.Clamp);
-		Transform.rotation = Spline.GetOrientationFast(mCurrentTF, false);
-
-		// give a little z offset to position on extrude properly
-		Transform.position = new Vector3 (Transform.position.x, Transform.position.y, Transform.position.z-0.2f);
-
-		if(player.theBall != null)
+		/*if(player.theBall != null)
 		{
 			mSpeedFactor = SlowSpeedFactor;
-			//player.theBall.mCollisionDirection = mThrowAngle;
-			//float angleDif = calculateAngleBetweenTwoVectors(Transform.rotation.eulerAngles, throwAngle);
-			//float angleDif = Vector3.Angle(Spline.GetTangent(mCurrentTF), throwAngle);
 			float angleDif = AngleSigned(Spline.GetTangent(mCurrentTF), mThrowAngle);
 			Debug.DrawRay(player.transform.position, Spline.GetTangent(mCurrentTF), Color.yellow);
 
@@ -172,6 +105,6 @@ public class CBFollowSpline : MonoBehaviour
 		else
 		{
 			mSpeedFactor = 1f;
-		}
+		}*/
 	}
 }
