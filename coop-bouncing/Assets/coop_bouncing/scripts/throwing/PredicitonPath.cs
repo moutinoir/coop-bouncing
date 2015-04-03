@@ -83,14 +83,14 @@ public class PredicitonPath : MonoBehaviour
 	void Update()
 	{
 		// TODO: pipe in speed from controls
-		if (player.mThrowAngle.Equals (Vector3.zero)) 
+		if (player.mThrowVector.Equals (Vector3.zero)) 
 		{
 			lineRenderer.enabled = false;
 		} 
 		else 
 		{
 			lineRenderer.enabled = true;
-			UpdateTrajectory(player.transform.position, player.mThrowAngle, 80.0f*player.mThrowAngle.magnitude, 0.01f, 10.0f);
+			UpdateTrajectory(player.transform.position, player.mThrowVector, 80.0f*player.mThrowVector.magnitude, 0.01f, 10.0f);
 		}
 	}
 

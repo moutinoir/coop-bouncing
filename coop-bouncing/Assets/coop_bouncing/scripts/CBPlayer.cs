@@ -24,7 +24,7 @@ public class CBPlayer : MonoBehaviour
 	public EPlayerControl playerControl;
 
 	private float mTranslation;
-	public Vector3 mThrowAngle;
+
 
 	[SerializeField]
 	private CurvyVector mCurrent;
@@ -35,6 +35,8 @@ public class CBPlayer : MonoBehaviour
 	public float SlowSpeedFactor = 0.5f;
 	private float mSpeedFactor = 1f;
 
+	public float forcePower;
+	public Vector3 mThrowVector = Vector3.zero;
 
 	public float CurrentTF
 	{
@@ -75,30 +77,28 @@ public class CBPlayer : MonoBehaviour
 		{
 			case CBPlayer.EPlayerControl.Controller1:
 			{
-				Debug.Log ("Hitting update loop for Controller 1:" + transform.name);
 				if (inputDevicePlayer1.RightTrigger.WasPressed) 
 				{
 					Debug.Log ("Player One Tongue");
 				}
-				if (!theBall.mIsAtBadAngle) 
+				if (!theBall.mIsAtBadAngle && theBall.state == CBBall.BallState.Held) 
 				{
 					if (inputDevicePlayer1.RightBumper.WasPressed) 
 					{
-						Debug.Log ("Player 1 Throw");
-						//mBall.LobBall(mCollisionDirection, forcePower);
+						Debug.Log ("Player 1 Throw with throw vector:" + mThrowVector);
+						theBall.LobBall(mThrowVector, forcePower);
 						//Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
 					}
 				}
 				
 				mTranslation = inputDevicePlayer1.LeftStickX.Value;
-				mThrowAngle = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
-				Debug.DrawRay(transform.position, mThrowAngle, Color.red);
+				mThrowVector = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
+				Debug.DrawRay(transform.position, mThrowVector, Color.red);
 				break;
 			}
 				
 			case CBPlayer.EPlayerControl.Controller2:
 			{
-				Debug.Log ("Hitting update loop for Controller 2:" + transform.name);
 				if (inputDevicePlayer2.RightTrigger.WasPressed) 
 				{
 					Debug.Log ("Player Two Tongue");
@@ -107,19 +107,19 @@ public class CBPlayer : MonoBehaviour
 					//	CatchBall(mBall);
 					//}
 				}
-				if (!theBall.mIsAtBadAngle) 
+				if (!theBall.mIsAtBadAngle && theBall.state == CBBall.BallState.Held) 
 				{
 					if (inputDevicePlayer2.RightBumper.WasPressed) 
 					{
-						Debug.Log ("Player Two Throw");
-						//mBall.LobBall (mCollisionDirection, forcePower);
+						Debug.Log ("Player 2 Throw with throw vector:" + mThrowVector);
+						theBall.LobBall (mThrowVector, forcePower);
 						//Physics.IgnoreCollision (mBall.GetComponent<Collider> (), player.GetComponentInChildren<Collider> ());
 					}
 				}
 				
 				mTranslation = inputDevicePlayer2.LeftStickX.Value;
-				mThrowAngle = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
-				Debug.DrawRay(transform.position, mThrowAngle, Color.green);
+				mThrowVector = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
+				Debug.DrawRay(transform.position, mThrowVector, Color.green);
 				
 				break;
 			}
@@ -141,7 +141,26 @@ public class CBPlayer : MonoBehaviour
 	{
 		UpdatePlayerControls ();
 		UpdatePlayerPosition ();
-
-
+	}
+	void OnCollisionEnter(Collision collision)
+	{
+		ContactPoint first_contact = collision.contacts [0];
+		//mCollisionDirection = first_contact.point - Transform.position;
+		//mCollisionDirection.Normalize ();
+		
+		Debug.Log ("[GAMEPLAY] " + transform.parent.name + ":" + name + " collided with " 
+			+ collision.transform.parent.name + ":" + collision.transform.name + " at point " + first_contact.point);
+		
+		//Debug.Log ("lastHeldBy: " + mBall.lastHeldBy);
+		
+		/*
+	 * 
+	 * [GAMEPLAY] Core:Ball collided with Player2:Body at point (-4.1, 0.4, 0.0)
+	 */
+		
+		if (name == "Body" && collision.transform.name == "Ball" && theBall.state != CBBall.BallState.Held) 
+		{
+			theBall.GrabBall (gameObject);
+		}
 	}
 }

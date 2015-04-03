@@ -5,7 +5,7 @@ public class CBBall : MonoBehaviour
 {
 	public GameObject holdingPlayer;
 
-	public CBBouncingMotion mBouncingMotion;
+	//public CBBouncingMotion mBouncingMotion;
 	public string lastHeldBy;
 
 	public enum BallState { Held, OnSpline, InAir }  
@@ -16,11 +16,13 @@ public class CBBall : MonoBehaviour
 	public CBBall()
 	{
 		mIsAtBadAngle = false;
-		mIsFree = true;
+		//mIsFree = true;
 	}
 
 	public void GrabBall(GameObject player)
 	{
+		SphereCollider sphere = gameObject.GetComponent<SphereCollider>();
+		sphere.enabled = false;
 		holdingPlayer = player;
 		state = BallState.Held;
 	}
@@ -28,8 +30,8 @@ public class CBBall : MonoBehaviour
 	public void LobBall(Vector3 force, float power)
 	{
 		state = BallState.InAir;
-		mBouncingMotion.AddForce (force, power);
-		mIsFree = true;
+		//mBouncingMotion.AddForce (force, power);
+		//mIsFree = true;
 	}
 
 	/*
@@ -42,13 +44,13 @@ public void RegainFreedom (Vector3 aForceDirection, float aForcePower)
 	}
 	*/
 
-	public bool Free
+	/*public bool Free
 	{
 		get
 		{
 			return mIsFree;
 		}
-	}
+	}*/
 
 	public Transform Transform
 	{
@@ -61,37 +63,37 @@ public void RegainFreedom (Vector3 aForceDirection, float aForcePower)
 	}
 	Transform mTransform;
 	private Transform mInitialParent;
-	private bool mIsFree;
+	//private bool mIsFree;
 	
 	public bool mIsAtBadAngle;
 
 	void Awake ()
 	{
-		mIsFree = true;
+		//mIsFree = true;
 		mIsAtBadAngle = false;
 		mInitialParent = Transform.parent;
 	}
 
 	public void RemoveFreedom ()
 	{
-		mIsFree = false;
-		mBouncingMotion.StopMotion();
+		//mIsFree = false;
+		//mBouncingMotion.StopMotion();
 	}
 
 	public void RegainFreedom (Vector3 aForceDirection, float aForcePower)
 	{
 		Transform.parent = mInitialParent;
-		mBouncingMotion.AddForce (aForceDirection, aForcePower);
+		//mBouncingMotion.AddForce (aForceDirection, aForcePower);
 		Debug.Log ("force direction = " + aForceDirection + " , force power = " + aForcePower );
-		mIsFree = true;
+		//mIsFree = true;
 	}
 
 	public void Push (Vector3 aDirection)
 	{
-		if(Free)
-		{
-			mBouncingMotion.Push(aDirection);
-		}
+		//if(Free)
+		//{
+			//mBouncingMotion.Push(aDirection);
+		//}
 	}
 
 	void Update ()

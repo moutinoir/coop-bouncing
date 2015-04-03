@@ -46,11 +46,11 @@ public class CBBouncingMotion : MonoBehaviour
 		switch(MotionType)
 		{
 		case EMotionType.UnityPhysics:
-			Rigidbody.Sleep();
+			//Rigidbody.Sleep();
 			break;
 
 		case EMotionType.Manual:
-			Rigidbody.isKinematic = true;
+			//Rigidbody.isKinematic = true;
 			break;
 		}
 	}
@@ -60,8 +60,8 @@ public class CBBouncingMotion : MonoBehaviour
 		switch(MotionType)
 		{
 		case EMotionType.UnityPhysics:
-			Rigidbody.Sleep();
-			Rigidbody.velocity = Vector3.zero;
+			//Rigidbody.Sleep();
+			//Rigidbody.velocity = Vector3.zero;
 			break;
 			
 		case EMotionType.Manual:
@@ -74,8 +74,8 @@ public class CBBouncingMotion : MonoBehaviour
 		switch(MotionType)
 		{
 		case EMotionType.UnityPhysics:
-			Rigidbody.velocity = Vector3.zero;
-			Rigidbody.AddForce(aForceDirection * aForcePower);
+			/*Rigidbody.velocity = Vector3.zero;
+			Rigidbody.AddForce(aForceDirection * aForcePower);*/
 			break;
 			
 		case EMotionType.Manual:
@@ -88,13 +88,13 @@ public class CBBouncingMotion : MonoBehaviour
 		switch(MotionType)
 		{
 		case EMotionType.UnityPhysics:
-			mVelocityMagnitude = Rigidbody.velocity.magnitude;
+			/*mVelocityMagnitude = Rigidbody.velocity.magnitude;
 			Rigidbody.velocity = aDirection * mVelocityMagnitude;
 
 			if(mVelocityMagnitude < minSpeed)
 			{
 				Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
-			}
+			}*/
 			break;
 			
 		case EMotionType.Manual:
@@ -107,11 +107,11 @@ public class CBBouncingMotion : MonoBehaviour
 		switch(MotionType)
 		{
 		case EMotionType.UnityPhysics:
-			mVelocityMagnitude = Rigidbody.velocity.magnitude;
+			/*mVelocityMagnitude = Rigidbody.velocity.magnitude;
 			if(Rigidbody.velocity.magnitude > maxSpeed)
 			{
 				Rigidbody.velocity = Rigidbody.velocity.normalized * maxSpeed;
-			}
+			}*/
 			/*else if(Rigidbody.velocity.magnitude < minSpeed && !Rigidbody.IsSleeping())
 			{
 				Rigidbody.velocity = Rigidbody.velocity.normalized * minSpeed;
@@ -148,7 +148,7 @@ public class CBBouncingMotion : MonoBehaviour
 	 * [GAMEPLAY] Core:Ball collided with Player2:Body at point (-4.1, 0.4, 0.0)
 	 */
 
-		if(name == "Ball" && collision.transform.name == "Body")
+		if(name == "Ball" && collision.transform.name == "Body" && mBall.state != CBBall.BallState.Held)
 		{
 			mBall.GrabBall(collision.gameObject);
 		}
