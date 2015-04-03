@@ -150,7 +150,7 @@ public class CBBouncingMotion : MonoBehaviour
 
 		if(name == "Ball" && collision.transform.name == "Body" && mBall.state != CBBall.BallState.Held)
 		{
-			mBall.GrabBall(collision.gameObject);
+			mBall.GrabBall(collision.gameObject, 1);
 		}
 
 		//[GAMEPLAY] Core:Ball collided with Player1Path:Collider at point (-3.6, 2.8, -0.2)

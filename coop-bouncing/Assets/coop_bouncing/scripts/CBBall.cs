@@ -4,6 +4,7 @@ using System.Collections;
 public class CBBall : MonoBehaviour 
 {
 	public GameObject holdingPlayer;
+	public int holdingPlayerNumber;
 
 	//public CBBouncingMotion mBouncingMotion;
 	public string lastHeldBy;
@@ -19,16 +20,36 @@ public class CBBall : MonoBehaviour
 		//mIsFree = true;
 	}
 
-	public void GrabBall(GameObject player)
+	public void GrabBall(GameObject player, int playerNum)
 	{
 		SphereCollider sphere = gameObject.GetComponent<SphereCollider>();
 		sphere.enabled = false;
 		holdingPlayer = player;
+		holdingPlayerNumber = playerNum;
+		state = BallState.Held;
+	}
+
+	private IEnumerator TurnOnCollider()
+	{
+		yield return new WaitForSeconds (0.2f);
+		SphereCollider sphere = gameObject.GetComponent<SphereCollider>();
+		sphere.enabled = true;
+	}
+
+	public void TongueBall(GameObject player, int playerNum)
+	{
+		Debug.Log ("Tonguing the ball");
+		SphereCollider sphere = gameObject.GetComponent<SphereCollider>();
+		sphere.enabled = false;
+		holdingPlayer = player;
+		holdingPlayerNumber = playerNum;
 		state = BallState.Held;
 	}
 
 	public void LobBall(Vector3 force, float power)
 	{
+		StartCoroutine (TurnOnCollider());
+
 		state = BallState.InAir;
 		//forceThrown = force;
 		Rigidbody rb = GetComponent<Rigidbody>();

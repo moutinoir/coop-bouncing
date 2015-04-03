@@ -6,6 +6,7 @@ using InControl;
 public class CBPlayer : MonoBehaviour 
 {
 	public CBBall theBall;
+	public int playerNum;
 
 	public Transform Transform
 	{
@@ -103,6 +104,11 @@ public class CBPlayer : MonoBehaviour
 				if (inputDevicePlayer1.RightTrigger.WasPressed) 
 				{
 					Debug.Log ("Player One Tongue");
+
+					if(Vector3.Distance(Transform.position, theBall.Transform.position) < 2.0f)
+					{
+						theBall.TongueBall(gameObject, playerNum);
+					}
 				}
 				if (!theBall.mIsAtBadAngle && theBall.state == CBBall.BallState.Held) 
 				{
@@ -112,11 +118,16 @@ public class CBPlayer : MonoBehaviour
 						theBall.LobBall(mThrowVector, forcePower);
 						//Physics.IgnoreCollision(mBall.GetComponent<Collider>(), player.GetComponentInChildren<Collider>());
 					}
+
+					if(theBall.holdingPlayer.name == gameObject.name)
+					{	
+						Debug.Log("held by player 1");
+					}
 				}
 				
-				//
+				if(theBall.holdingPlayerNumber ==  1)
+					calculateIfAngleIsBad(200.0f,340.0f);
 
-				calculateIfAngleIsBad(200.0f,340.0f);
 				mTranslation = inputDevicePlayer1.LeftStickX.Value;
 				mThrowVector = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
 
@@ -132,10 +143,11 @@ public class CBPlayer : MonoBehaviour
 				if (inputDevicePlayer2.RightTrigger.WasPressed) 
 				{
 					Debug.Log ("Player Two Tongue");
-					//if(Vector3.Distance(otherPlayer.Transform.position, mBall.Transform.position) < 5.0f)
-					//{
-					//	CatchBall(mBall);
-					//}
+
+					if(Vector3.Distance(Transform.position, theBall.Transform.position) < 2.0f)
+					{
+						theBall.TongueBall(gameObject, playerNum);
+					}
 				}
 				if (!theBall.mIsAtBadAngle && theBall.state == CBBall.BallState.Held) 
 				{
@@ -146,8 +158,9 @@ public class CBPlayer : MonoBehaviour
 						//Physics.IgnoreCollision (mBall.GetComponent<Collider> (), player.GetComponentInChildren<Collider> ());
 					}
 				}
-				
-				calculateIfAngleIsBad(20.0f,160.0f);
+	
+				if(theBall.holdingPlayerNumber ==  2)
+					calculateIfAngleIsBad(20.0f,160.0f);
 				mTranslation = inputDevicePlayer2.LeftStickX.Value;
 				mThrowVector = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
 				
@@ -195,7 +208,7 @@ public class CBPlayer : MonoBehaviour
 		
 		if (name == "Body" && collision.transform.name == "Ball" && theBall.state != CBBall.BallState.Held) 
 		{
-			theBall.GrabBall (gameObject);
+			theBall.GrabBall (gameObject, playerNum);
 		}
 	}
 }
