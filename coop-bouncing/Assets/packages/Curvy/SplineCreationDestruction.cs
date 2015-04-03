@@ -48,11 +48,11 @@ public class SplineCreationDestruction : MonoBehaviour
 		// Randomly select an angle between 45 and 135 degrees (but in radians)
 		float angleRandVar = Random.Range (-angleMaxVar, angleMaxVar);
 		lastAngleTop += angleRandVar;
-		lastAngleTop = Mathf.Clamp (lastAngleTop, (Mathf.PI/2)*3.5f, (Mathf.PI/2)*4.5f);
+		lastAngleTop = Mathf.Clamp (lastAngleTop, (Mathf.PI/2)*0.5f, (Mathf.PI/2)*1.5f);
 
 		angleRandVar = Random.Range (-angleMaxVar, angleMaxVar);
 		lastAngleBottom += angleRandVar;
-		lastAngleBottom = Mathf.Clamp (lastAngleBottom, (Mathf.PI/2)*3.5f, (Mathf.PI/2)*4.5f);
+		lastAngleBottom = Mathf.Clamp (lastAngleBottom, (Mathf.PI/2)*0.5f, (Mathf.PI/2)*1.5f);
 
 		leftNewPoint  = new Vector3(Mathf.Cos(lastAngleTop), Mathf.Sin(lastAngleTop), 0.0f) + leftPrevPoint;
 		rightNewPoint = new Vector3(Mathf.Cos(lastAngleBottom), Mathf.Sin(lastAngleBottom), 0.0f) + rightPrevPoint;
