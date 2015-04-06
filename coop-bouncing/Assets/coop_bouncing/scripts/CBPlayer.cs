@@ -128,7 +128,7 @@ public class CBPlayer : MonoBehaviour
 				if(theBall.holdingPlayerNumber ==  1)
 					calculateIfAngleIsBad(200.0f,340.0f);
 
-				mTranslation = inputDevicePlayer1.LeftStickX.Value;
+				mTranslation = inputDevicePlayer1.LeftStickY.Value;
 				mThrowVector = new Vector3(inputDevicePlayer1.RightStickX.Value, inputDevicePlayer1.RightStickY.Value, 0.0f);
 
 				if(theBall.mIsAtBadAngle)
@@ -161,7 +161,7 @@ public class CBPlayer : MonoBehaviour
 	
 				if(theBall.holdingPlayerNumber ==  2)
 					calculateIfAngleIsBad(20.0f,160.0f);
-				mTranslation = inputDevicePlayer2.LeftStickX.Value;
+				mTranslation = inputDevicePlayer2.LeftStickY.Value;
 				mThrowVector = new Vector3(inputDevicePlayer2.RightStickX.Value, inputDevicePlayer2.RightStickY.Value, 0.0f);
 				
 				if(theBall.mIsAtBadAngle)
