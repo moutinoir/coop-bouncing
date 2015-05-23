@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,33 +31,123 @@ namespace PopUtils
 		float x;
 		float y;
 	}
-
-	// Axis-aligned bounding box with half dimension and center
-	public class AABB
+	
+	public abstract class Area
 	{
-		public AABB(Point aCenter, float aHalfDimension) 
-		{
-			
-		}
+		public abstract bool ContainsPoint(float aX, float aY);
 		
 		public bool ContainsPoint(Point aPoint) 
 		{
-			return true;
+			return ContainsPoint(aPoint.X, aPoint.Y);
 		}
 		
-		public bool IntersectsAABB(AABB aAABB) 
+		public bool ContainsPoint(Vector2 aPoint) 
 		{
-			return true;
+			return ContainsPoint(aPoint.x, aPoint.y);
 		}
-
-		public Point Center
+	}
+	
+	public class Circle : Area
+	{
+		public Circle (Vector2 aCenter, float aRadius)
+		{
+			center = aCenter;
+			radius = aRadius;
+		}
+		
+		public override bool ContainsPoint(float aX, float aY) 
+		{
+			if((center.x - aX)*(center.x - aX) + (center.y - aY)*(center.y - aY) < radius*radius)
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		public Vector2 Center
 		{
 			get
 			{
 				return center;
 			}
 		}
+		
+		public float Radius
+		{
+			get
+			{
+				return radius;
+			}
+		}
+		
+		Vector2 center;
+		float radius;
+	}
 
+	// Axis-aligned bounding box with half dimension and center
+	public class AABB : Area
+	{
+		public AABB(Vector2 aCenter, float aHalfDimension) 
+		{
+			center = aCenter;
+			halfDimension = aHalfDimension;
+		}
+		
+		public override bool ContainsPoint(float aX, float aY) 
+		{
+			if(aX >= center.x - halfDimension && aX < center.x + halfDimension
+				&& aY >= center.y - halfDimension && aY < center.y + halfDimension)
+				return true;
+				
+			return false;
+		}
+		
+		public bool IntersectsAABB(AABB aAABB) 
+		{
+			return ContainsPoint(aAABB.NorthEast) || ContainsPoint(aAABB.NorthWest)
+				|| ContainsPoint(aAABB.SouthEast) || ContainsPoint(aAABB.SouthWest);
+		}
+
+		public Vector2 Center
+		{
+			get
+			{
+				return center;
+			}
+		}
+		
+		public Vector2 NorthWest
+		{
+			get
+			{
+				return center + new Vector2(- halfDimension, halfDimension);
+			}
+		}
+		
+		public Vector2 NorthEast
+		{
+			get
+			{
+				return center + new Vector2(halfDimension, halfDimension);
+			}
+		}
+		
+		public Vector2 SouthEast
+		{
+			get
+			{
+				return center + new Vector2(halfDimension, -halfDimension);
+			}
+		}
+		
+		public Vector2 SouthWest
+		{
+			get
+			{
+				return center + new Vector2(-halfDimension, -halfDimension);
+			}
+		}
+		
 		public float HalfDimension
 		{
 			get
@@ -66,7 +156,7 @@ namespace PopUtils
 			}
 		}
 
-		Point center;
+		Vector2 center;
 		float halfDimension;
 	}
 
@@ -109,10 +199,10 @@ namespace PopUtils
 		{
 			float childHalfDimension = boundary.HalfDimension / 2f;
 
-			northWest = new QuadTree (new AABB (new Point (boundary.Center.X - childHalfDimension, boundary.Center.Y + childHalfDimension), childHalfDimension));
-			northEast = new QuadTree (new AABB (new Point (boundary.Center.X + childHalfDimension, boundary.Center.Y + childHalfDimension), childHalfDimension));
-			southWest = new QuadTree (new AABB (new Point (boundary.Center.X - childHalfDimension, boundary.Center.Y - childHalfDimension), childHalfDimension));
-			southEast = new QuadTree (new AABB (new Point (boundary.Center.X + childHalfDimension, boundary.Center.Y - childHalfDimension), childHalfDimension));
+			northWest = new QuadTree (new AABB (new Vector2(boundary.Center.x - childHalfDimension, boundary.Center.y + childHalfDimension), childHalfDimension));
+			northEast = new QuadTree (new AABB (new Vector2(boundary.Center.x + childHalfDimension, boundary.Center.y + childHalfDimension), childHalfDimension));
+			southWest = new QuadTree (new AABB (new Vector2(boundary.Center.x - childHalfDimension, boundary.Center.y - childHalfDimension), childHalfDimension));
+			southEast = new QuadTree (new AABB (new Vector2(boundary.Center.x + childHalfDimension, boundary.Center.y - childHalfDimension), childHalfDimension));
 
 			foreach (Point point in points) 
 			{
@@ -167,4 +257,3 @@ namespace PopUtils
 		QuadTree southEast = null;
 	}
 }
-
