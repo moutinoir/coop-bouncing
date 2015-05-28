@@ -4,12 +4,19 @@ using System.Collections.Generic;
 
 namespace PopUtils
 {
-	public class Point
+	[System.Serializable]
+	public class Point : System.Object
 	{
 		public Point(float aX, float aY)
 		{
 			x = aX;
 			y = aY;
+		}
+
+		public Point(Vector2 aPosition)
+		{
+			x = aPosition.x;
+			y = aPosition.y;
 		}
 
 		public float X
@@ -28,11 +35,13 @@ namespace PopUtils
 			}
 		}
 
+		[SerializeField]
 		float x;
+		[SerializeField]
 		float y;
 	}
-	
-	public abstract class Area
+
+	public abstract class Area : System.Object
 	{
 		public abstract bool ContainsPoint(float aX, float aY);
 		
@@ -46,7 +55,8 @@ namespace PopUtils
 			return ContainsPoint(aPoint.x, aPoint.y);
 		}
 	}
-	
+
+	[System.Serializable]
 	public class Circle : Area
 	{
 		public Circle (Vector2 aCenter, float aRadius)
@@ -79,12 +89,15 @@ namespace PopUtils
 				return radius;
 			}
 		}
-		
+
+		[SerializeField]
 		Vector2 center;
+		[SerializeField]
 		float radius;
 	}
 
 	// Axis-aligned bounding box with half dimension and center
+	[System.Serializable]
 	public class AABB : Area
 	{
 		public AABB(Vector2 aCenter, float aHalfDimension) 
@@ -156,11 +169,14 @@ namespace PopUtils
 			}
 		}
 
+		[SerializeField]
 		Vector2 center;
+		[SerializeField]
 		float halfDimension;
 	}
 
-	public class QuadTree
+	[System.Serializable]
+	public class QuadTree : System.Object
 	{
 		public QuadTree(AABB aBoundary) 
 		{
@@ -241,19 +257,25 @@ namespace PopUtils
 		}
 
 		// how many elements can be stored in this quad tree node
-		const int nodeCapacity = 4;
+		const int nodeCapacity = 2;
 		
 		// Axis-aligned bounding box stored as a center with half-dimensions
 		// to represent the boundaries of this quad tree
+		[SerializeField]
 		AABB boundary;
 		
 		// Points in this quad tree node
+		[SerializeField]
 		List<Point> points;
 		
 		// Children
+		[SerializeField]
 		QuadTree northWest = null;
+		[SerializeField]
 		QuadTree northEast = null;
+		[SerializeField]
 		QuadTree southWest = null;
+		[SerializeField]
 		QuadTree southEast = null;
 	}
 }
